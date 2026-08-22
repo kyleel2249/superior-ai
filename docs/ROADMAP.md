@@ -1,11 +1,10 @@
 # Roadmap
 
-## Delivered (Waves 1–8)
+## Delivered (Waves 1–9)
 
-Full multi-model AI business OS: registry, router, gateway, council, orchestrator, workers, creative/SEO/sales/marketing, tools, memory/RAG, media, CRM/social, auth (JWT+OIDC+jose), billing (Stripe), observability (OTLP), rate limits (Redis), audit log, Helm/Terraform, Playwright, CI, runbook.
+SUPERIOR AI multi-model business OS: core platform, council, GTM, media, CRM/social, auth, billing, workers, observability, audit, deploy, SOC2 templates, multi-region playbook, status page, cost attribution.
 
-## Optional next
-1. SOC2 evidence templates
-2. Multi-region failover playbook
-3. Status page
-4. Cost attribution UI
+## Optional
+- SSO marketplace listings
+- Mobile companion
+- Agent pack marketplace
