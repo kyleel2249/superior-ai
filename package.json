@@ -1,0 +1,31 @@
+{
+  "name": "superior-ai",
+  "version": "0.1.0",
+  "private": true,
+  "description": "SUPERIOR AI — Multi-Model Autonomous Expert Agent Platform. One AI. An Entire Team Behind It.",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "db:generate": "npm run generate --workspace=@superior-ai/db",
+    "db:migrate": "npm run migrate --workspace=@superior-ai/db",
+    "db:studio": "npm run studio --workspace=@superior-ai/db",
+    "typecheck": "turbo run typecheck",
+    "format": "prettier --write \"**/*.{ts,tsx,md,json}\""
+  },
+  "devDependencies": {
+    "turbo": "^2.5.0",
+    "typescript": "^5.8.0",
+    "prettier": "^3.5.0",
+    "@types/node": "^22.0.0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "npm@10"
+}

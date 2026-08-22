@@ -1,0 +1,224 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  extensions = [pgvector(map: "vector")]
+}
+
+model User {
+  id             String   @id @default(cuid())
+  email          String   @unique
+  name           String?
+  image          String?
+  role           String   @default("user")
+  preferences    Json?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  organizations  OrganizationMember[]
+  conversations  Conversation[]
+  tasks          Task[]
+  usageEvents    UsageEvent[]
+}
+
+model Organization {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  plan        String   @default("free")
+  settings    Json?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  members     OrganizationMember[]
+  workspaces  Workspace[]
+  providerKeys ProviderKey[]
+  usageEvents UsageEvent[]
+}
+
+model OrganizationMember {
+  id             String   @id @default(cuid())
+  organizationId String
+  userId         String
+  role           String   @default("member")
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([organizationId, userId])
+}
+
+model Workspace {
+  id             String   @id @default(cuid())
+  organizationId String
+  name           String
+  slug           String
+  settings       Json?
+  createdAt      DateTime @default(now())
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  projects       Project[]
+}
+
+model Project {
+  id          String   @id @default(cuid())
+  workspaceId String
+  name        String
+  description String?
+  status      String   @default("active")
+  memory      Json?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  conversations Conversation[]
+  tasks       Task[]
+  artifacts   Artifact[]
+  knowledgeItems KnowledgeItem[]
+}
+
+model Conversation {
+  id        String   @id @default(cuid())
+  projectId String?
+  userId    String
+  title     String?
+  mode      String   @default("simple") // simple | expert | developer | research | autonomous
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  project   Project? @relation(fields: [projectId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+  messages  Message[]
+  tasks     Task[]
+}
+
+model Message {
+  id             String   @id @default(cuid())
+  conversationId String
+  role           String
+  content        String
+  modelId        String?
+  agentRole      String?
+  metadata       Json?
+  createdAt      DateTime @default(now())
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+}
+
+model Task {
+  id             String   @id @default(cuid())
+  userId         String
+  projectId      String?
+  conversationId String?
+  parentTaskId   String?
+  title          String
+  objective      String
+  stage          String   @default("planning")
+  intelligenceLevel String @default("BALANCED")
+  state          Json?
+  completedSteps String[]
+  pendingSteps   String[]
+  modelUsed      String?
+  tokenUsage     Json?
+  costUsd        Float?
+  retryCount     Int      @default(0)
+  errors         Json?
+  checkpoint     Json?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  completedAt    DateTime?
+  user           User     @relation(fields: [userId], references: [id])
+  project        Project? @relation(fields: [projectId], references: [id])
+  conversation   Conversation? @relation(fields: [conversationId], references: [id])
+  artifacts      Artifact[]
+  toolCalls      ToolCall[]
+}
+
+model Artifact {
+  id        String   @id @default(cuid())
+  taskId    String?
+  projectId String?
+  type      String   // code | document | report | spreadsheet | presentation | image | dataset | zip
+  name      String
+  path      String?
+  content   String?
+  version   Int      @default(1)
+  metadata  Json?
+  createdAt DateTime @default(now())
+  task      Task?    @relation(fields: [taskId], references: [id])
+  project   Project? @relation(fields: [projectId], references: [id])
+}
+
+model ToolCall {
+  id        String   @id @default(cuid())
+  taskId    String
+  toolName  String
+  input     Json?
+  output    Json?
+  success   Boolean  @default(true)
+  latencyMs Int?
+  createdAt DateTime @default(now())
+  task      Task     @relation(fields: [taskId], references: [id], onDelete: Cascade)
+}
+
+model ProviderKey {
+  id             String   @id @default(cuid())
+  organizationId String
+  provider       String
+  label          String?
+  encryptedKey   String
+  orgId          String?
+  baseUrl        String?
+  isActive       Boolean  @default(true)
+  lastValidated  DateTime?
+  createdAt      DateTime @default(now())
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+}
+
+model KnowledgeItem {
+  id        String   @id @default(cuid())
+  projectId String?
+  title     String
+  source    String?
+  content   String
+  metadata  Json?
+  // embedding Unsupported("vector(1536)") // enable with pgvector when ready
+  createdAt DateTime @default(now())
+  project   Project? @relation(fields: [projectId], references: [id])
+}
+
+model UsageEvent {
+  id             String   @id @default(cuid())
+  organizationId String?
+  userId         String?
+  provider       String
+  modelId        String
+  inputTokens    Int
+  outputTokens   Int
+  cachedTokens   Int      @default(0)
+  estimatedCost  Float
+  latencyMs      Int?
+  success        Boolean  @default(true)
+  taskId         String?
+  agentRole      String?
+  createdAt      DateTime @default(now())
+  organization   Organization? @relation(fields: [organizationId], references: [id])
+  user           User?         @relation(fields: [userId], references: [id])
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  actorId   String?
+  action    String
+  resource  String?
+  details   Json?
+  ip        String?
+  createdAt DateTime @default(now())
+}
+
+model ProviderHealth {
+  id          String   @id @default(cuid())
+  provider    String   @unique
+  status      String
+  healthScore Int      @default(0)
+  latencyMs   Int?
+  message     String?
+  checkedAt   DateTime @default(now())
+}
