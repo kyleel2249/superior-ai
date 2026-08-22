@@ -222,3 +222,89 @@ model ProviderHealth {
   message     String?
   checkedAt   DateTime @default(now())
 }
+
+model BrandProfile {
+  id               String   @id @default(cuid())
+  organizationId   String?
+  name             String
+  logos            String[]
+  colors           String[]
+  fonts            String[]
+  voice            String?
+  products         String[]
+  services         String[]
+  personas         String[]
+  approvedClaims   String[]
+  prohibitedClaims String[]
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model CreativeAssetRecord {
+  id          String   @id @default(cuid())
+  projectId   String?
+  type        String
+  platform    String[]
+  aspectRatio String?
+  durationSec Int?
+  script      String?
+  caption     String?
+  style       String?
+  status      String   @default("draft")
+  prediction  Json?
+  metadata    Json?
+  createdAt   DateTime @default(now())
+}
+
+model CampaignRecord {
+  id        String   @id @default(cuid())
+  projectId String?
+  objective String
+  audience  String?
+  icp       String?
+  offer     String?
+  platforms String[]
+  status    String   @default("draft")
+  performance Json?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model LeadRecord {
+  id               String   @id @default(cuid())
+  organizationId   String?
+  company          String
+  industry         String?
+  website          String?
+  publicContacts   String[]
+  fitScore         Int      @default(0)
+  opportunityScore Int      @default(0)
+  status           String   @default("new")
+  source           String?
+  provenance       String?
+  confidence       Int      @default(0)
+  metadata         Json?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model CompetitorRecord {
+  id            String   @id @default(cuid())
+  organizationId String?
+  name          String
+  website       String
+  profile       Json?
+  lastResearchedAt DateTime?
+  createdAt     DateTime @default(now())
+}
+
+model GrowthExperimentRecord {
+  id         String   @id @default(cuid())
+  projectId  String?
+  hypothesis String
+  metric     String
+  variants   Json?
+  result     Json?
+  status     String   @default("proposed")
+  createdAt  DateTime @default(now())
+}

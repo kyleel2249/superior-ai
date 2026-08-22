@@ -16,6 +16,10 @@
     "@superior-ai/core": "*",
     "@superior-ai/ai-gateway": "*",
     "@superior-ai/agents": "*",
+    "@superior-ai/creative": "*",
+    "@superior-ai/seo": "*",
+    "@superior-ai/sales": "*",
+    "@superior-ai/competitor": "*",
     "clsx": "^2.1.1",
     "lucide-react": "^0.475.0"
   },

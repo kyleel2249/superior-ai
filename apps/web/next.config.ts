@@ -5,10 +5,11 @@ const nextConfig: NextConfig = {
     "@superior-ai/core",
     "@superior-ai/ai-gateway",
     "@superior-ai/agents",
+    "@superior-ai/creative",
+    "@superior-ai/seo",
+    "@superior-ai/sales",
+    "@superior-ai/competitor",
   ],
-  experimental: {
-    // serverActions: true already default
-  },
 };
 
 export default nextConfig;

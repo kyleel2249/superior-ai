@@ -78,6 +78,16 @@ npm run dev
 
 Open http://localhost:3000
 
+## Business OS Addendum (Integrated)
+
+- **Creative / Media Studio** — Story Director, UGC Factory, campaign engine, performance estimates
+- **SEO Intelligence** — clusters, content factory, audit shells
+- **Competitor War Room** — public research posture, provenance-labeled traffic shells
+- **Sales Autopilot** — leads, scoring, outreach drafts, funnel (approval-gated)
+- **Full Expert Council** — interconnected departments sharing orchestration
+- **Master Growth Loop** — research → creative → leads → revenue → optimize
+- **Command Centers** — `/studio` `/sales` `/competitors` `/ceo`
+
 ## Core Modules (Implemented Foundation)
 
 1. **Model Registry** — Dynamic registration, capability scoring, status (REGISTERED / AVAILABLE / UNAVAILABLE / DEPRECATED / CONFIGURATION_REQUIRED)

@@ -220,3 +220,295 @@ export interface UsageEvent {
   agentRole?: AgentRole;
   createdAt: string;
 }
+
+// ─── Media & Creative Studio ───────────────────────────────────────────────
+
+export type CreativeFormat =
+  | "image"
+  | "video"
+  | "ugc"
+  | "skit"
+  | "carousel"
+  | "story"
+  | "reel"
+  | "short"
+  | "long_form"
+  | "thumbnail"
+  | "banner"
+  | "product_render";
+
+export type Platform =
+  | "tiktok"
+  | "instagram"
+  | "facebook"
+  | "linkedin"
+  | "youtube"
+  | "x"
+  | "pinterest"
+  | "web"
+  | "email"
+  | "whatsapp";
+
+export type AspectRatio = "1:1" | "4:5" | "9:16" | "16:9" | "3:2" | "21:9";
+
+export type CreativeStyle =
+  | "studio_commercial"
+  | "ugc"
+  | "influencer"
+  | "founder_story"
+  | "customer_testimonial"
+  | "documentary"
+  | "cinematic"
+  | "social_native"
+  | "skit"
+  | "explainer";
+
+export type ResolutionLabel = "Native Resolution" | "Upscaled Resolution" | "Final Resolution";
+
+export interface ImageGenerationSpec {
+  prompt: string;
+  negativePrompt?: string;
+  width: number;
+  height: number;
+  nativeWidth?: number;
+  nativeHeight?: number;
+  upscaled: boolean;
+  resolutionLabel: ResolutionLabel;
+  realismMode: boolean;
+  camera?: string;
+  lens?: string;
+  focalLength?: string;
+  lighting?: string;
+  style: CreativeStyle;
+  brandCompliant: boolean;
+}
+
+export interface VideoScene {
+  id: string;
+  order: number;
+  description: string;
+  durationSec: number;
+  dialogue?: string;
+  cameraMovement?: string;
+  emotion?: string;
+  productPlacement?: boolean;
+  continuityKeys: string[]; // character, wardrobe,environment ids
+}
+
+export interface StoryBoard {
+  objective: string;
+  characterObjective: string;
+  audienceEmotion: string;
+  visualObjective: string;
+  salesObjective: string;
+  hook: string;
+  scenes: VideoScene[];
+  conflict: string;
+  solution: string;
+  socialProof?: string;
+  cta: string;
+  ending: string;
+}
+
+export interface CreativeAsset {
+  id: string;
+  type: CreativeFormat;
+  platform: Platform[];
+  aspectRatio: AspectRatio;
+  durationSec?: number;
+  script?: string;
+  caption?: string;
+  hashtags?: string[];
+  thumbnailSpec?: ImageGenerationSpec;
+  imageSpec?: ImageGenerationSpec;
+  storyBoard?: StoryBoard;
+  style: CreativeStyle;
+  performancePrediction?: CreativePerformancePrediction;
+  brandProfileId?: string;
+  status: "draft" | "generated" | "optimized" | "approved" | "published";
+  metadata?: Record<string, unknown>;
+}
+
+export interface CreativePerformancePrediction {
+  hookStrength: number;
+  attentionPotential: number;
+  messageClarity: number;
+  emotionalAppeal: number;
+  audienceRelevance: number;
+  brandFit: number;
+  offerStrength: number;
+  ctaStrength: number;
+  visualQuality: number;
+  purchaseIntent: number;
+  predictedCtr: number;
+  predictedEngagement: number;
+  predictedConversion: number;
+  creativeConfidence: number;
+  disclaimer: "Estimates only — not guaranteed performance";
+}
+
+export interface BrandProfile {
+  id: string;
+  name: string;
+  logos: string[];
+  colors: string[];
+  fonts: string[];
+  voice: string;
+  products: string[];
+  services: string[];
+  personas: string[];
+  approvedClaims: string[];
+  prohibitedClaims: string[];
+}
+
+// ─── SEO ───────────────────────────────────────────────────────────────────
+
+export interface KeywordCluster {
+  pillar: string;
+  keywords: Array<{ term: string; intent: string; volumeEstimate?: number; difficulty?: number }>;
+  contentGaps: string[];
+}
+
+export interface SeoAuditResult {
+  url: string;
+  seoScore: number;
+  uxScore: number;
+  conversionScore: number;
+  contentScore: number;
+  performanceScore: number;
+  accessibilityScore: number;
+  trustScore: number;
+  recommendations: string[];
+  technicalSignals: Record<string, unknown>;
+  dataQuality: "Observed Data" | "Third-Party Estimate" | "Model Inference";
+  confidence: number;
+}
+
+// ─── Competitor Intelligence ───────────────────────────────────────────────
+
+export type DataProvenance = "Observed Data" | "Third-Party Estimate" | "Model Inference";
+
+export interface CompetitorProfile {
+  id: string;
+  name: string;
+  website: string;
+  industry?: string;
+  products: string[];
+  pricingSignals: string[];
+  positioning: string;
+  strengths: string[];
+  weaknesses: string[];
+  seoKeywords: string[];
+  contentTopics: string[];
+  socialPresence: Record<string, string>;
+  trafficEstimates?: {
+    sources: Record<string, number>;
+    provenance: DataProvenance;
+    confidence: number;
+  };
+  customerSentiment?: { positives: string[]; complaints: string[]; provenance: DataProvenance };
+  lastResearchedAt: string;
+}
+
+export interface CompetitorScorecard {
+  competitors: CompetitorProfile[];
+  opportunityMap: string[];
+  threatMap: string[];
+  seoGap: string[];
+  contentGap: string[];
+  offerGap: string[];
+  positioningGap: string[];
+}
+
+// ─── Sales & CRM ───────────────────────────────────────────────────────────
+
+export type SalesAutopilotMode = "assist" | "recommend" | "semi_autonomous" | "autonomous";
+
+export interface Lead {
+  id: string;
+  company: string;
+  industry?: string;
+  size?: string;
+  location?: string;
+  website?: string;
+  publicContacts: string[];
+  decisionMakers: string[];
+  painPointHypothesis?: string;
+  fitScore: number;
+  opportunityScore: number;
+  intentScore: number;
+  engagementScore: number;
+  source: string;
+  confidence: number;
+  status: "new" | "qualified" | "contacted" | "opportunity" | "won" | "lost";
+  provenance: DataProvenance;
+}
+
+export interface Deal {
+  id: string;
+  leadId: string;
+  title: string;
+  value: number;
+  currency: string;
+  stage: string;
+  closeProbability: number;
+  expectedCloseDate?: string;
+  riskScore: number;
+}
+
+export interface SalesIntelligence {
+  leadScore: number;
+  fitScore: number;
+  intentScore: number;
+  engagementScore: number;
+  opportunityScore: number;
+  closeProbability: number;
+  expectedRevenue: number;
+  expectedDaysToClose: number;
+  riskScore: number;
+}
+
+// ─── Campaigns & Growth ────────────────────────────────────────────────────
+
+export interface Campaign {
+  id: string;
+  objective: string;
+  audience: string;
+  icp: string;
+  offer: string;
+  platforms: Platform[];
+  assets: string[]; // CreativeAsset ids
+  landingPageSpec?: string;
+  seoAssets?: string[];
+  emailSequence?: string[];
+  status: "draft" | "ready" | "live" | "paused" | "completed";
+  performance?: Record<string, number>;
+}
+
+export interface GrowthExperiment {
+  id: string;
+  hypothesis: string;
+  metric: string;
+  baseline?: number;
+  variants: Array<{ name: string; description: string }>;
+  result?: { winner: string; lift: number };
+  status: "proposed" | "running" | "completed";
+}
+
+// ─── Extended Agent Roles ──────────────────────────────────────────────────
+
+export type DepartmentId =
+  | "executive"
+  | "strategy"
+  | "sales"
+  | "marketing"
+  | "creative"
+  | "technology"
+  | "finance"
+  | "customer"
+  | "operations"
+  | "hr"
+  | "legal"
+  | "research"
+  | "seo"
+  | "competitor_intel";

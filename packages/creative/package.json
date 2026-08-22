@@ -1,0 +1,11 @@
+{
+  "name": "@superior-ai/creative",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./src/index.ts",
+  "dependencies": {
+    "@superior-ai/core": "*",
+    "@superior-ai/agents": "*"
+  },
+  "devDependencies": { "typescript": "^5.8.0" }
+}
