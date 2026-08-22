@@ -1,10 +1,8 @@
 # Roadmap
 
-## Delivered (Waves 1–14)
+## Delivered (Waves 1–15)
+Multi-model OS + packs + OpenRouter + persistent memory + CX + product lab + support + unlimited workspace + master loop.
 
-Multi-model AI business OS including semantic pack search.
-
-## Possible next
-- Stripe Connect payouts
-- Persist pack metrics/embeddings in Postgres
-- Mobile companion
+## Next
+- Postgres-backed memory
+- Deeper design/video as providers allow
