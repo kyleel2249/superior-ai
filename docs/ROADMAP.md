@@ -1,11 +1,10 @@
 # Roadmap
 
-## Delivered (Waves 1–13)
+## Delivered (Waves 1–14)
 
-Multi-model AI business OS with gVisor worker guidance and marketplace ranking.
+Multi-model AI business OS including semantic pack search.
 
 ## Possible next
 - Stripe Connect payouts
-- gVisor CI job
+- Persist pack metrics/embeddings in Postgres
 - Mobile companion
-- Semantic pack search
