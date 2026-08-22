@@ -12,7 +12,5 @@ jobs:
         with:
           node-version: "22"
           cache: npm
-      - name: Install
-        run: npm install --ignore-scripts || npm install
-      - name: Smoke
-        run: node scripts/smoke.mjs
+      - run: npm install --ignore-scripts || npm install
+      - run: node scripts/smoke.mjs
