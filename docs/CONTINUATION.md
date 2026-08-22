@@ -1,37 +1,47 @@
-# Build continuation log
+# Build continuation log (2026-08-22)
 
-## Latest increment
+## This increment
 
 ### Tools (`@superior-ai/tools`)
-- Permission-gated tool registry
-- `web_search` — Serper or Bing when keys present; otherwise CONFIGURATION_REQUIRED (no invented sources)
-- `url_fetch` — public HTML fetch + title/meta/h1/text excerpt
-- `url_audit` — basic on-page SEO signals from live HTML
+- Permission-gated registry (`runTool`)
+- `web_search` — Serper/Bing when configured; never invents sources
+- `url_fetch` / `url_audit` — live public HTML extraction
 
 ### Memory (`@superior-ai/memory`)
 - Layers: short_term, project, user, organization, knowledge
-- Relevance + importance + trust + recency scoring
-- Conflict detection hook
-- Context compression helper
+- Scoring: relevance + importance + trust + recency
 
 ### Marketing (`@superior-ai/marketing`)
-- 7-day content calendar generator
-- Content ideas
-- Growth experiment proposals
-- Growth opportunity list
+- Content calendar, ideas, growth experiments
 
-### Orchestrator (`packages/agents/src/orchestrator`)
-- Multi-stage growth execution
-- Optional live competitor URL fetch into knowledge memory
-- Campaign + SEO + calendar + sales draft in one run
-- Statuses: completed | needs_approval | needs_live_data
-
-### APIs
+### Orchestrator
+- Multi-department growth run with stage statuses
+- Live competitor URL fetch into knowledge memory
 - POST `/api/orchestrate`
-- POST `/api/audit`
+
+### Gateway & ops
+- Provider health monitor — GET `/api/health`
+- OpenAI-compatible — POST `/api/v1/chat/completions` (`model: auto` routes via Superior Router)
+- Task checkpoints — GET/POST `/api/tasks`
+- URL audit — POST `/api/audit`
 
 ### UI
-- `/marketing` — run growth orchestrator
-- `/seo` — live URL audit + keyword plan
+- `/marketing`, `/seo`, admin health cards
 
-Local monorepo is source of truth for full TypeScript sources.
+### Local monorepo
+Full TypeScript (~59 modules) under `/packages` and `/apps/web`.
+Sync remaining files from working tree if any path is missing on remote.
+
+## Run
+```bash
+cp .env.example .env
+docker compose up -d
+npm install
+npm run dev
+```
+
+OpenAI-compat example:
+```bash
+curl -s localhost:3000/api/v1/chat/completions -H 'Content-Type: application/json' \
+  -d '{"model":"auto","messages":[{"role":"user","content":"Hello"}]}'
+```
