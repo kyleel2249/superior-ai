@@ -1,10 +1,11 @@
 # Roadmap
 
-## Delivered (Waves 1–9)
+## Delivered (Waves 1–10)
 
-SUPERIOR AI multi-model business OS: core platform, council, GTM, media, CRM/social, auth, billing, workers, observability, audit, deploy, SOC2 templates, multi-region playbook, status page, cost attribution.
+SUPERIOR AI multi-model business OS foundation including agent packs and software factory.
 
-## Optional
-- SSO marketplace listings
+## Possible next
+- Third-party signed pack manifests
+- Git sandbox repo tools
+- Pack billing via Stripe
 - Mobile companion
-- Agent pack marketplace
