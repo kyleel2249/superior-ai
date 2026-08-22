@@ -4,23 +4,35 @@
 
 Production-oriented multi-model autonomous AI operating system — not a thin chatbot wrapper.
 
-## Waves 1–10 include
-
-AI core (registry, router, gateway) · Council + growth loop · GTM departments · Media (honest resolution) · Software factory · Agent packs marketplace · Memory/RAG/pgvector · Workers · Auth/OIDC · Billing/Stripe · Observability/OTLP · Audit · SOC2 templates · Status page · Cost attribution · Helm/Terraform · Runbooks
-
-## Quick start
+## Quick start (all platforms)
 
 ```bash
-cp .env.example .env
-docker compose up -d postgres redis
+cp .env.example .env   # Windows: copy .env.example .env
 npm install
-npm run dev --workspace=@superior-ai/web
+npm run dev:web
+```
+
+Open http://localhost:3000
+
+```bash
 npm run smoke
 ```
 
+## Windows (npm)
+
+```bat
+copy .env.example .env
+npm install
+npm run dev:web
+```
+
+Full guide: [docs/runbook/WINDOWS.md](docs/runbook/WINDOWS.md)
+
+Requires **Node.js 20+**. PostgreSQL and Redis are optional for basic local use.
+
 ## Key routes
 
-/chat · /studio · /status · /login · /settings/billing · /settings/costs · /admin/overview · /admin/packs
+/chat · /workspace · /studio · /status · /admin/packs · /publisher
 
 ## Design rules
 
