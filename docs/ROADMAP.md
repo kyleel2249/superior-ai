@@ -1,12 +1,11 @@
 # Roadmap
 
-## Delivered (Waves 1–7)
+## Delivered (Waves 1–8)
 
-Enterprise multi-model AI business OS with auth, billing, social, workers, observability, rate limits, deploy scaffolds, runbook, and CI.
+Full multi-model AI business OS: registry, router, gateway, council, orchestrator, workers, creative/SEO/sales/marketing, tools, memory/RAG, media, CRM/social, auth (JWT+OIDC+jose), billing (Stripe), observability (OTLP), rate limits (Redis), audit log, Helm/Terraform, Playwright, CI, runbook.
 
-## Next
-1. jose RS256 ID token verification
-2. Redis-backed rate limiter
-3. OTLP exporter
-4. Prisma migrate deploy in CI
-5. Audit log stream
+## Optional next
+1. SOC2 evidence templates
+2. Multi-region failover playbook
+3. Status page
+4. Cost attribution UI
