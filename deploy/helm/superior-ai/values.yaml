@@ -1,0 +1,26 @@
+replicaCount: 2
+image:
+  repository: superior-ai/web
+  tag: latest
+  pullPolicy: IfNotPresent
+worker:
+  enabled: true
+  replicaCount: 1
+  env:
+    SUPERIOR_WORKER: "1"
+    WORKER_CONCURRENCY: "2"
+service:
+  type: ClusterIP
+  port: 3000
+ingress:
+  enabled: false
+  host: superior.example.com
+env:
+  NODE_ENV: production
+resources:
+  requests:
+    cpu: 250m
+    memory: 512Mi
+  limits:
+    cpu: "2"
+    memory: 2Gi

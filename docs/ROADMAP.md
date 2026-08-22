@@ -1,13 +1,13 @@
 # Roadmap
 
-## Delivered (Waves 1–4)
+## Delivered (Waves 1–5)
 
-Core AI OS: multi-model registry, router, gateway, council, orchestrator, tools, memory/RAG, durable tasks, creative/SEO/sales/competitor/marketing, image (honest resolution), video continuity, CRM, queue+BullMQ workers, auth+org invites, encryption, social (official APIs), CI smoke.
+Multi-model AI business OS: registry, router, gateway, council, orchestrator, creative/SEO/sales/competitor/marketing, tools, memory/RAG/indexer, durable tasks, image+video, CRM, social, BullMQ workers, auth+OIDC+orgs, encryption, billing meters, pgvector SQL, Helm, Playwright, CI.
 
 ## Next
-1. NextAuth OIDC production UI
-2. pgvector migration + indexer daemon
-3. More social adapters (Meta, YouTube) after app review
-4. Playwright e2e
-5. Helm chart / scaling guide
-6. Billing meters
+1. Auth.js + JWKS production sessions
+2. pgvector in CI service container
+3. Instagram Graph publish
+4. Broader Playwright coverage
+5. Terraform optional
+6. Stripe metering webhooks
