@@ -1,11 +1,11 @@
 # Roadmap
 
-## Delivered (Waves 1–10)
+## Delivered (Waves 1–11)
 
-SUPERIOR AI multi-model business OS foundation including agent packs and software factory.
+Full multi-model AI business OS with signed packs, repo sandbox, and pack billing.
 
 ## Possible next
-- Third-party signed pack manifests
-- Git sandbox repo tools
-- Pack billing via Stripe
+- Third-party publisher portal
+- Isolated code execution (gVisor)
 - Mobile companion
+- Pack revenue share
