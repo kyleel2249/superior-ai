@@ -1,8 +1,10 @@
 # Roadmap
 
-## Delivered (Waves 1–15)
-Multi-model OS + packs + OpenRouter + persistent memory + CX + product lab + support + unlimited workspace + master loop.
+## Delivered (Waves 1–16)
+
+Full multi-model AI business OS including Windows npm support, durable memory, brand letterforms, and chat auto-memory.
 
 ## Next
-- Postgres-backed memory
-- Deeper design/video as providers allow
+- Prisma generate in CI when DATABASE_URL set
+- Brand UI page
+- Vector embeddings on PersistentMemory rows

@@ -12,3 +12,6 @@
 - Auto-retrieve memory + rejections into system prompt
 - Store conversation snippets
 - memoryUsed / memoryBackend in response
+
+## Windows
+- npm run dev:web, postinstall, WINDOWS.md runbook

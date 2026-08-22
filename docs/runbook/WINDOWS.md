@@ -48,4 +48,4 @@ If scripts are blocked: `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`
 - Next.js loads `.env` on Windows automatically.
 - Use `PYTHON_PATH=python` or full path to python.exe if enabling code exec.
 - Prefer `npm run dev:web` if turbo multi-dev is flaky in some terminals.
-- Enable Windows long paths or clone near `C:\src\superior-ai` if path-length errors occur.
+- Enable Windows long paths or clone near `C:\\src\\superior-ai` if path-length errors occur.
