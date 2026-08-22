@@ -1,11 +1,11 @@
 # Roadmap
 
-## Delivered (Waves 1–12)
+## Delivered (Waves 1–13)
 
-Full multi-model AI business OS including publisher portal, code sandbox, and revenue share.
+Multi-model AI business OS with gVisor worker guidance and marketplace ranking.
 
 ## Possible next
-- gVisor/Firecracker sidecar
 - Stripe Connect payouts
+- gVisor CI job
 - Mobile companion
-- Marketplace ranking
+- Semantic pack search
