@@ -1,13 +1,12 @@
 # Roadmap
 
-## Delivered (Waves 1–6)
+## Delivered (Waves 1–7)
 
-Full multi-model AI business OS foundation with auth, billing, social, workers, deploy scaffolds, and CI.
+Enterprise multi-model AI business OS with auth, billing, social, workers, observability, rate limits, deploy scaffolds, runbook, and CI.
 
 ## Next
-1. Auth.js + IdP JWKS
-2. Prisma migrate deploy in CI
-3. Stripe Checkout + Portal UI
-4. OpenTelemetry
-5. Rate limiting
-6. Production runbook
+1. jose RS256 ID token verification
+2. Redis-backed rate limiter
+3. OTLP exporter
+4. Prisma migrate deploy in CI
+5. Audit log stream
