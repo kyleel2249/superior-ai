@@ -8,5 +8,10 @@
     "@superior-ai/creative": "*",
     "@superior-ai/seo": "*"
   },
-  "devDependencies": { "typescript": "^5.8.0" }
+  "devDependencies": {
+    "typescript": "^5.8.0"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  }
 }

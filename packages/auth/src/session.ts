@@ -75,7 +75,7 @@ export function getSessionFromCookies(cookieHeader: string | null): Session | nu
       return [k, decodeURIComponent(rest.join("="))];
     })
   );
-  return sessionFromToken(cookies["session"] ?? null);
+  return sessionFromToken(cookies["superior_session"] ?? null);
 }
 
 /** Stateless JWTs can't be revoked server-side by nature, so this tracks an explicit revocation list. */

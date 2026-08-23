@@ -39,9 +39,14 @@ jobs:
           cache: npm
       - run: npm install --ignore-scripts || npm install
       - run: node scripts/smoke.mjs
-      - name: pgvector + prisma
+      - run: npx turbo run typecheck
+      - run: npx turbo run build
+      - name: prisma generate + push
+        run: |
+          npx prisma generate --schema=packages/db/prisma/schema.prisma
+          npx prisma db push --schema=packages/db/prisma/schema.prisma --skip-generate
+      - name: pgvector column (after tables exist)
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq postgresql-client
-          psql "$DATABASE_URL" -f packages/db/prisma/migrations/001_pgvector.sql || true
-          npx prisma generate --schema=packages/db/prisma/schema.prisma || true
-          npx prisma db push --schema=packages/db/prisma/schema.prisma --skip-generate || true
+          psql "$DATABASE_URL" -f packages/db/prisma/migrations/001_pgvector.sql
+          psql "$DATABASE_URL" -f packages/db/prisma/migrations/002_persistent_memory.sql
