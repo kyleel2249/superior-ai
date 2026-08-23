@@ -1,0 +1,76 @@
+// SUPERIOR AI — Prisma schema
+//
+// This file did not exist prior to this fix even though packages/db/src
+// (client.ts, postgres.ts consumers) and the migrations in this directory
+// already assumed a generated Prisma client with a `persistentMemory` model.
+// `npm run db:generate` / `postinstall` had nothing to generate from, so the
+// entire persistence layer was non-functional as committed.
+//
+// Models here are defined to exactly match:
+//   - packages/memory/src/postgres.ts (PersistentMemory field usage)
+//   - packages/db/prisma/migrations/002_persistent_memory.sql (column set)
+//   - packages/db/src/tasks.ts (raw SQL against a "tasks" table — modeled
+//     here as Task, mapped to the same table/columns so both the generated
+//     client and the existing raw-SQL helpers stay in sync)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model PersistentMemory {
+  id             String   @id @default(cuid())
+  type           String
+  key            String?
+  content        String
+  importance     Int      @default(50)
+  projectId      String?
+  customerId     String?
+  organizationId String?
+  profileId      String?
+  tags           String[] @default([])
+  active         Boolean  @default(true)
+  metadata       Json?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([profileId, active])
+  @@index([organizationId, type])
+  @@index([key])
+  @@index([customerId])
+}
+
+model Task {
+  id        String   @id
+  kind      String
+  payload   Json
+  status    String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([kind])
+  @@index([status])
+  @@map("tasks")
+}
+
+model KnowledgeItem {
+  id        String   @id @default(cuid())
+  title     String
+  content   String
+  source    String?
+  tags      String[] @default([])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // `embedding` is added by migrations/001_pgvector.sql as a raw
+  // `vector(1536)` column once the pgvector extension is available. Prisma's
+  // JS client doesn't have a native vector type, so it's intentionally left
+  // out of the generated model and queried with $queryRaw where needed —
+  // this model exists so the table itself is created by `prisma db push` /
+  // `migrate dev`, and 001_pgvector.sql's ALTER TABLE ... ADD COLUMN then
+  // has a real table to attach to.
+}

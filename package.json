@@ -38,7 +38,7 @@
     "node": ">=20",
     "npm": ">=10"
   },
-  "packageManager": "npm@10",
+  "packageManager": "npm@10.9.7",
   "optionalDependencies": {
     "jose": "^5.9.0",
     "ioredis": "^5.4.0"

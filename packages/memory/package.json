@@ -3,6 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "main": "./src/index.ts",
-  "dependencies": { "@superior-ai/core": "*" },
-  "devDependencies": { "typescript": "^5.8.0" }
+  "dependencies": {
+    "@superior-ai/core": "*"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.0"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  }
 }
