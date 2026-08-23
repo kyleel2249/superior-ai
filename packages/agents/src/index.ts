@@ -6,19 +6,9 @@ export * from "./packs/publish";
 export * from "./factory/tasks";
 export * from "./orchestrator/run";
 export * from "./tools/url-audit";
+export * from "./tools/research";
 
 import { listCatalog, type PackCategory, type AgentPackManifest } from "./packs/registry";
-
-/**
- * NOTE (repo audit): this file previously did not exist. `full-council.ts`
- * imported ALL_DEPARTMENTS / selectAgentsForGrowthTask / buildCompanyOrgChart
- * from a sibling `../index` that was never created, and its own comment said
- * "see local monorepo for complete source" — i.e. it was a stub with no real
- * implementation behind it. What follows is a real, minimal implementation
- * derived from the existing pack registry, not a restored original. Treat it
- * as a first pass, not a recovered feature — flesh it out in a later phase
- * if you need richer department/org-chart behavior.
- */
 
 export const ALL_DEPARTMENTS: PackCategory[] = [
   "growth",
