@@ -1,0 +1,19 @@
+{
+  "name": "@superior-ai/auth",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "dependencies": {
+    "@superior-ai/core": "*"
+  },
+  "optionalDependencies": {
+    "jose": "^5.9.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.0"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  }
+}

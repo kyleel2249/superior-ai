@@ -1,40 +1,48 @@
-import { OpenAIAdapter } from "./openai";
-import { AnthropicAdapter } from "./anthropic";
-import { XAIAdapter } from "./xai";
-import { GoogleAdapter } from "./google";
-import { LocalAdapter } from "./local";
 import { OpenRouterAdapter } from "./openrouter";
 import type { BaseProviderAdapter, ProviderCredentials } from "./base";
 import type { ProviderId } from "@superior-ai/core";
 import { modelRegistry } from "../registry/model-registry";
 
-const adapters: Record<ProviderId, BaseProviderAdapter> = {
-  openai: new OpenAIAdapter(),
-  anthropic: new AnthropicAdapter(),
-  xai: new XAIAdapter(),
-  google: new GoogleAdapter(),
-  local: new LocalAdapter(),
-  openrouter: new OpenRouterAdapter(),
-  "azure-openai": new OpenAIAdapter(),
-  custom: new OpenAIAdapter(),
-};
+/**
+ * SUPERIOR AI is wired to a single live connection: OpenRouter.
+ * OpenRouter itself proxies OpenAI, Anthropic, Google, xAI, Meta,
+ * DeepSeek, Mistral, and local/self-hosted endpoints behind one
+ * OpenAI-compatible API, so a single adapter instance is genuinely
+ * sufficient — there is no need for (and no working code path for)
+ * separate direct vendor adapters.
+ *
+ * `getAdapter()` still accepts any ProviderId because the model
+ * registry tags each discovered model with its vendor family for
+ * display/filtering purposes (see registry/model-registry.ts) — but
+ * every one of those tags resolves to this same OpenRouter instance.
+ *
+ * Adding a *direct* (non-OpenRouter) vendor adapter later just means
+ * implementing BaseProviderAdapter in a new file and registering it
+ * below — the router and registry don't need to change.
+ */
+const openRouter = new OpenRouterAdapter();
 
-export function getAdapter(provider: ProviderId): BaseProviderAdapter {
-  return adapters[provider];
+export function getAdapter(_provider: ProviderId): BaseProviderAdapter {
+  return openRouter;
 }
 
 export async function configureAndValidate(
   provider: ProviderId,
   credentials: ProviderCredentials
 ): Promise<{ ok: boolean; message: string }> {
+  if (provider !== "openrouter") {
+    return {
+      ok: false,
+      message: `Provider "${provider}" has no direct adapter. SUPERIOR AI routes all models through OpenRouter — configure "openrouter" instead.`,
+    };
+  }
   const adapter = getAdapter(provider);
   adapter.setCredentials(credentials);
   const result = await adapter.healthCheck();
-  const models = modelRegistry.list({ provider });
-  for (const m of models) {
-    if (m.status === "UNAVAILABLE") continue;
-    if (result.ok) modelRegistry.updateStatus(m.id, "AVAILABLE", 90);
-    else modelRegistry.updateStatus(m.id, result.status, 0, result.message);
+  if (result.ok) {
+    await modelRegistry.refreshFromOpenRouter(adapter);
+  } else {
+    modelRegistry.markProviderDown(result.status, result.message);
   }
   return { ok: result.ok, message: result.message ?? (result.ok ? "Validated" : "Failed") };
 }
@@ -42,33 +50,14 @@ export async function configureAndValidate(
 export async function configureFromEnv(): Promise<
   Array<{ provider: ProviderId; ok: boolean; message: string }>
 > {
-  const entries: Array<{ provider: ProviderId; key?: string; base?: string }> = [
-    { provider: "openai", key: process.env.OPENAI_API_KEY, base: process.env.OPENAI_BASE_URL },
-    { provider: "anthropic", key: process.env.ANTHROPIC_API_KEY, base: process.env.ANTHROPIC_BASE_URL },
-    { provider: "xai", key: process.env.XAI_API_KEY, base: process.env.XAI_BASE_URL },
-    { provider: "google", key: process.env.GOOGLE_AI_API_KEY, base: process.env.GOOGLE_AI_BASE_URL },
-    {
-      provider: "openrouter",
-      key: process.env.OPENROUTER_API_KEY,
-      base: process.env.OPENROUTER_BASE_URL || "https://openrouter.ai/api/v1",
-    },
-    { provider: "local", key: process.env.LOCAL_INFERENCE_API_KEY, base: process.env.LOCAL_INFERENCE_URL },
-  ];
-  const out: Array<{ provider: ProviderId; ok: boolean; message: string }> = [];
-  for (const e of entries) {
-    if (!e.key && e.provider !== "local") {
-      out.push({ provider: e.provider, ok: false, message: "API key not set" });
-      continue;
-    }
-    if (e.key) {
-      out.push({
-        provider: e.provider,
-        ...(await configureAndValidate(e.provider, { apiKey: e.key, baseUrl: e.base })),
-      });
-    }
+  const key = process.env.OPENROUTER_API_KEY;
+  const base = process.env.OPENROUTER_BASE_URL || "https://openrouter.ai/api/v1";
+  if (!key) {
+    return [{ provider: "openrouter", ok: false, message: "OPENROUTER_API_KEY not set" }];
   }
-  return out;
+  const result = await configureAndValidate("openrouter", { apiKey: key, baseUrl: base });
+  return [{ provider: "openrouter", ...result }];
 }
 
 export * from "./base";
-export { OpenAIAdapter, AnthropicAdapter, XAIAdapter, GoogleAdapter, LocalAdapter, OpenRouterAdapter };
+export { OpenRouterAdapter };

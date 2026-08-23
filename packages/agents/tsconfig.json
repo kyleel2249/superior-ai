@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": [
+      "ES2022",
+      "DOM"
+    ],
+    "types": [
+      "node"
+    ],
+    "strict": true,
+    "declaration": true,
+    "outDir": "dist",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "paths": {
+      "@superior-ai/core": [
+        "../core/src/index.ts"
+      ],
+      "@superior-ai/ai-gateway": [
+        "../ai-gateway/src/index.ts"
+      ],
+      "@superior-ai/memory": [
+        "../memory/src/index.ts"
+      ]
+    }
+  },
+  "include": [
+    "src"
+  ]
+}

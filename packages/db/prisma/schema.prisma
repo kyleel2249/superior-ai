@@ -1,0 +1,28 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model PersistentMemory {
+  id             String   @id @default(cuid())
+  type           String
+  key            String?
+  content        String
+  importance     Int      @default(50)
+  projectId      String?
+  customerId     String?
+  organizationId String?
+  profileId      String?
+  tags           String[] @default([])
+  active         Boolean  @default(true)
+  metadata       Json?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([key, profileId, organizationId])
+  @@index([type, active])
+}

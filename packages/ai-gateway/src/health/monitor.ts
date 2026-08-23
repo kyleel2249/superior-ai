@@ -1,5 +1,7 @@
 /**
- * Provider Health Monitor
+ * Provider Health Monitor — OpenRouter is the only live connection,
+ * so this tracks a single snapshot rather than looping over five
+ * vendor keys that were never actually wired up.
  */
 import type { ProviderId, ModelStatus } from "@superior-ai/core";
 import { getAdapter } from "../providers";
@@ -14,51 +16,49 @@ export interface ProviderHealthSnapshot {
   checkedAt: string;
 }
 
-const lastHealth = new Map<ProviderId, ProviderHealthSnapshot>();
+let lastHealth: ProviderHealthSnapshot | null = null;
 
 export function getHealthSnapshot(provider?: ProviderId): ProviderHealthSnapshot[] {
-  if (provider) {
-    const h = lastHealth.get(provider);
-    return h ? [h] : [];
-  }
-  return Array.from(lastHealth.values());
+  if (!lastHealth) return [];
+  if (provider && provider !== "openrouter") return [];
+  return [lastHealth];
 }
 
-export async function checkProvider(provider: ProviderId, apiKey?: string, baseUrl?: string): Promise<ProviderHealthSnapshot> {
+export async function checkProvider(
+  provider: ProviderId = "openrouter",
+  apiKey?: string,
+  baseUrl?: string
+): Promise<ProviderHealthSnapshot> {
   const adapter = getAdapter(provider);
   if (apiKey) adapter.setCredentials({ apiKey, baseUrl });
   const result = await adapter.healthCheck();
   const snap: ProviderHealthSnapshot = {
-    provider,
+    provider: "openrouter",
     status: result.status,
     healthScore: result.ok ? Math.max(50, 100 - Math.floor((result.latencyMs ?? 0) / 50)) : 0,
     latencyMs: result.latencyMs,
     message: result.message,
     checkedAt: new Date().toISOString(),
   };
-  lastHealth.set(provider, snap);
-  for (const m of modelRegistry.list({ provider })) {
-    if (m.status === "UNAVAILABLE") continue;
-    modelRegistry.updateStatus(m.id, result.ok ? "AVAILABLE" : result.status, snap.healthScore, result.message);
-  }
+  lastHealth = snap;
+  if (result.ok) await modelRegistry.refreshFromOpenRouter(adapter);
+  else modelRegistry.markProviderDown(result.status, result.message);
   return snap;
 }
 
 export async function checkAllFromEnv(): Promise<ProviderHealthSnapshot[]> {
-  const configs: Array<{ provider: ProviderId; key?: string; base?: string }> = [
-    { provider: "openai", key: process.env.OPENAI_API_KEY, base: process.env.OPENAI_BASE_URL },
-    { provider: "anthropic", key: process.env.ANTHROPIC_API_KEY, base: process.env.ANTHROPIC_BASE_URL },
-    { provider: "xai", key: process.env.XAI_API_KEY, base: process.env.XAI_BASE_URL },
-    { provider: "google", key: process.env.GOOGLE_AI_API_KEY, base: process.env.GOOGLE_AI_BASE_URL },
-    { provider: "local", key: process.env.LOCAL_INFERENCE_API_KEY, base: process.env.LOCAL_INFERENCE_URL },
-  ];
-  const out: ProviderHealthSnapshot[] = [];
-  for (const c of configs) {
-    if (!c.key && c.provider !== "local") {
-      out.push({ provider: c.provider, status: "CONFIGURATION_REQUIRED", healthScore: 0, message: "API key not set", checkedAt: new Date().toISOString() });
-      continue;
-    }
-    out.push(await checkProvider(c.provider, c.key, c.base));
+  const key = process.env.OPENROUTER_API_KEY;
+  const base = process.env.OPENROUTER_BASE_URL;
+  if (!key) {
+    const snap: ProviderHealthSnapshot = {
+      provider: "openrouter",
+      status: "CONFIGURATION_REQUIRED",
+      healthScore: 0,
+      message: "OPENROUTER_API_KEY not set",
+      checkedAt: new Date().toISOString(),
+    };
+    lastHealth = snap;
+    return [snap];
   }
-  return out;
+  return [await checkProvider("openrouter", key, base)];
 }
