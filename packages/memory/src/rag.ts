@@ -1,85 +1,78 @@
 /**
- * apps/web/src/app/api/knowledge/route.ts imports ingestDocument, retrieve,
- * buildRagContext from "@superior-ai/memory" — none of this existed. This is
- * an in-process chunk store with token-overlap retrieval, following the same
- * scoring approach already used in ./persistent.ts (no embedding model is
- * wired up, so this is lexical retrieval, not vector search).
+ * Hybrid RAG: vector (when embeddings available) + lexical fallback.
+ * pgvector persistence via migration 003 when DATABASE_URL is set.
  */
 
-export interface DocumentChunk {
+import { embedText, cosineSimilarity } from "./embeddings";
+import { globalMemory } from "./layers";
+import { indexDocuments, vectorSearch, vectorStoreStats } from "./indexer";
+
+export interface RagHit {
   id: string;
-  documentTitle: string;
-  source?: string;
-  layer: string;
+  title: string;
   content: string;
-  chunkIndex: number;
-  createdAt: string;
+  source?: string;
+  score: number;
+  method: "vector" | "lexical" | "hybrid";
 }
 
-const chunks: DocumentChunk[] = [];
-const MAX_CHUNKS = 20_000;
-const CHUNK_SIZE = 800; // characters
+export async function hybridRetrieve(
+  query: string,
+  opts: { limit?: number; minScore?: number } = {}
+): Promise<{ hits: RagHit[]; stats: ReturnType<typeof vectorStoreStats> }> {
+  const limit = opts.limit ?? 6;
+  const minScore = opts.minScore ?? 0.15;
+  const vectorHits = await vectorSearch(query, limit * 2);
+  const lexical = globalMemory.search({ text: query, limit: limit * 2 });
 
-function chunkText(content: string): string[] {
-  const paragraphs = content.split(/\n{2,}/).map((p) => p.trim()).filter(Boolean);
-  const result: string[] = [];
-  let buffer = "";
-  for (const para of paragraphs) {
-    if ((buffer + "\n\n" + para).length > CHUNK_SIZE && buffer) {
-      result.push(buffer);
-      buffer = para;
+  const byId = new Map<string, RagHit>();
+  for (const v of vectorHits) {
+    if (v.score < minScore) continue;
+    byId.set(v.id, {
+      id: v.id,
+      title: v.title,
+      content: v.content,
+      source: v.source,
+      score: v.score,
+      method: "vector",
+    });
+  }
+  for (const l of lexical) {
+    const existing = byId.get(l.id);
+    if (existing) {
+      existing.score = Math.min(1, existing.score * 0.6 + l.score * 0.4);
+      existing.method = "hybrid";
     } else {
-      buffer = buffer ? `${buffer}\n\n${para}` : para;
+      byId.set(l.id, {
+        id: l.id,
+        title: String(l.metadata?.title ?? "memory"),
+        content: l.content,
+        source: l.source,
+        score: l.score,
+        method: "lexical",
+      });
     }
   }
-  if (buffer) result.push(buffer);
-  return result.length > 0 ? result : [content];
-}
 
-function tokenize(s: string): string[] {
-  return s.toLowerCase().split(/[^a-z0-9]+/i).filter((t) => t.length > 2);
-}
-
-export function ingestDocument(input: { title: string; content: string; source?: string; layer?: string }): DocumentChunk[] {
-  const pieces = chunkText(input.content);
-  const now = new Date().toISOString();
-  const created = pieces.map((content, chunkIndex) => {
-    const chunk: DocumentChunk = {
-      id: `chunk_${Date.now().toString(36)}_${chunkIndex}_${Math.random().toString(36).slice(2, 6)}`,
-      documentTitle: input.title,
-      source: input.source,
-      layer: input.layer ?? "knowledge",
-      content,
-      chunkIndex,
-      createdAt: now,
-    };
-    chunks.push(chunk);
-    return chunk;
-  });
-  while (chunks.length > MAX_CHUNKS) chunks.shift();
-  return created;
-}
-
-export function retrieve(query: string, limit = 6): DocumentChunk[] {
-  const qTokens = tokenize(query);
-  if (qTokens.length === 0) return chunks.slice(-limit).reverse();
-  const scored = chunks.map((c) => {
-    const tokens = tokenize(c.content + " " + c.documentTitle);
-    const overlap = qTokens.filter((t) => tokens.includes(t) || c.content.toLowerCase().includes(t)).length;
-    return { chunk: c, score: overlap / qTokens.length };
-  });
-  return scored
-    .filter((s) => s.score > 0)
+  const hits = [...byId.values()]
     .sort((a, b) => b.score - a.score)
-    .slice(0, limit)
-    .map((s) => s.chunk);
+    .slice(0, limit);
+
+  return { hits, stats: vectorStoreStats() };
 }
 
-export function buildRagContext(query: string, limit = 6): string {
-  const results = retrieve(query, limit);
-  if (results.length === 0) return "";
-  const lines = results.map(
-    (c) => `## ${c.documentTitle}${c.source ? ` (${c.source})` : ""} [chunk ${c.chunkIndex}]\n${c.content}`
-  );
-  return lines.join("\n\n---\n\n");
+export async function ingestKnowledge(
+  docs: Array<{ title: string; content: string; source?: string }>
+) {
+  return indexDocuments(docs);
 }
+
+export function ragStatus() {
+  return {
+    ...vectorStoreStats(),
+    embeddingHint:
+      "Set OPENAI_API_KEY or OPENROUTER_API_KEY for embeddings. Apply migrations/003_vector_embeddings.sql for pgvector.",
+  };
+}
+
+export { indexDocuments, vectorSearch, vectorStoreStats };
