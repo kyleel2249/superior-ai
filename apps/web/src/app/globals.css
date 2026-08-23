@@ -1,20 +1,73 @@
+:root {
+  /* Ink — near-black with a cold blue cast, not pure black */
+  --ink-950: #0a0c10;
+  --ink-900: #0f1218;
+  --ink-800: #161a22;
+  --ink-700: #1f2530;
+  --ink-600: #2b3340;
+  --ink-500: #465063;
+
+  /* Signal — a single working color: circuit amber. Used sparingly. */
+  --signal: #f5a623;
+  --signal-dim: #8a5f1c;
+
+  /* Status */
+  --ok: #4ade80;
+  --warn: #f5a623;
+  --err: #f2545b;
+  --idle: #5b6472;
+
+  --text-hi: #eef1f6;
+  --text-mid: #a7b0c0;
+  --text-low: #616b7c;
+
+  --mono: "IBM Plex Mono", "SF Mono", ui-monospace, monospace;
+  --sans: "Inter", -apple-system, "Segoe UI", sans-serif;
+}
+
 * {
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  background: #0b0d12;
-  color: #e6e8ee;
+html {
+  color-scheme: dark;
 }
 
-code {
-  background: #1a1d24;
-  padding: 0.15em 0.4em;
-  border-radius: 4px;
-  font-size: 0.9em;
+body {
+  margin: 0;
+  background: var(--ink-950);
+  background-image:
+    radial-gradient(circle at 15% 0%, rgba(245, 166, 35, 0.05), transparent 45%),
+    linear-gradient(180deg, var(--ink-950) 0%, var(--ink-900) 100%);
+  color: var(--text-hi);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+code, pre, .mono {
+  font-family: var(--mono);
 }
 
 a {
-  color: #7dd3fc;
+  color: var(--signal);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  font-family: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
