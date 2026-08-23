@@ -1,5 +1,3 @@
-import type { MemoryLayer } from "./layers";
-
 export type PersistentMemoryType =
   | "conversation" | "user" | "project" | "company" | "customer" | "product"
   | "market" | "competitor" | "campaign" | "creative" | "codebase" | "research"

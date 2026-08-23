@@ -1,0 +1,34 @@
+{
+  "name": "@superior-ai/web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "^15.1.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "@superior-ai/agents": "*",
+    "@superior-ai/ai-gateway": "*",
+    "@superior-ai/audit": "*",
+    "@superior-ai/auth": "*",
+    "@superior-ai/billing": "*",
+    "@superior-ai/core": "*",
+    "@superior-ai/creative": "*",
+    "@superior-ai/crm": "*",
+    "@superior-ai/memory": "*",
+    "@superior-ai/observability": "*",
+    "@superior-ai/social": "*",
+    "@superior-ai/tools": "*"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "^5.8.0"
+  }
+}

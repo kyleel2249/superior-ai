@@ -145,3 +145,11 @@ export function listInstalled(organizationId: string) {
 export function isPackEnabled(organizationId: string, packId: string) {
   return installed.some((i) => i.organizationId === organizationId && i.packId === packId && i.enabled);
 }
+
+/** Used by publishPack() to add a signed, published pack to the installable catalog. */
+export function registerCustomPack(pack: AgentPackManifest): AgentPackManifest {
+  const existingIdx = CATALOG.findIndex((p) => p.id === pack.id);
+  if (existingIdx >= 0) CATALOG[existingIdx] = pack;
+  else CATALOG.push(pack);
+  return pack;
+}

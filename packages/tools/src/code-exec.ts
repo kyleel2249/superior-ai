@@ -79,7 +79,7 @@ export async function executeCode(req: {
     try {
       const { stdout, stderr } = await execFileAsync(cmd, args, {
         cwd: dir, timeout: timeoutMs, maxBuffer: 512_000,
-        env: { PATH: process.env.PATH, HOME: dir, NODE_OPTIONS: "--max-old-space-size=128" },
+        env: { PATH: process.env.PATH, HOME: dir, NODE_OPTIONS: "--max-old-space-size=128", NODE_ENV: process.env.NODE_ENV ?? "production" },
       });
       return {
         success: true, executed: true, language,
