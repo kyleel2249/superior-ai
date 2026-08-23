@@ -86,6 +86,7 @@ export type IntelligenceLevel =
   | "DEEP"
   | "EXPERT"
   | "MAXIMUM"
+  | "SUPREME"
   | "AUTONOMOUS";
 
 export type TaskType =

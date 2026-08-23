@@ -1,0 +1,10 @@
+evidence_id,criterion,description,owner,location,collected_date,period_start,period_end,status
+CC1-1,CC1,Security policy,[SECURITY_LEAD],[LINK],,, ,pending
+CC1-2,CC1,RACI / org chart,[ENG_MANAGER],[LINK],,, ,pending
+CC6-1,CC6,User access review,[ADMIN],[EXPORT],,, ,pending
+CC6-2,CC6,Secret rotation log,[SRE],[VAULT],,, ,pending
+CC7-1,CC7,Monitoring dashboards,[SRE],[GRAFANA],,, ,pending
+CC7-4,CC7,Audit log export,[SEC],/api/audit,,, ,pending
+CC8-2,CC8,CI green run,[ENG],[GITHUB_ACTIONS],,, ,pending
+A1-1,A1,Status page snapshot,[SRE],/status,,, ,pending
+A1-2,A1,Backup restore test,[SRE],[RUNBOOK],,, ,pending

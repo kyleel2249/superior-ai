@@ -53,6 +53,7 @@ function scoreModel(m: ModelDefinition, req: RoutingRequest): number {
     DEEP: scores.reasoning * 0.3,
     EXPERT: scores.reasoning * 0.5 + scores.agentic * 0.3,
     MAXIMUM: scores.reasoning * 0.7 + scores.agentic * 0.5,
+    SUPREME: scores.reasoning * 1.0 + scores.agentic * 0.8 + scores.research * 0.5,
     AUTONOMOUS: scores.agentic * 0.8 + scores.toolUse * 0.4,
   };
   s += levelBoost[req.intelligenceLevel] ?? 0;

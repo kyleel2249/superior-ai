@@ -1,11 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 import { modelRegistry, route, configureAndValidate, getAdapter } from "@superior-ai/ai-gateway";
-import { selectCouncil, selectAgentsForGrowthTask, growthLoopPlan, buildCompanyOrgChart } from "@superior-ai/agents";
+import { selectCouncil, selectAgentsForGrowthTask, growthLoopPlan, buildCompanyOrgChart, parseUniversalCommand, listCommandsHelp, runOrchestrator } from "@superior-ai/agents";
 import { createCampaignFromOneLiner } from "@superior-ai/creative";
 import { clusterKeywords, planContentFactory } from "@superior-ai/seo";
 import { createLeadShell, personalizeOutreach, funnelStages } from "@superior-ai/sales";
 import { buildScorecard, emptyCompetitor, trafficIntelligenceShell } from "@superior-ai/competitor";
 import type { IntelligenceLevel, TaskType } from "@superior-ai/core";
+import {
+  retrieveRelevantDurable,
+  formatMemoryForPrompt,
+  rememberDurable,
+  getRejections,
+} from "@superior-ai/memory";
 
 function classifyTask(message: string): TaskType {
   const lower = message.toLowerCase();
@@ -23,35 +29,119 @@ function classifyTask(message: string): TaskType {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const message = String(body.message ?? "");
-    const intelligenceLevel = (body.intelligenceLevel ?? "BALANCED") as IntelligenceLevel;
+    let message = String(body.message ?? "");
+    let intelligenceLevel = (body.intelligenceLevel ?? "BALANCED") as IntelligenceLevel;
     if (!message.trim()) return NextResponse.json({ error: "Empty message" }, { status: 400 });
+
+    // Universal slash commands (/research, /supreme, /autonomous, …)
+    if (message.trim().toLowerCase() === "/help" || message.trim().toLowerCase() === "/commands") {
+      return NextResponse.json({
+        reply: listCommandsHelp(),
+        meta: "Command Router",
+        council: [],
+      });
+    }
+    const parsed = parseUniversalCommand(message);
+    if (parsed.command) {
+      message = parsed.rest || message;
+      if (parsed.intelligenceLevel) intelligenceLevel = parsed.intelligenceLevel;
+      if (parsed.mode === "supreme") intelligenceLevel = "SUPREME";
+      if (parsed.mode === "autonomous") intelligenceLevel = "AUTONOMOUS";
+    }
+    const commandMeta = parsed.command
+      ? { command: parsed.command, mode: parsed.mode, departmentHint: parsed.departmentHint }
+      : null;
 
     const envKeys = [
       { provider: "openai" as const, key: process.env.OPENAI_API_KEY, base: process.env.OPENAI_BASE_URL },
       { provider: "anthropic" as const, key: process.env.ANTHROPIC_API_KEY, base: process.env.ANTHROPIC_BASE_URL },
       { provider: "xai" as const, key: process.env.XAI_API_KEY, base: process.env.XAI_BASE_URL },
       { provider: "google" as const, key: process.env.GOOGLE_AI_API_KEY, base: process.env.GOOGLE_AI_BASE_URL },
+      { provider: "openrouter" as const, key: process.env.OPENROUTER_API_KEY, base: process.env.OPENROUTER_BASE_URL || "https://openrouter.ai/api/v1" },
       { provider: "local" as const, key: process.env.LOCAL_INFERENCE_API_KEY, base: process.env.LOCAL_INFERENCE_URL },
     ];
     for (const e of envKeys) {
       if (e.key) await configureAndValidate(e.provider, { apiKey: e.key, baseUrl: e.base });
     }
 
-    const taskType = classifyTask(message);
+    const profileId = body.profileId ?? "profile_default";
+    const { records: memoryRecords, backend: memoryBackend } = await retrieveRelevantDurable({
+      query: message,
+      profileId,
+      limit: 10,
+    });
+    const { records: rejectionRecords } = await retrieveRelevantDurable({
+      query: message,
+      profileId,
+      types: ["rejection"],
+      limit: 8,
+    });
+    const memoryBlock = formatMemoryForPrompt(memoryRecords);
+    const rejections = [
+      ...getRejections(profileId),
+      ...rejectionRecords.map((r) => r.content),
+    ].filter((v, i, a) => a.indexOf(v) === i);
+
+    // Auto-store conversation turn (lightweight)
+    await rememberDurable({
+      type: "conversation",
+      content: message.slice(0, 500),
+      importance: 40,
+      profileId,
+      tags: ["chat"],
+    });
+
+    const taskType = parsed.command ? parsed.taskType : classifyTask(message);
     const lower = message.toLowerCase();
+    const isSupreme = intelligenceLevel === "SUPREME" || intelligenceLevel === "MAXIMUM";
+    const isAutonomous = intelligenceLevel === "AUTONOMOUS";
     const routing = route({
       taskType,
-      difficulty: 3,
-      risk: "medium",
+      difficulty: isSupreme || isAutonomous ? 5 : 3,
+      risk: isSupreme ? "high" : "medium",
       requiredReasoning: true,
-      requiredTools: [],
+      requiredTools: isAutonomous ? ["web_search", "browser", "code_exec"] : [],
       requiredModality: ["text"],
-      costSensitivity: intelligenceLevel === "FAST" ? "high" : "medium",
-      latencySensitivity: intelligenceLevel === "FAST" ? "high" : "medium",
+      costSensitivity: intelligenceLevel === "FAST" ? "high" : "low",
+      latencySensitivity: intelligenceLevel === "FAST" ? "high" : "low",
       privacyLevel: "standard",
       intelligenceLevel,
     });
+
+    // Autonomous mode: run growth orchestrator when objective is clear
+    if (isAutonomous && message.length > 12) {
+      try {
+        const orch = await runOrchestrator({
+          objective: message,
+          mode: "execute_safe",
+          userId: body.profileId ?? "anonymous",
+          projectId: body.projectId,
+        });
+        return NextResponse.json({
+          reply: [
+            `**AUTONOMOUS MODE** — objective accepted`,
+            ``,
+            orch.summary,
+            ``,
+            `**Agents:** ${orch.agents.join(", ")}`,
+            `**Stages completed:** ${orch.stages.filter((s) => s.status === "completed").length}/${orch.stages.length}`,
+            `**Memory stored:** ${orch.memoryStored}`,
+            ``,
+            ...orch.stages.slice(0, 12).map(
+              (s) => `- **${s.stage}** (${s.owner}): ${s.status} — ${s.output.slice(0, 160)}`
+            ),
+          ].join("\n"),
+          meta: `Autonomous Orchestrator · task=${orch.taskId ?? "ephemeral"}`,
+          council: orch.agents,
+          autonomous: true,
+          stages: orch.stages,
+          command: commandMeta,
+        });
+      } catch (orchErr) {
+        console.error("[api/chat] autonomous", orchErr);
+        // fall through to normal chat path
+      }
+    }
 
     const council = selectAgentsForGrowthTask(message);
     const available = modelRegistry.list({ availableOnly: true });
@@ -172,6 +262,10 @@ export async function POST(req: NextRequest) {
       `Council: ${council.map((c) => c.displayName).join(", ")}.`,
       `Never invent contacts, traffic numbers, rankings, or test results. Label estimates.`,
       structured ? `Structured department output already prepared — refine and extend it:\n${structured}` : "",
+      memoryBlock || "",
+      rejections.length
+        ? `User has rejected these approaches — do not recommend unless circumstances clearly changed:\n${rejections.map((r) => `- ${r}`).join("\n")}`
+        : "",
     ]
       .filter(Boolean)
       .join("\n");
@@ -186,12 +280,22 @@ export async function POST(req: NextRequest) {
       max_tokens: 4096,
     });
 
+    const modeLabel = isSupreme ? "SUPREME" : isAutonomous ? "AUTONOMOUS" : intelligenceLevel;
     return NextResponse.json({
       reply: structured ? `${structured}\n\n---\n\n${completion.content}` : completion.content,
-      meta: `${routing.primary.displayName} · AI Council`,
+      meta: `${routing.primary.displayName} · ${modeLabel} · AI Council · memory:${memoryBackend}`,
       usage: completion.usage,
       council: council.map((c) => c.displayName),
-      routing: { primary: routing.primary.displayName, reason: routing.reason },
+      routing: {
+        primary: routing.primary.displayName,
+        secondary: routing.secondary?.displayName,
+        critic: routing.critic?.displayName,
+        reason: routing.reason,
+      },
+      memoryUsed: memoryRecords.length,
+      memoryBackend,
+      command: commandMeta,
+      intelligenceLevel: modeLabel,
     });
   } catch (err) {
     console.error("[api/chat]", err);

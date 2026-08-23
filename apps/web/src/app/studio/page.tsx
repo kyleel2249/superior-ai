@@ -48,6 +48,32 @@ export default function CreativeStudioPage() {
         >
           {loading ? "Council working…" : "Generate campaign package"}
         </button>
+        
+        <div className="border-t border-zinc-800 pt-6 space-y-3">
+          <h2 className="font-medium">Image generation (honest resolution)</h2>
+          <p className="text-xs text-zinc-500">Native vs Upscaled labels — never claims 8K unless provider returns 8K.</p>
+          <button
+            onClick={async () => {
+              setLoading(true);
+              try {
+                const res = await fetch("/api/images", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ prompt: brief || "Product photo of CRM software on a laptop, photorealistic", realism: true }),
+                });
+                const data = await res.json();
+                setResult(JSON.stringify(data, null, 2));
+              } finally {
+                setLoading(false);
+              }
+            }}
+            disabled={loading}
+            className="px-4 py-2 rounded-lg border border-zinc-700 hover:border-zinc-500 text-sm disabled:opacity-40"
+          >
+            Generate image spec / call provider
+          </button>
+        </div>
+
         {result && (
           <pre className="whitespace-pre-wrap text-sm bg-[var(--card)] border border-[var(--card-border)] rounded-xl p-6 leading-relaxed">
             {result}

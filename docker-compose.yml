@@ -27,13 +27,27 @@ services:
       timeout: 3s
       retries: 5
 
-  # Optional: local inference (Ollama)
-  # ollama:
-  #   image: ollama/ollama
-  #   ports:
-  #     - "11434:11434"
-  #   volumes:
-  #     - ollama:/root/.ollama
+  # Optional: run with profile workers
+  # docker compose --profile workers up worker
+  worker:
+    profiles: ["workers"]
+    build:
+      context: .
+      dockerfile: Dockerfile.worker
+    environment:
+      DATABASE_URL: postgresql://superior:superior@postgres:5432/superior_ai?schema=public
+      REDIS_URL: redis://redis:6379
+      SUPERIOR_WORKER: "1"
+      WORKER_CONCURRENCY: "2"
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY:-}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
 
 volumes:
   pgdata:

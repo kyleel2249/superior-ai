@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SUPERIOR AI — Dashboard</title>
+<style>
+  :root {
+    --background: #0a0a0f;
+    --foreground: #f4f4f5;
+    --card: #12121a;
+    --card-border: #1e1e2e;
+    --muted: #71717a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    min-height: 100vh;
+  }
+  header {
+    border-bottom: 1px solid var(--card-border);
+    background: rgba(18,18,26,0.9);
+    backdrop-filter: blur(12px);
+    position: sticky; top: 0; z-index: 50;
+  }
+  .nav-inner {
+    max-width: 80rem; margin: 0 auto; padding: 0 1.5rem;
+    height: 4rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  }
+  .brand { display: flex; align-items: center; gap: 0.75rem; }
+  .logo {
+    width: 2rem; height: 2rem; border-radius: 0.5rem;
+    background: linear-gradient(135deg, #6366f1, #7c3aed);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.875rem;
+  }
+  .brand span { font-weight: 600; letter-spacing: -0.02em; font-size: 1.125rem; }
+  nav { display: flex; align-items: center; gap: 0.9rem; flex-wrap: wrap; justify-content: flex-end; font-size: 0.8rem; color: var(--muted); }
+  nav a { color: inherit; text-decoration: none; }
+  nav a:hover { color: #fff; }
+  .btn-launch {
+    padding: 0.45rem 0.95rem; border-radius: 0.5rem;
+    background: #4f46e5; color: #fff !important; font-weight: 500;
+  }
+  .hero {
+    max-width: 64rem; margin: 0 auto; padding: 4.5rem 1.5rem 2.5rem; text-align: center;
+  }
+  .eyebrow {
+    color: #818cf8; font-size: 0.8rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; letter-spacing: -0.03em;
+    margin-bottom: 1.25rem; line-height: 1.15;
+    background: linear-gradient(to bottom, #fff, #a1a1aa);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .sub {
+    color: #a1a1aa; font-size: 1.05rem; line-height: 1.65; max-width: 40rem; margin: 0 auto 1.75rem;
+  }
+  .cta-row {
+    display: flex; flex-wrap: wrap; gap: 0.65rem; justify-content: center;
+  }
+  .cta {
+    padding: 0.6rem 1.15rem; border-radius: 0.75rem; font-weight: 500; font-size: 0.875rem;
+    text-decoration: none; border: 1px solid #3f3f46; color: #e4e4e7;
+  }
+  .cta.primary { background: #4f46e5; border-color: #4f46e5; color: #fff; }
+  .stats {
+    max-width: 72rem; margin: 0 auto; padding: 0 1.5rem 1.5rem;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.9rem;
+  }
+  @media (max-width: 900px) {
+    .stats { grid-template-columns: 1fr 1fr; }
+    .grid { grid-template-columns: 1fr !important; }
+  }
+  .stat {
+    background: var(--card); border: 1px solid var(--card-border);
+    border-radius: 0.75rem; padding: 1rem 1.15rem;
+  }
+  .stat .label { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .stat .value { font-size: 1.4rem; font-weight: 600; margin-top: 0.2rem; }
+  .stat .hint { font-size: 0.7rem; color: #52525b; margin-top: 0.2rem; }
+  .grid {
+    max-width: 72rem; margin: 0 auto; padding: 1.5rem 1.5rem 3rem;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+  }
+  .card {
+    padding: 1.15rem; border-radius: 1rem;
+    background: var(--card); border: 1px solid var(--card-border);
+  }
+  .card h3 { font-weight: 600; margin-bottom: 0.45rem; font-size: 0.95rem; }
+  .card p { font-size: 0.82rem; color: #a1a1aa; line-height: 1.55; }
+  footer {
+    border-top: 1px solid var(--card-border);
+    padding: 1.75rem; text-align: center; font-size: 0.8rem; color: #71717a;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="nav-inner">
+      <div class="brand">
+        <div class="logo">S</div>
+        <span>SUPERIOR AI</span>
+      </div>
+      <nav>
+        <a href="#">Workspace</a>
+        <a href="#">Chat</a>
+        <a href="#">Studio</a>
+        <a href="#">Sales</a>
+        <a href="#">Competitors</a>
+        <a href="#">CEO</a>
+        <a href="#">Marketing</a>
+        <a href="#">SEO</a>
+        <a href="#">Status</a>
+        <a href="#">Admin</a>
+        <a href="#">Packs</a>
+        <a href="#" class="btn-launch">Launch</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">AI Business Operating System</p>
+      <h1>One AI. An Entire Company Behind It.</h1>
+      <p class="sub">
+        Multi-model autonomous platform with AI Council, creative studio, sales, SEO,
+        competitor intelligence, software factory, and persistent memory — one interface.
+      </p>
+      <div class="cta-row">
+        <a class="cta primary" href="#">Open Workspace</a>
+        <a class="cta" href="#">Command Chat</a>
+        <a class="cta" href="#">Creative Studio</a>
+        <a class="cta" href="#">Marketing</a>
+        <a class="cta" href="#">SEO</a>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div class="stat">
+        <div class="label">Providers</div>
+        <div class="value">6</div>
+        <div class="hint">OpenAI · Anthropic · xAI · Google · OpenRouter · Local</div>
+      </div>
+      <div class="stat">
+        <div class="label">Departments</div>
+        <div class="value">12+</div>
+        <div class="hint">Council · GTM · CX · Support · Factory</div>
+      </div>
+      <div class="stat">
+        <div class="label">Memory</div>
+        <div class="value">On</div>
+        <div class="hint">Postgres-ready · chat-injected</div>
+      </div>
+      <div class="stat">
+        <div class="label">Mode</div>
+        <div class="value">Local-first</div>
+        <div class="hint">No mandatory sign-in</div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h3>Autonomous Media Studio</h3>
+        <p>UGC, skits, storyboards, multi-platform variants, realism controls, honest resolution labels.</p>
+      </div>
+      <div class="card">
+        <h3>SEO + Traffic Intelligence</h3>
+        <p>Keyword clusters, content factory, audits, competitor SEO — no guaranteed rankings.</p>
+      </div>
+      <div class="card">
+        <h3>Competitor War Room</h3>
+        <p>Public research, scorecards, traffic shells with provenance and confidence.</p>
+      </div>
+      <div class="card">
+        <h3>Sales Autopilot</h3>
+        <p>Leads, scoring, outreach drafts, funnel, CRM-ready — approval-gated sends.</p>
+      </div>
+      <div class="card">
+        <h3>Full Business Council</h3>
+        <p>CEO → Creative → Sales → Finance → Customer… department collaboration.</p>
+      </div>
+      <div class="card">
+        <h3>Master Growth Loop</h3>
+        <p>Research → Creative → Campaign → Leads → Close → Retain → Optimize.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    SUPERIOR AI · Continuous capacity · Shared memory across departments · Estimates labeled · No invented contacts or traffic
+  </footer>
+</body>
+</html>

@@ -173,15 +173,17 @@ model ProviderKey {
 }
 
 model KnowledgeItem {
-  id        String   @id @default(cuid())
-  projectId String?
-  title     String
-  source    String?
-  content   String
-  metadata  Json?
-  // embedding Unsupported("vector(1536)") // enable with pgvector when ready
-  createdAt DateTime @default(now())
-  project   Project? @relation(fields: [projectId], references: [id])
+  id             String   @id @default(cuid())
+  projectId      String?
+  title          String
+  source         String?
+  content        String
+  metadata       Json?
+  embeddingModel String?
+  /// Stored as float array in app layer; pgvector column added via SQL migration
+  /// Use migrations/001_pgvector.sql for vector(1536) column + index
+  createdAt      DateTime @default(now())
+  project        Project? @relation(fields: [projectId], references: [id])
 }
 
 model UsageEvent {
@@ -307,4 +309,57 @@ model GrowthExperimentRecord {
   result     Json?
   status     String   @default("proposed")
   createdAt  DateTime @default(now())
+}
+
+model UsageMeter {
+  id             String   @id @default(cuid())
+  organizationId String?
+  userId         String?
+  meter          String   // tokens | images | video_seconds | tool_calls | seats
+  quantity       Float
+  unit           String   @default("count")
+  costUsd        Float    @default(0)
+  provider       String?
+  modelId        String?
+  metadata       Json?
+  createdAt      DateTime @default(now())
+
+  @@index([organizationId, createdAt])
+  @@index([meter, createdAt])
+}
+
+model BillingBudget {
+  id             String   @id @default(cuid())
+  organizationId String
+  monthlyLimitUsd Float
+  alertThreshold  Float   @default(0.8)
+  currentSpendUsd Float   @default(0)
+  hardStop        Boolean @default(false)
+  updatedAt       DateTime @updatedAt
+  createdAt       DateTime @default(now())
+
+  @@unique([organizationId])
+}
+
+/// Actionable persistent memory (Wave 15+) — durable across sessions
+model PersistentMemory {
+  id             String   @id @default(cuid())
+  type           String
+  key            String?
+  content        String
+  importance     Int      @default(50)
+  projectId      String?
+  customerId     String?
+  organizationId String?
+  profileId      String?
+  tags           String[] @default([])
+  active         Boolean  @default(true)
+  metadata       Json?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([profileId, active])
+  @@index([organizationId, type])
+  @@index([key])
+  @@index([customerId])
 }

@@ -2,109 +2,104 @@
 
 **One AI. An Entire Team Behind It.**
 
-Production-grade, enterprise-level multi-model autonomous expert agent platform.
+Production-oriented multi-model autonomous AI operating system — not a thin chatbot wrapper.
 
-SUPERIOR AI acts as a unified autonomous AI operating system that intelligently combines multiple frontier AI systems, specialized coding agents, reasoning models, multimodal models, search systems, autonomous workers, specialist agents, memory systems, tools, APIs, databases, browsers, code execution environments and human-approved actions.
+It routes work across frontier models, specialist agents, tools, memory, and human approval gates to research, create, market, sell, build software, and operate a business from one interface.
 
-It behaves like a Chief AI Officer + AI engineering department + research team + strategy team + software development company + analyst team + executive assistant + autonomous digital workforce operating through one interface.
+## What it includes (Waves 1–10)
 
-## Architecture Principles
+| Area | Capabilities |
+|------|----------------|
+| **AI core** | Dynamic model registry, superior router, multi-provider adapters, health, OpenAI-compatible gateway |
+| **Council** | Executive + departmental agents (CEO/CFO/CTO/CMO/Sales/…) with growth loop |
+| **GTM** | Creative studio, SEO, competitor intel, sales engine, marketing calendar |
+| **Media** | Image gen (Native/Upscaled/Final labels), video continuity plans |
+| **Build** | Software factory (plan → test → approval), agent **packs marketplace** |
+| **Data** | Multi-layer memory, RAG, vector indexer, pgvector SQL |
+| **Ops** | Durable tasks, BullMQ/Redis workers, rate limits, OTLP, audit log |
+| **Trust** | JWT/OIDC/JWKS, org invites, encryption, SOC2 templates, status page |
+| **Commercial** | Usage meters, budgets, Stripe Checkout/Portal, cost attribution |
 
-- **Model-agnostic**: Dynamic Model Registry + Provider Registry + Capability Registry
-- **Never hard-code models**: Future models (GPT-6/7, future Claude/Grok/Gemini generations) are registered without redesign
-- **Continuous capacity**: Provider failover, multi-key pools, local fallback, queues — no artificial internal limits
-- **AI Council**: Executive + Strategist + Researcher + Coding Team + Business/Finance/Creative specialists + Security Council
-- **Durable tasks**: Checkpointed state, resume after disconnect/restart
-- **Truthfulness first**: No invented sources, test results, or execution status
-- **BYOK + platform keys**: Encrypted credential management with validation before activation
-
-## Recommended Stack
-
-| Layer | Technology |
-|-------|------------|
-| Frontend | Next.js (App Router), React, TypeScript, Tailwind CSS |
-| Backend | Node.js / TypeScript (Fastify or Nest-style modules) |
-| Database | PostgreSQL + Prisma |
-| Cache / Queue | Redis + BullMQ |
-| Vector | pgvector |
-| Object Storage | S3-compatible |
-| Auth | NextAuth / OIDC-ready |
-| Deployment | Docker, CI/CD |
-
-## Monorepo Structure
-
-```
-superior-ai/
-├── apps/
-│   ├── web/          # Next.js frontend + API routes
-│   └── api/          # Standalone API / workers (optional scale-out)
-├── packages/
-│   ├── core/         # Shared types, config, utils
-│   ├── db/           # Prisma schema & client
-│   ├── ai-gateway/   # Provider adapters, model registry, router
-│   ├── agents/       # AI Council, orchestration, debate engine
-│   ├── tools/        # Universal tool framework
-│   ├── memory/       # Short-term, project, org, knowledge, RAG
-│   └── shared/       # Cross-cutting utilities
-├── docs/
-├── scripts/
-├── docker-compose.yml
-├── .env.example
-└── turbo.json
-```
-
-## Quick Start
+## Quick start
 
 ```bash
-# 1. Clone
-git clone https://github.com/kyleel2249/superior-ai.git
-cd superior-ai
-
-# 2. Environment
 cp .env.example .env
-# Edit .env with your keys (optional for local UI exploration)
+# set AUTH_SECRET, optional provider keys, DATABASE_URL, REDIS_URL
 
-# 3. Infrastructure
-docker compose up -d   # PostgreSQL + Redis
-
-# 4. Install & migrate
+docker compose up -d postgres redis
 npm install
-npm run db:generate
-npm run db:migrate
-
-# 5. Develop
-npm run dev
+psql "$DATABASE_URL" -f packages/db/prisma/migrations/001_pgvector.sql
+npm run dev --workspace=@superior-ai/web
 ```
 
 Open http://localhost:3000
 
-## Business OS Addendum (Integrated)
+```bash
+npm run smoke
+# optional: npx playwright test
+```
 
-- **Creative / Media Studio** — Story Director, UGC Factory, campaign engine, performance estimates
-- **SEO Intelligence** — clusters, content factory, audit shells
-- **Competitor War Room** — public research posture, provenance-labeled traffic shells
-- **Sales Autopilot** — leads, scoring, outreach drafts, funnel (approval-gated)
-- **Full Expert Council** — interconnected departments sharing orchestration
-- **Master Growth Loop** — research → creative → leads → revenue → optimize
-- **Command Centers** — `/studio` `/sales` `/competitors` `/ceo`
+## Key routes
 
-## Core Modules (Implemented Foundation)
+| Path | Purpose |
+|------|---------|
+| `/chat` | Command center |
+| `/studio` | Creative campaigns |
+| `/status` | Public system status |
+| `/login` | Dev / OIDC login |
+| `/settings/billing` | Stripe Checkout |
+| `/settings/costs` | Cost attribution |
+| `/admin/overview` | Health, metrics, audit |
+| `/admin/packs` | Agent pack marketplace |
+| `/admin/providers` | Provider configuration |
 
-1. **Model Registry** — Dynamic registration, capability scoring, status (REGISTERED / AVAILABLE / UNAVAILABLE / DEPRECATED / CONFIGURATION_REQUIRED)
-2. **Provider Adapters** — OpenAI, Anthropic, xAI/Grok, Google Gemini, OpenRouter, Local OpenAI-compatible
-3. **Superior Router** — Task classification → primary / secondary / critic / fallback selection with cost & latency awareness
-4. **AI Council Orchestrator** — Executive agent coordination, specialist teams, debate modes
-5. **Task Queue & Checkpoints** — Durable state, resume, priority queues
-6. **Memory Layers** — Conversation, project, user, organization + RAG quality controls
-7. **Tool Framework** — Pluggable tools with permission gates
-8. **Admin Console** — Providers, models, health, usage, feature flags
-9. **Security** — Input isolation, secret redaction, approval gates, sandbox readiness
-10. **Observability** — Structured logs, cost tracking, provider health
+## Key APIs
 
-## Model Integration Rule
+`/api/health` · `/api/models` · `/api/chat` · `/api/orchestrate` · `/api/v1/chat/completions`  
+`/api/campaigns` · `/api/images` · `/api/video` · `/api/crm` · `/api/social`  
+`/api/tasks` · `/api/queue` · `/api/knowledge` · `/api/packs` · `/api/factory`  
+`/api/billing` · `/api/audit` · `/api/metrics` · `/api/status`
 
-Never fake an integration. A model only becomes AVAILABLE after credential + endpoint + capability validation succeeds. Future model names are registered as UNAVAILABLE aliases and automatically fall back to the best verified model.
+## Design rules
+
+- **No invented** traffic numbers, contacts, test results, or media URLs  
+- **Native vs upscaled** resolution labels on images  
+- Social/CRM publish only via **official APIs** + explicit approval where required  
+- Unavailable models route to best available — never silent fabrications  
+- Future model generations register without redesigning the core
+
+## Deploy
+
+- Docker Compose: `postgres` (pgvector), `redis`, optional `worker` profile  
+- Helm: `deploy/helm/superior-ai`  
+- Terraform scaffold: `deploy/terraform` (`enable=false` by default)  
+- Runbook: `docs/runbook/PRODUCTION.md` · Multi-region: `docs/runbook/MULTI_REGION.md`  
+- SOC 2 templates: `docs/soc2/`
+
+## Monorepo
+
+```
+apps/web          Next.js UI + API routes
+packages/
+  core, ai-gateway, agents, tools, memory, queue
+  creative, seo, sales, marketing, competitor
+  auth, billing, crm, social, audit, observability, db, shared
+```
 
 ## License
 
-Proprietary / Enterprise — contact for licensing.
+Private / proprietary unless otherwise stated by the repository owner.
+
+## Windows (npm)
+
+```bat
+copy .env.example .env
+npm install
+npm run dev:web
+```
+
+Open http://localhost:3000
+
+Full guide: [docs/runbook/WINDOWS.md](docs/runbook/WINDOWS.md)
+
+Requires **Node.js 20+**. PostgreSQL and Redis are optional for basic local use.

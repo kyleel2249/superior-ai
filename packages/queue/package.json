@@ -1,0 +1,21 @@
+{
+  "name": "@superior-ai/queue",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./src/index.ts",
+  "scripts": {
+    "worker": "npx tsx src/worker.ts"
+  },
+  "dependencies": {
+    "@superior-ai/core": "*",
+    "@superior-ai/agents": "*"
+  },
+  "optionalDependencies": {
+    "bullmq": "^5.34.0",
+    "ioredis": "^5.4.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.0",
+    "tsx": "^4.19.0"
+  }
+}

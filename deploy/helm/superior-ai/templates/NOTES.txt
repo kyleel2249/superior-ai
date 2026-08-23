@@ -1,0 +1,5 @@
+SUPERIOR AI installed.
+
+1. Configure secrets (DATABASE_URL, REDIS_URL, ENCRYPTION_KEY, provider keys).
+2. Run pgvector migration: packages/db/prisma/migrations/001_pgvector.sql
+3. Port-forward: kubectl port-forward svc/{{ .Release.Name }}-web 3000:3000

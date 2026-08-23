@@ -5,7 +5,16 @@
   "main": "./src/index.ts",
   "dependencies": {
     "@superior-ai/core": "*",
-    "@superior-ai/ai-gateway": "*"
+    "@superior-ai/ai-gateway": "*",
+    "@superior-ai/creative": "*",
+    "@superior-ai/seo": "*",
+    "@superior-ai/sales": "*",
+    "@superior-ai/competitor": "*",
+    "@superior-ai/marketing": "*",
+    "@superior-ai/memory": "*",
+    "@superior-ai/tools": "*",
+    "@superior-ai/db": "*",
+    "@superior-ai/queue": "*"
   },
   "devDependencies": {
     "typescript": "^5.8.0"

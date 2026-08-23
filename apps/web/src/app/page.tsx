@@ -10,12 +10,22 @@ export default function HomePage() {
             <span className="font-semibold tracking-tight text-lg">SUPERIOR AI</span>
           </div>
           <nav className="flex items-center gap-4 text-sm text-[var(--muted)] flex-wrap justify-end">
+            <Link href="/workspace" className="hover:text-white">Workspace</Link>
             <Link href="/chat" className="hover:text-white">Chat</Link>
             <Link href="/studio" className="hover:text-white">Studio</Link>
             <Link href="/sales" className="hover:text-white">Sales</Link>
             <Link href="/competitors" className="hover:text-white">Competitors</Link>
             <Link href="/ceo" className="hover:text-white">CEO</Link>
-            <Link href="/admin/providers" className="hover:text-white">Admin</Link>
+            <Link href="/marketing" className="hover:text-white">Marketing</Link>
+            <Link href="/seo" className="hover:text-white">SEO</Link>
+            <Link href="/login" className="hover:text-white">Login</Link>
+            
+            
+            <Link href="/status" className="hover:text-white">Status</Link>
+            <Link href="/admin/overview" className="hover:text-white">Admin</Link>
+            <Link href="/admin/packs" className="hover:text-white">Packs</Link>
+            <Link href="/publisher" className="hover:text-white">Publish</Link>
+            <Link href="/workspace" className="hover:text-white">Workspace</Link>
             <Link href="/chat" className="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-medium">Launch</Link>
           </nav>
         </div>
@@ -35,6 +45,9 @@ export default function HomePage() {
             <Link href="/sales" className="px-5 py-2.5 rounded-xl border border-zinc-700 hover:border-zinc-500 font-medium">Sales</Link>
             <Link href="/competitors" className="px-5 py-2.5 rounded-xl border border-zinc-700 hover:border-zinc-500 font-medium">War Room</Link>
             <Link href="/ceo" className="px-5 py-2.5 rounded-xl border border-zinc-700 hover:border-zinc-500 font-medium">CEO Center</Link>
+            <Link href="/marketing" className="px-5 py-2.5 rounded-xl border border-zinc-700 hover:border-zinc-500 font-medium">Marketing</Link>
+            <Link href="/seo" className="px-5 py-2.5 rounded-xl border border-zinc-700 hover:border-zinc-500 font-medium">SEO</Link>
+            <Link href="/brand" className="px-5 py-2.5 rounded-xl border border-zinc-700 hover:border-zinc-500 font-medium">Brand Studio</Link>
           </div>
         </section>
 
