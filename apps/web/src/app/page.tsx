@@ -1,5 +1,5 @@
 const PAGES = [
-  { href: "/chat", label: "Chat", note: "Memory-aware conversation + model routing" },
+  { href: "/chat", label: "Command Center", note: "Chat · Orchestrate · Research (memory + RAG)" },
   { href: "/studio", label: "Creative Studio", note: "Campaigns, brand, image/video APIs" },
   { href: "/sales", label: "Sales", note: "CRM connectors (HubSpot / Salesforce)" },
   { href: "/login", label: "Login", note: "Optional auth for multi-user deployments" },
@@ -9,25 +9,20 @@ const API_ROUTES = [
   "/api/health",
   "/api/status",
   "/api/models?probe=1",
-  "/api/v1/chat/completions",
   "/api/chat",
-  "/api/memory",
   "/api/orchestrate",
+  "/api/research",
+  "/api/memory",
+  "/api/knowledge",
+  "/api/factory",
   "/api/brand",
   "/api/images",
   "/api/video",
   "/api/campaigns",
   "/api/social",
   "/api/crm",
-  "/api/billing",
-  "/api/orgs",
-  "/api/packs",
-  "/api/factory",
-  "/api/knowledge",
   "/api/repo",
   "/api/exec",
-  "/api/audit",
-  "/api/metrics",
 ];
 
 export default function HomePage() {
@@ -42,16 +37,13 @@ export default function HomePage() {
     >
       <h1 style={{ marginBottom: "0.35rem" }}>SUPERIOR AI</h1>
       <p style={{ color: "#94a3b8", marginTop: 0 }}>
-        One AI. An entire team behind it. — Production-oriented multi-model platform.
+        One AI. An entire team behind it.
       </p>
-
       <p>
-        Foundations now include a working <a href="/chat">/chat</a> UI wired to durable
-        memory and the model gateway. Models are only marked AVAILABLE after a live health
-        check (<code>GET /api/models?probe=1</code>). The orchestrator can plan safely by
-        default, or synthesize with a real model when <code>mode=execute</code>.
+        Use the <a href="/chat">Command Center</a> for memory-aware chat, multi-agent
+        orchestration (plan → synthesis), and research with real URL fetches and citations.
+        Models are AVAILABLE only after a live health check.
       </p>
-
       <h2>Pages</h2>
       <ul style={{ listStyle: "none", padding: 0 }}>
         {PAGES.map((p) => (
@@ -74,8 +66,7 @@ export default function HomePage() {
           </li>
         ))}
       </ul>
-
-      <h2>API routes</h2>
+      <h2>API</h2>
       <ul>
         {API_ROUTES.map((route) => (
           <li key={route} style={{ marginBottom: 4 }}>
@@ -83,10 +74,8 @@ export default function HomePage() {
           </li>
         ))}
       </ul>
-
       <p style={{ color: "#64748b", fontSize: 13, marginTop: "2rem" }}>
-        No fabricated metrics, contacts, or generation results. Configure provider keys in{" "}
-        <code>.env</code> to activate models.
+        No fabricated metrics, contacts, citations, or generation results.
       </p>
     </main>
   );
