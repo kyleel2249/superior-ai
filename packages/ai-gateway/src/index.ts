@@ -6,3 +6,4 @@ export * from "./registry/model-registry";
 export * from "./router/superior-router";
 export * from "./media/image";
 export * from "./media/video";
+export * from "./council";
