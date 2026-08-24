@@ -24,7 +24,8 @@
     "@superior-ai/memory": "*",
     "@superior-ai/observability": "*",
     "@superior-ai/social": "*",
-    "@superior-ai/tools": "*"
+    "@superior-ai/tools": "*",
+    "@superior-ai/workspace": "*"
   },
   "devDependencies": {
     "@types/react": "^19.0.0",

@@ -4,8 +4,9 @@ import { usePathname } from "next/navigation";
 
 const NAV_ITEMS = [
   { href: "/", label: "Dashboard" },
+  { href: "/workspaces", label: "Workspaces" },
   { href: "/chat", label: "Chat" },
-  { href: "/workspace", label: "Workspace" },
+  { href: "/workspace", label: "Orchestrator" },
   { href: "/studio", label: "Studio" },
   { href: "/admin/packs", label: "Packs" },
   { href: "/publisher", label: "Publisher" },

@@ -19,6 +19,7 @@ const nextConfig = {
     "@superior-ai/social",
     "@superior-ai/storage",
     "@superior-ai/tools",
+    "@superior-ai/workspace",
   ],
 };
 
