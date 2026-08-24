@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { PageHeader, Card, Badge } from "@/components/ui";
+import { useTheme } from "@/components/theme-provider";
 
 interface Workspace {
   id: string;
@@ -24,6 +25,7 @@ const PROFILES = ["personal", "business", "development", "marketing", "research"
 const LANGUAGES = ["en", "es", "fr", "de", "pt", "ja", "zh"];
 
 export default function WorkspacesPage() {
+  const { setTheme } = useTheme();
   const [workspaces, setWorkspaces] = useState<Workspace[]>([]);
   const [selected, setSelected] = useState<string | null>(null);
   const [projects, setProjects] = useState<Project[]>([]);
@@ -85,6 +87,10 @@ export default function WorkspacesPage() {
       body: JSON.stringify({ action: "set_preferences", workspaceId: selected, preferences: patch }),
     });
     setPrefs(await res.json());
+    if (patch.theme) setTheme(patch.theme as "dark" | "light" | "system");
+    if (patch.keyboardShortcutsEnabled !== undefined) {
+      document.cookie = `kbShortcuts=${patch.keyboardShortcutsEnabled}; path=/; max-age=31536000`;
+    }
   }
 
   async function deleteWorkspace(id: string) {

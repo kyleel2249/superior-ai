@@ -71,3 +71,38 @@ button {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Light theme — overrides the dark tokens defined in :root above.
+   Applied via [data-theme="light"] on <html>, set by ThemeProvider. */
+:root[data-theme="light"] {
+  --ink-950: #f7f8fa;
+  --ink-900: #ffffff;
+  --ink-800: #eef0f4;
+  --ink-700: #d9dde4;
+  --ink-600: #c3c9d3;
+  --ink-500: #9aa3b2;
+
+  --text-hi: #14171c;
+  --text-mid: #4b5566;
+  --text-low: #7a8494;
+}
+
+:root[data-theme="light"] body {
+  background-image:
+    radial-gradient(circle at 15% 0%, rgba(245, 166, 35, 0.06), transparent 45%),
+    linear-gradient(180deg, var(--ink-950) 0%, var(--ink-900) 100%);
+}
+
+/* Responsive: narrow the sidebar to icon-width below 640px rather than
+   letting a 216px rail eat the viewport on mobile. NOTE: not visually
+   verified in a real browser — no screenshot/browser tool available in
+   this environment, this is a reasonable CSS-only pass, not a confirmed fix. */
+@media (max-width: 640px) {
+  .superior-sidebar {
+    width: 64px !important;
+    padding: 20px 8px !important;
+  }
+  .superior-sidebar .nav-label {
+    display: none;
+  }
+}

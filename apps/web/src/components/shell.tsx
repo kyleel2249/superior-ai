@@ -21,7 +21,8 @@ export default function Shell({ children }: { children: React.ReactNode }) {
       <aside
         style={{
           width: 216,
-          flexShrink: 0,
+          minWidth: 64,
+          flexShrink: 1,
           borderRight: "1px solid var(--ink-700)",
           background: "var(--ink-900)",
           padding: "20px 14px",
@@ -29,6 +30,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
           top: 0,
           height: "100vh",
         }}
+        className="superior-sidebar"
       >
         <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "0 8px 20px" }}>
           <span
@@ -64,11 +66,35 @@ export default function Shell({ children }: { children: React.ReactNode }) {
                   textDecoration: "none",
                 }}
               >
-                {item.label}
+                <span className="nav-label">{item.label}</span>
               </a>
             );
           })}
         </nav>
+        <div
+          style={{
+            marginTop: 16,
+            padding: "8px 10px",
+            fontSize: 11.5,
+            color: "var(--text-low)",
+            display: "flex",
+            alignItems: "center",
+            gap: 6,
+          }}
+        >
+          <span
+            style={{
+              fontFamily: "var(--mono)",
+              background: "var(--ink-800)",
+              border: "1px solid var(--ink-700)",
+              borderRadius: 4,
+              padding: "1px 5px",
+            }}
+          >
+            ⌘K
+          </span>
+          quick jump
+        </div>
       </aside>
       <main style={{ flex: 1, minWidth: 0 }}>{children}</main>
     </div>
