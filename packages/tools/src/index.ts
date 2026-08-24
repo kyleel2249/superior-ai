@@ -5,6 +5,7 @@ export * from "./types";
 export * from "./registry";
 export * from "./repo";
 export * from "./code-exec";
+export { browseUrl, type BrowseResult } from "./browser";
 export {
   liveSearch,
   searchWithEngine,

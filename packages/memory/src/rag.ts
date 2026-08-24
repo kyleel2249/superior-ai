@@ -75,4 +75,6 @@ export function ragStatus() {
   };
 }
 
-export { indexDocuments, vectorSearch, vectorStoreStats };
+// indexDocuments / vectorSearch / vectorStoreStats are exported directly
+// from ./indexer via index.ts — not re-exported here to avoid an ambiguous
+// duplicate export.

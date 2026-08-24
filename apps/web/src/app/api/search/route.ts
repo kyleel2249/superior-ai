@@ -31,13 +31,13 @@ export async function POST(req: NextRequest) {
     }
 
     if (body.engine) {
-      const data = await searchWithEngine(query, String(body.engine));
+      const data = await searchWithEngine(query, String(body.engine) as SearchEngineId);
       return NextResponse.json(data);
     }
 
     const data = await liveSearch(query, {
-      prefer: body.prefer,
-      engines: body.engines,
+      prefer: body.prefer as SearchEngineId | undefined,
+      engines: Array.isArray(body.engines) ? (body.engines as SearchEngineId[]) : undefined,
     });
     return NextResponse.json(data);
   } catch (err) {

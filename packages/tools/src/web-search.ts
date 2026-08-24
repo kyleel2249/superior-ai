@@ -26,10 +26,10 @@ registerTool({
     "Search the public web via multi-engine adapter (Google/Bing/DDG/Brave/Yandex/Naver/Mojeek/Wolfram/…). Never invents sources.",
   permissions: ["web_search"],
   sensitive: false,
-  async execute(input): Promise<ToolResult> {
+  async execute(input: Record<string, unknown>): Promise<ToolResult> {
     const query = String(input.query ?? "").trim();
     if (!query) return { success: false, error: "query is required" };
-    const engine = input.engine ? String(input.engine) : undefined;
+    const engine = input.engine ? (String(input.engine) as SearchEngineId) : undefined;
     const multi = input.multi === true || input.multi === "true";
     try {
       if (multi) {
