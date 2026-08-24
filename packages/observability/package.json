@@ -6,7 +6,8 @@
   "dependencies": {
     "@superior-ai/core": "*",
     "@superior-ai/cache": "*",
-    "@superior-ai/storage": "*"
+    "@superior-ai/storage": "*",
+    "@superior-ai/queue": "*"
   },
   "devDependencies": {
     "typescript": "^5.8.0"

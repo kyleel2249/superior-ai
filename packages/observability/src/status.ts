@@ -9,6 +9,7 @@
 
 import { cacheBackendHint } from "@superior-ai/cache";
 import { storageBackendHint } from "@superior-ai/storage";
+import { queueBackendHint } from "@superior-ai/queue";
 
 export type ComponentStatus = "operational" | "degraded" | "outage" | "unknown";
 
@@ -36,6 +37,7 @@ const components = new Map<string, Component>([
   ["ai_providers", { id: "ai_providers", name: "AI Providers", status: "unknown", updatedAt: new Date().toISOString() }],
   ["cache", { id: "cache", name: "Cache", status: "unknown", updatedAt: new Date().toISOString() }],
   ["object_storage", { id: "object_storage", name: "Object Storage", status: "unknown", updatedAt: new Date().toISOString() }],
+  ["queue", { id: "queue", name: "Job Queue", status: "unknown", updatedAt: new Date().toISOString() }],
 ]);
 
 const incidents: Incident[] = [];
@@ -60,6 +62,11 @@ export function autoProbeFromEnv(): void {
     "object_storage",
     "operational",
     storageBackendHint() === "s3" ? "S3-compatible bucket configured (AWS_S3_BUCKET)" : "Local filesystem fallback — AWS_S3_BUCKET not set, storage is local to this instance"
+  );
+  setComponentStatus(
+    "queue",
+    "operational",
+    queueBackendHint() === "redis" ? "Redis-backed job store configured (REDIS_URL)" : "In-memory fallback — REDIS_URL not set, queued jobs do not survive a restart"
   );
 }
 

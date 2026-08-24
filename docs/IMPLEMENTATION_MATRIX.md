@@ -13,7 +13,7 @@ Legend: DONE (built + verified) · PARTIAL (real code, real gaps) · MINIMAL
 | Phase | Area | Status | Notes |
 |---|---|---|---|
 | 0 | Requirements extraction | PARTIAL | This document is the first honest pass, not a formal matrix with acceptance criteria per item |
-| 1 | Foundation & architecture | PARTIAL | Monorepo, Next.js app, ~22 packages build/typecheck clean. Cache (packages/cache) and object storage (packages/storage) are now real, tested, and wired into /api/status. Still no event bus, no plugin architecture, no distributed queue (job queue is in-process only, lost on restart) |
+| 1 | Foundation & architecture | PARTIAL | Monorepo, Next.js app, ~24 packages build/typecheck clean. Cache (packages/cache), object storage (packages/storage), job queue (packages/queue, now pluggable Redis-or-memory), and an event bus (packages/events) are all real, tested, and wired into /api/status. Still no plugin architecture; queue/cache/events default to in-memory unless REDIS_URL is set, and events don't fan out across instances |
 | 2 | Identity & local-first | NOT STARTED | Current auth is session/JWT-based, not the no-sign-in local-first flow this phase describes. No workspace/project creation UI, no command palette, no theme system |
 | 3 | Model & provider infra | DONE | 6 real provider adapters (OpenAI/Anthropic/xAI/Google/OpenRouter/local), model registry, health monitor, router — verified against live server. No model benchmarking |
 | 4 | Router & multi-model council | MINIMAL | Router picks by intelligence level; no critic/verifier/synthesis agents, no Supreme/Autonomous council mode |
@@ -55,10 +55,12 @@ distributed queue, file/multimodal pipeline) that doesn't exist yet.
 
 ## Recommended build order from here
 
-1. Cache (packages/cache) and object storage (packages/storage) are now
-   real and verified — see below. The remaining Phase 1 gap is a real
-   persistent/distributed job queue (packages/queue is still in-process
-   only) and an event bus.
+1. Cache, object storage, job queue, and an event bus (packages/cache,
+   storage, queue, events) are now real and verified — see below. The
+   remaining Phase 1 item is a plugin architecture, which nothing else
+   currently depends on, so it's reasonable to defer until a real plugin
+   consumer exists. Phase 2 (local-first identity/workspace UX) is the
+   next unstarted phase in dependency order.
 2. Phase 6 (file/multimodal) unlocks a lot of downstream phases (support,
    research, code review) that assume it exists.
 3. Defer Phases 14–15 and 25's live posting until there's an explicit
