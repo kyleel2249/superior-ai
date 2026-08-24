@@ -139,3 +139,63 @@ export function supportTrendAlerts(): string[] {
   }
   return alerts;
 }
+
+export interface KbArticle {
+  id: string;
+  title: string;
+  body: string;
+  tags: string[];
+  updatedAt: string;
+}
+
+const kb: KbArticle[] = [];
+
+export function upsertKbArticle(input: { title: string; body: string; tags?: string[] }): KbArticle {
+  const existing = kb.find((a) => a.title.toLowerCase() === input.title.toLowerCase());
+  if (existing) {
+    existing.body = input.body;
+    existing.tags = input.tags ?? existing.tags;
+    existing.updatedAt = new Date().toISOString();
+    return existing;
+  }
+  const article: KbArticle = {
+    id: `kb_${Date.now().toString(36)}`,
+    title: input.title,
+    body: input.body,
+    tags: input.tags ?? [],
+    updatedAt: new Date().toISOString(),
+  };
+  kb.push(article);
+  return article;
+}
+
+export function searchKb(query: string): KbArticle[] {
+  const q = query.toLowerCase();
+  return kb.filter(
+    (a) =>
+      a.title.toLowerCase().includes(q) ||
+      a.body.toLowerCase().includes(q) ||
+      a.tags.some((t) => t.toLowerCase().includes(q))
+  );
+}
+
+export function listKb(): KbArticle[] {
+  return [...kb];
+}
+
+export function draftSupportReply(ticketSubject: string, ticketBody: string): {
+  reply: string;
+  steps: string[];
+  disclaimer: string;
+} {
+  return {
+    reply: `Thank you for contacting us about "${ticketSubject}". We've reviewed your message and will address it step by step.`,
+    steps: [
+      "Acknowledge the issue and impact",
+      "Restate understanding",
+      "Provide next action or timeline",
+      "Offer confirmation path",
+    ],
+    disclaimer: "Draft only — verify account-specific facts before sending. Do not invent policy exceptions.",
+  };
+}

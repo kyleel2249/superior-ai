@@ -3,6 +3,7 @@ import {
   generateLetterformConcepts,
   exportSvgDataUri,
   buildBrandKitPack,
+  brandAssetSpecs,
   exportBrandKitJson,
   type BrandStyle,
 } from "@superior-ai/brand";

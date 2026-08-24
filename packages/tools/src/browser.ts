@@ -124,3 +124,46 @@ registerTool({
     };
   },
 });
+
+registerTool({
+  name: "url_links",
+  description: "Fetch a public page and list outbound https links (no auth bypass).",
+  permissions: ["browser"],
+  sensitive: false,
+  async execute(input): Promise<ToolResult> {
+    const url = String(input.url ?? "").trim();
+    if (!url || !/^https?:\/\//i.test(url)) {
+      return { success: false, error: "Valid http(s) url required" };
+    }
+    try {
+      const controller = new AbortController();
+      const t = setTimeout(() => controller.abort(), 15000);
+      const res = await fetch(url, {
+        signal: controller.signal,
+        headers: {
+          "User-Agent": "SUPERIOR-AI-ResearchBot/0.1",
+          Accept: "text/html",
+        },
+        redirect: "follow",
+      });
+      clearTimeout(t);
+      if (!res.ok) return { success: false, error: `HTTP ${res.status}`, provenance: "Observed Data" };
+      const html = await res.text();
+      const links = new Set<string>();
+      const re = /href=["'](https?:\/\/[^"'#]+)/gi;
+      let m: RegExpExecArray | null;
+      while ((m = re.exec(html)) !== null) links.add(m[1]!);
+      return {
+        success: true,
+        provenance: "Observed Data",
+        data: { url: res.url, links: [...links].slice(0, 40), count: links.size },
+      };
+    } catch (err) {
+      return {
+        success: false,
+        error: err instanceof Error ? err.message : String(err),
+        provenance: "Observed Data",
+      };
+    }
+  },
+});

@@ -234,3 +234,152 @@ export async function runFactoryPipeline(input: {
   task.updatedAt = new Date().toISOString();
   return tasks.get(task.id)!;
 }
+
+/** Generate structured software specs — artifacts only, not claimed as deployed. */
+export function generateSoftwareSpecs(objective: string): Array<{
+  name: string;
+  content: string;
+  language?: string;
+}> {
+  const slug = objective
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "")
+    .slice(0, 40) || "app";
+
+  const requirements = `# Requirements
+## Objective
+${objective}
+
+## Acceptance criteria
+- [ ] Core user flow works end-to-end
+- [ ] Errors handled without silent failure
+- [ ] Automated tests cover primary path
+- [ ] No invented test pass results
+
+## Non-goals
+- Bypass of security or provider limits
+- Fake metrics or contacts
+`;
+
+  const architecture = `# Architecture
+## Overview
+Monolith or modular services for: ${objective}
+
+## Components
+- API layer (HTTP)
+- Domain services
+- Persistence (Postgres when configured)
+- Auth (optional / local-first)
+
+## Data flow
+Client → API → Domain → DB/Tools → Response
+
+## Risks
+- External API availability
+- Schema migrations
+`;
+
+  const database = `# Database design (draft)
+## Entities (suggested)
+- User (id, email, created_at)
+- Project (id, name, owner_id)
+- Artifact (id, project_id, kind, content)
+
+## Notes
+Apply via Prisma/SQL migrations — do not claim schema exists until migrated.
+`;
+
+  const api = `# API sketch
+POST /api/${slug}/run  — start workflow
+GET  /api/${slug}/status — job status
+
+Auth: optional bearer when multi-user enabled
+`;
+
+  const ui = `# UI/UX notes
+- Local-first entry (no mandatory login)
+- Clear loading / error / empty states
+- Mobile-responsive shell
+`;
+
+  return [
+    { name: "REQUIREMENTS.md", content: requirements, language: "markdown" },
+    { name: "ARCHITECTURE.md", content: architecture, language: "markdown" },
+    { name: "DATABASE.md", content: database, language: "markdown" },
+    { name: "API.md", content: api, language: "markdown" },
+    { name: "UI.md", content: ui, language: "markdown" },
+  ];
+}
+
+export function factoryProposeDeploy(taskId: string): FactoryTask | null {
+  const task = tasks.get(taskId);
+  if (!task) return null;
+  task.notes.push(
+    "Deploy adapter: CONFIGURATION_REQUIRED for production targets (Vercel/Fly/K8s). Record only real deploy tool output when configured."
+  );
+  task.artifacts.push({
+    name: "DEPLOY.md",
+    content: `# Deploy plan
+1. Build: npm run build
+2. Migrate DB if DATABASE_URL set
+3. Deploy via official provider CLI/API
+4. Health check /api/health
+5. Rollback: previous release artifact
+
+Status: ADAPTER — no deploy executed in this step.
+`,
+    language: "markdown",
+  });
+  task.updatedAt = new Date().toISOString();
+  return task;
+}
+
+export function factoryGitStatus(taskId: string): FactoryTask | null {
+  const task = tasks.get(taskId);
+  if (!task) return null;
+  const hasRemote = Boolean(task.repoUrl);
+  task.notes.push(
+    hasRemote
+      ? `Git remote noted: ${task.repoUrl}. Commit/PR requires approveMutations + git credentials (GitHub/GitLab/Bitbucket adapters).`
+      : "No remote repo — local planning only. Connect GitHub/GitLab/Bitbucket via official tokens when ready."
+  );
+  task.updatedAt = new Date().toISOString();
+  return task;
+}
+
+/** Enhanced pipeline with specs + optional validate + deploy note */
+export async function runFullSoftwareFactory(input: {
+  objective: string;
+  localPath?: string;
+  repoUrl?: string;
+  snippet?: { language: "javascript" | "typescript" | "python"; code: string; execute?: boolean };
+  approveMutations?: boolean;
+  includeDeployPlan?: boolean;
+}): Promise<FactoryTask> {
+  const task = await runFactoryPipeline(input);
+  const specs = generateSoftwareSpecs(input.objective);
+  for (const s of specs) {
+    task.artifacts.push(s);
+  }
+  if (!task.completed.includes("Propose implementation plan")) {
+    task.completed.push("Propose implementation plan");
+  }
+  task.notes.push(`Generated ${specs.length} specification artifacts.`);
+  factoryGitStatus(task.id);
+  if (input.includeDeployPlan) {
+    factoryProposeDeploy(task.id);
+  }
+  if (input.approveMutations) {
+    task.notes.push(
+      "approveMutations=true: write/commit still requires explicit file-write tool + credentials — not auto-pushed."
+    );
+    task.pendingHumanApproval = false;
+  } else {
+    task.pendingHumanApproval = true;
+    task.notes.push("Mutations gated — set approveMutations=true after review.");
+  }
+  task.stage = task.pendingHumanApproval ? "blocked" : "review";
+  task.updatedAt = new Date().toISOString();
+  return tasks.get(task.id)!;
+}

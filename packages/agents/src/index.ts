@@ -1,5 +1,6 @@
 export * from "./council";
 export * from "./departments/full-council";
+export * from "./departments/company-mode";
 export * from "./growth-loop";
 export * from "./orchestrator/executor";
 export * from "./tasks/checkpoint";
@@ -9,3 +10,6 @@ export * from "./packs/signing";
 export * from "./packs/ranking";
 export * from "./packs/semantic-search";
 export * from "./commands/universal";
+export * from "./council-roles";
+export * from "./framework";
+export * from "./review";

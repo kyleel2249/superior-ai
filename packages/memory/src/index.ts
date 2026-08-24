@@ -4,3 +4,6 @@ export * from "./embeddings";
 export * from "./indexer";
 export * from "./persistent";
 export * from "./postgres";
+export * from "./knowledge-graph";
+export * from "./conflicts";
+export * from "./context";

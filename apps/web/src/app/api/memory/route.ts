@@ -3,52 +3,62 @@ import {
   rememberDurable,
   forgetDurable,
   retrieveRelevantDurable,
-  memoryBackendStatus,
-  updateMemory,
   listMemory,
   memoryStats,
   formatMemoryForPrompt,
-  getRejections,
-  remember,
+  updateMemory,
+  hybridRetrieve,
+  ragStatus,
+  detectMemoryConflicts,
+  preferCanonical,
+  upsertEntity,
+  linkEntities,
+  neighbors,
+  graphSnapshot,
+  buildMemoryContext,
+  type PersistentMemoryType,
 } from "@superior-ai/memory";
 
 export async function GET(req: NextRequest) {
   const q = req.nextUrl.searchParams.get("q");
   const profileId = req.nextUrl.searchParams.get("profileId") ?? undefined;
-  const backend = await memoryBackendStatus();
+  const projectId = req.nextUrl.searchParams.get("projectId") ?? undefined;
 
   if (q) {
-    const { records, backend: b } = await retrieveRelevantDurable({
+    const { records, backend } = await retrieveRelevantDurable({
       query: q,
       profileId,
-      limit: 12,
+      projectId,
+      limit: Number(req.nextUrl.searchParams.get("limit") ?? 12),
     });
     return NextResponse.json({
       records,
       promptBlock: formatMemoryForPrompt(records),
-      rejections: getRejections(profileId),
-      backend: b,
+      backend,
+      conflicts: detectMemoryConflicts(records),
     });
   }
+
   return NextResponse.json({
     stats: memoryStats(),
-    recent: listMemory({ profileId, activeOnly: true }),
-    rejections: getRejections(profileId),
-    backend,
+    rag: ragStatus(),
+    graph: graphSnapshot(),
+    note: "POST actions: remember | forget | update | update_default | reject | retrieve | search | conflicts | context | graph_link",
   });
 }
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const profileId = body.profileId;
+    const profileId = body.profileId as string | undefined;
+    const action = String(body.action ?? "");
 
-    if (body.action === "remember" || body.action === "update_default") {
+    if (action === "remember" || action === "update_default") {
       const rec = await rememberDurable({
-        type: body.type ?? "preference",
+        type: (body.type ?? "preference") as PersistentMemoryType,
         content: String(body.content ?? ""),
         key: body.key,
-        importance: body.importance ?? (body.action === "update_default" ? 90 : 60),
+        importance: body.importance ?? (action === "update_default" ? 90 : 60),
         projectId: body.projectId,
         customerId: body.customerId,
         organizationId: body.organizationId,
@@ -56,10 +66,18 @@ export async function POST(req: NextRequest) {
         tags: body.tags,
         metadata: body.metadata,
       });
+      // Optional graph entity
+      if (body.entityKind && body.entityLabel) {
+        upsertEntity({
+          kind: body.entityKind,
+          label: String(body.entityLabel),
+          metadata: { memoryId: rec.id },
+        });
+      }
       return NextResponse.json(rec, { status: 201 });
     }
 
-    if (body.action === "forget") {
+    if (action === "forget") {
       return NextResponse.json(
         await forgetDurable({
           id: body.id,
@@ -70,14 +88,13 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    if (body.action === "update") {
+    if (action === "update") {
       const rec = updateMemory(String(body.id || body.key), String(body.content ?? ""), {
         profileId,
       });
-      // Also try durable remember with same key for postgres sync
       if (body.key) {
         await rememberDurable({
-          type: body.type ?? "preference",
+          type: (body.type ?? "preference") as PersistentMemoryType,
           content: String(body.content ?? ""),
           key: body.key,
           profileId,
@@ -88,7 +105,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(rec);
     }
 
-    if (body.action === "reject") {
+    if (action === "reject") {
       const rec = await rememberDurable({
         type: "rejection",
         content: String(body.content ?? ""),
@@ -99,24 +116,85 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(rec, { status: 201 });
     }
 
-    if (body.action === "retrieve") {
+    if (action === "retrieve" || action === "search") {
       const { records, backend } = await retrieveRelevantDurable({
-        query: String(body.query ?? ""),
+        query: String(body.query ?? body.q ?? ""),
         types: body.types,
         projectId: body.projectId,
         customerId: body.customerId,
         profileId,
         limit: body.limit ?? 12,
       });
+      let rag = null;
+      try {
+        rag = await hybridRetrieve(String(body.query ?? body.q ?? ""), {
+          limit: body.limit ?? 6,
+          minScore: body.minScore ?? 0.15,
+        });
+      } catch {
+        rag = null;
+      }
       return NextResponse.json({
         records,
         promptBlock: formatMemoryForPrompt(records),
         backend,
+        rag,
+        conflicts: detectMemoryConflicts(records),
+      });
+    }
+
+    if (action === "conflicts") {
+      const listed = listMemory({ profileId, activeOnly: true });
+      const conflicts = detectMemoryConflicts(listed);
+      return NextResponse.json({
+        conflicts: conflicts.map((c) => ({
+          reason: c.reason,
+          a: { id: c.a.id, key: c.a.key, content: c.a.content.slice(0, 200) },
+          b: { id: c.b.id, key: c.b.key, content: c.b.content.slice(0, 200) },
+          preferred: preferCanonical(c.a, c.b).id,
+        })),
+      });
+    }
+
+    if (action === "context") {
+      const ctx = await buildMemoryContext({
+        query: String(body.query ?? body.message ?? ""),
+        profileId,
+        projectId: body.projectId,
+        types: body.types,
+        limit: body.limit ?? 8,
+      });
+      return NextResponse.json(ctx);
+    }
+
+    if (action === "graph_link") {
+      const from = upsertEntity({
+        kind: body.fromKind ?? "concept",
+        label: String(body.fromLabel ?? body.from),
+      });
+      const to = upsertEntity({
+        kind: body.toKind ?? "concept",
+        label: String(body.toLabel ?? body.to),
+      });
+      const edge = linkEntities(from.id, to.id, String(body.relation ?? "related"));
+      return NextResponse.json({ from, to, edge, neighbors: neighbors(from.id) });
+    }
+
+    if (action === "list") {
+      return NextResponse.json({
+        records: listMemory({
+          profileId,
+          type: body.type,
+          activeOnly: body.activeOnly !== false,
+        }),
       });
     }
 
     return NextResponse.json(
-      { error: "action must be remember | forget | update | reject | retrieve | update_default" },
+      {
+        error:
+          "action must be remember | forget | update | update_default | reject | retrieve | search | conflicts | context | graph_link | list",
+      },
       { status: 400 }
     );
   } catch (err) {

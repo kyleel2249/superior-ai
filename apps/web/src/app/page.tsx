@@ -41,12 +41,15 @@ export default function HomePage() {
             Creative Studio · Marketing Agency · Sales Organization · Research Lab · SEO · Competitor Intelligence · Software Factory · Executive Team — sharing memory, CRM, campaigns, and analytics.
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
+            <Link href="/workspace" className="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 font-medium">Open Workspace</Link>
+            <Link href="/chat" className="px-5 py-2.5 rounded-xl border border-zinc-700 hover:border-zinc-500 font-medium">Chat</Link>
             <Link href="/studio" className="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 font-medium">Creative Studio</Link>
             <Link href="/sales" className="px-5 py-2.5 rounded-xl border border-zinc-700 hover:border-zinc-500 font-medium">Sales</Link>
             <Link href="/competitors" className="px-5 py-2.5 rounded-xl border border-zinc-700 hover:border-zinc-500 font-medium">War Room</Link>
             <Link href="/ceo" className="px-5 py-2.5 rounded-xl border border-zinc-700 hover:border-zinc-500 font-medium">CEO Center</Link>
             <Link href="/marketing" className="px-5 py-2.5 rounded-xl border border-zinc-700 hover:border-zinc-500 font-medium">Marketing</Link>
             <Link href="/seo" className="px-5 py-2.5 rounded-xl border border-zinc-700 hover:border-zinc-500 font-medium">SEO</Link>
+            <Link href="/dashboard" className="px-5 py-2.5 rounded-xl border border-zinc-700 hover:border-zinc-500 font-medium">KPI Dashboard</Link>
             <Link href="/brand" className="px-5 py-2.5 rounded-xl border border-zinc-700 hover:border-zinc-500 font-medium">Brand Studio</Link>
           </div>
         </section>

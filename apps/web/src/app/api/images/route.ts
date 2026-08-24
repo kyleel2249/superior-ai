@@ -1,9 +1,35 @@
 import { NextRequest, NextResponse } from "next/server";
-import { generateImage, describeResolution } from "@superior-ai/ai-gateway";
+import {
+  generateImage,
+  describeResolution,
+  editImage,
+  listImageEditOps,
+} from "@superior-ai/ai-gateway";
+
+export async function GET() {
+  return NextResponse.json({
+    editOps: listImageEditOps(),
+    note: "POST action=generate | edit. Honest resolution labels; no fake image URLs.",
+  });
+}
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
+    const action = String(body.action ?? "generate");
+
+    if (action === "edit") {
+      const result = await editImage({
+        op: body.op ?? "inpaint",
+        imageBase64: body.imageBase64,
+        prompt: body.prompt,
+        maskBase64: body.maskBase64,
+        scale: body.scale,
+        provider: body.provider,
+      });
+      return NextResponse.json(result);
+    }
+
     const prompt = String(body.prompt ?? "").trim();
     if (!prompt) return NextResponse.json({ error: "prompt required" }, { status: 400 });
 

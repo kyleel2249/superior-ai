@@ -13,8 +13,12 @@ const nextConfig: NextConfig = {
     "@superior-ai/memory",
     "@superior-ai/tools",
     "@superior-ai/intelligence",
+    "@superior-ai/security",
     "@superior-ai/brand",
     "@superior-ai/workspace",
+    "@superior-ai/documents",
+    "@superior-ai/research",
+    "@superior-ai/design",
     "@superior-ai/support",
     "@superior-ai/product-lab",
     "@superior-ai/cx",
@@ -27,6 +31,8 @@ const nextConfig: NextConfig = {
     "@superior-ai/billing",
     "@superior-ai/observability",
     "@superior-ai/audit",
+    "@superior-ai/storage",
+    "@superior-ai/cache",
   ],
 };
 

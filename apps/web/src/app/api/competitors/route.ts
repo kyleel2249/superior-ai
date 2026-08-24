@@ -1,11 +1,28 @@
 import { NextRequest, NextResponse } from "next/server";
-import { researchCompetitors } from "@superior-ai/competitor";
+import {
+  researchCompetitors,
+  emptyCompetitor,
+  buildScorecard,
+  generateCompetitiveBrief,
+  messagingComparison,
+  trafficIntelligenceShell,
+  comparisonTemplate,
+} from "@superior-ai/competitor";
 import { rememberDurable } from "@superior-ai/memory";
+
+export async function GET() {
+  return NextResponse.json({
+    actions: ["research", "brief", "messaging", "scorecard", "traffic"],
+    note: "Public data only. Never fabricates traffic, revenue, or contacts.",
+  });
+}
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
+    const action = String(body.action ?? "research");
     const ourProduct = String(body.ourProduct ?? body.product ?? "Our product");
+
     let competitors = body.competitors as
       | Array<{ name: string; url?: string; domain?: string }>
       | undefined;
@@ -27,6 +44,56 @@ export async function POST(req: NextRequest) {
           url: url.startsWith("http") ? url : `https://${url}`,
         }));
     }
+
+    if (action === "traffic" && body.domain) {
+      return NextResponse.json(trafficIntelligenceShell(String(body.domain)));
+    }
+
+    if (action === "messaging") {
+      return NextResponse.json({
+        rows: messagingComparison(
+          String(body.ourMessage ?? ourProduct),
+          Array.isArray(body.competitorMessages) ? body.competitorMessages : []
+        ),
+      });
+    }
+
+    if (action === "scorecard") {
+      const profiles = (competitors ?? []).map((c) =>
+        emptyCompetitor(c.name, c.url || c.domain || "https://unknown.invalid")
+      );
+      return NextResponse.json({
+        scorecard: buildScorecard(profiles),
+        comparisons: profiles.map((p) => comparisonTemplate(ourProduct, p.name)),
+      });
+    }
+
+    if (action === "brief") {
+      if (!competitors?.length) {
+        return NextResponse.json({ error: "competitors required" }, { status: 400 });
+      }
+      // Optional: research first when live=true
+      let profiles = competitors.map((c) =>
+        emptyCompetitor(c.name, c.url || c.domain || "https://unknown.invalid")
+      );
+      if (body.live === true) {
+        const researched = await researchCompetitors({
+          ourProduct,
+          competitors,
+          focus: body.focus,
+        });
+        profiles = researched.profiles;
+      }
+      const brief = generateCompetitiveBrief({
+        ourProduct,
+        competitors: profiles,
+        ourFeatures: body.ourFeatures,
+        ourPositioning: body.ourPositioning,
+      });
+      return NextResponse.json(brief);
+    }
+
+    // default research
     if (!competitors?.length) {
       return NextResponse.json(
         { error: "Provide competitors[] with name/url, or names, or urls" },
@@ -47,7 +114,17 @@ export async function POST(req: NextRequest) {
       profileId: body.profileId,
       tags: ["competitor", "war-room"],
       metadata: { competitorCount: competitors.length },
-    });
+    }).catch(() => undefined);
+
+    if (body.includeBrief === true) {
+      const brief = generateCompetitiveBrief({
+        ourProduct,
+        competitors: result.profiles,
+        ourFeatures: body.ourFeatures,
+        ourPositioning: body.ourPositioning,
+      });
+      return NextResponse.json({ ...result, brief });
+    }
 
     return NextResponse.json(result);
   } catch (err) {
@@ -56,10 +133,4 @@ export async function POST(req: NextRequest) {
       { status: 500 }
     );
   }
-}
-
-export async function GET() {
-  return NextResponse.json({
-    note: "POST { ourProduct, competitors: [{ name, url? }], focus? } for structured war-room research.",
-  });
 }

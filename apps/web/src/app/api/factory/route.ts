@@ -7,6 +7,9 @@ import {
   factoryInspectRepo,
   factoryValidateCode,
   runFactoryPipeline,
+  runFullSoftwareFactory,
+  generateSoftwareSpecs,
+  factoryProposeDeploy,
 } from "@superior-ai/agents";
 import { audit } from "@superior-ai/audit";
 
@@ -41,15 +44,29 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(task, { status: 201 });
     }
 
-    if (action === "pipeline") {
-      const task = await runFactoryPipeline({
+    if (action === "pipeline" || action === "full") {
+      const runner = action === "full" ? runFullSoftwareFactory : runFactoryPipeline;
+      const task = await runner({
         objective: String(body.objective ?? "Untitled"),
         localPath: body.localPath,
         repoUrl: body.repoUrl,
         snippet: body.snippet,
         approveMutations: body.approveMutations === true,
-      });
+        includeDeployPlan: body.includeDeployPlan === true,
+      } as Parameters<typeof runFullSoftwareFactory>[0]);
       return NextResponse.json(task, { status: 201 });
+    }
+
+    if (action === "specs") {
+      return NextResponse.json({
+        artifacts: generateSoftwareSpecs(String(body.objective ?? "app")),
+      });
+    }
+
+    if (action === "deploy_plan" && body.taskId) {
+      const task = factoryProposeDeploy(String(body.taskId));
+      if (!task) return NextResponse.json({ error: "not found" }, { status: 404 });
+      return NextResponse.json(task);
     }
 
     if (action === "inspect" && body.taskId) {
@@ -75,7 +92,7 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json(
-      { error: "action must be create | pipeline | inspect | validate | advance" },
+      { error: "action must be create | pipeline | full | specs | deploy_plan | inspect | validate | advance" },
       { status: 400 }
     );
   } catch (err) {

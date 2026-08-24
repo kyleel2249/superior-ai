@@ -14,7 +14,10 @@ export type BrandStyle =
   | "playful"
   | "bold"
   | "architectural"
-  | "monogram";
+  | "monogram"
+  | "sleek"
+  | "stylish"
+  | "negative_space";
 
 export interface LetterformConcept {
   id: string;
@@ -75,6 +78,9 @@ const STYLE_NOTES: Record<BrandStyle, string> = {
   playful: "Rounded terminals, uneven rhythm, friendly scale",
   bold: "Heavy weight, tight tracking, high impact at small sizes",
   architectural: "Blueprint precision, structural cross-bars",
+  sleek: "Thin strokes, long horizontals, high-tech polish",
+  stylish: "Expressive contrast, fashion-forward proportion",
+  negative_space: "Letters formed by cutouts in solid fields",
   monogram: "Interlocking letterforms sharing strokes",
 };
 

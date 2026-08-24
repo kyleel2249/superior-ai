@@ -1,0 +1,14 @@
+{
+  "name": "@superior-ai/research",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "dependencies": {
+    "@superior-ai/core": "*",
+    "@superior-ai/tools": "*"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.0"
+  }
+}

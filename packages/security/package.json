@@ -1,0 +1,13 @@
+{
+  "name": "@superior-ai/security",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./src/index.ts",
+  "dependencies": {
+    "@superior-ai/core": "*",
+    "@superior-ai/audit": "*"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.0"
+  }
+}

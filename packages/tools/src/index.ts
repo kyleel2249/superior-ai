@@ -1,3 +1,4 @@
+import "./document-tools";
 import "./web-search";
 import "./browser";
 
@@ -15,3 +16,4 @@ export {
   type SearchEngineId,
   type EngineDescriptor,
 } from "./web-search";
+export { registerDocumentTools } from "./document-tools";

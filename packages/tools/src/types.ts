@@ -14,7 +14,8 @@ export type ToolPermission =
   | "social_publish"
   | "deploy"
   | "payment"
-  | "delete_data";
+  | "delete_data"
+  | "read_files";
 
 export interface ToolContext {
   userId?: string;
