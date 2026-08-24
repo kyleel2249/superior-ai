@@ -13,7 +13,7 @@ Legend: DONE (built + verified) · PARTIAL (real code, real gaps) · MINIMAL
 | Phase | Area | Status | Notes |
 |---|---|---|---|
 | 0 | Requirements extraction | PARTIAL | This document is the first honest pass, not a formal matrix with acceptance criteria per item |
-| 1 | Foundation & architecture | PARTIAL | Monorepo, Next.js app, ~20 packages build/typecheck clean. No object storage, no cache layer, no event bus, no plugin architecture, no distributed queue (job queue is in-process only, lost on restart) |
+| 1 | Foundation & architecture | PARTIAL | Monorepo, Next.js app, ~22 packages build/typecheck clean. Cache (packages/cache) and object storage (packages/storage) are now real, tested, and wired into /api/status. Still no event bus, no plugin architecture, no distributed queue (job queue is in-process only, lost on restart) |
 | 2 | Identity & local-first | NOT STARTED | Current auth is session/JWT-based, not the no-sign-in local-first flow this phase describes. No workspace/project creation UI, no command palette, no theme system |
 | 3 | Model & provider infra | DONE | 6 real provider adapters (OpenAI/Anthropic/xAI/Google/OpenRouter/local), model registry, health monitor, router — verified against live server. No model benchmarking |
 | 4 | Router & multi-model council | MINIMAL | Router picks by intelligence level; no critic/verifier/synthesis agents, no Supreme/Autonomous council mode |
@@ -55,8 +55,10 @@ distributed queue, file/multimodal pipeline) that doesn't exist yet.
 
 ## Recommended build order from here
 
-1. Close real Phase 1 gaps (queue/cache/storage) before building anything
-   that depends on them persisting across restarts or multiple instances.
+1. Cache (packages/cache) and object storage (packages/storage) are now
+   real and verified — see below. The remaining Phase 1 gap is a real
+   persistent/distributed job queue (packages/queue is still in-process
+   only) and an event bus.
 2. Phase 6 (file/multimodal) unlocks a lot of downstream phases (support,
    research, code review) that assume it exists.
 3. Defer Phases 14–15 and 25's live posting until there's an explicit
