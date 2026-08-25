@@ -92,7 +92,7 @@ export function runScenario(input: ScenarioInput): ScenarioResult {
     deltaPct: baseline ? Math.round((delta / baseline) * 10000) / 100 : 0,
     assumptions,
     probability: input.probability,
-    disclaimer: "Scenario estimate only — not a prediction guarantee.",
+    disclaimer: "Deterministic scenario math from inputs and fixed kind rules. Reproducible; not a real-world outcome guarantee.",
     at: new Date().toISOString(),
   };
 }

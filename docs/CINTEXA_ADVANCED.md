@@ -22,3 +22,25 @@ Browse / install / rate / disable verified packs
 ## Surfaces
 - UI: `/advanced`
 - API: `GET/POST /api/advanced`
+
+## KPI Intelligence
+Record points → detect change → causes/actions/severity
+
+## Root-cause graph
+symptom → causes → evidence → confirm → fix → verify
+
+## AI Economics
+Provider cost, quality, labor proxy rollup
+
+## Capacity planner
+Throughput, utilization, weekly growth forecast
+
+## Instruction trust engine
+Priority classes + injection signal detection
+
+## Knowledge graph
+Entities, relations, search, neighbors
+
+## Twin / scenario determinism
+Fixed coefficients → same inputs always same outputs.
+Still **not** a real-world financial guarantee.

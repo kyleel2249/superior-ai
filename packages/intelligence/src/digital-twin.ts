@@ -82,7 +82,10 @@ export function listTwins(): TwinSnapshot[] {
   return [...twins.values()];
 }
 
-/** Simple linear sensitivity — labeled estimate only */
+/** Deterministic linear sensitivity (fixed coefficients). Same inputs → same outputs. */
+const FIXED_COEFFICIENTS = { marketingCustomerPerDollar: 1 / 50, hireMonthlyCost: 5000 } as const;
+
+/** Deterministic projection */
 export function simulateTwin(twinId: string, delta: TwinDelta): TwinSimulationResult {
   const baseline = twins.get(twinId);
   if (!baseline) {
@@ -100,12 +103,12 @@ export function simulateTwin(twinId: string, delta: TwinDelta): TwinSimulationRe
   if (delta.marketingSpendDelta != null) {
     monthlyCosts += delta.marketingSpendDelta;
     // naive elasticity
-    activeCustomers += Math.round(delta.marketingSpendDelta / 50);
+    activeCustomers += Math.round(delta.marketingSpendDelta * FIXED_COEFFICIENTS.marketingCustomerPerDollar);
     notes.push(`Marketing spend delta ${delta.marketingSpendDelta}`);
   }
   if (delta.hiringDelta != null) {
-    monthlyCosts += delta.hiringDelta * 5000;
-    notes.push(`Hiring delta ${delta.hiringDelta} @ $5k/mo estimate`);
+    monthlyCosts += delta.hiringDelta * FIXED_COEFFICIENTS.hireMonthlyCost;
+    notes.push(`Hiring delta ${delta.hiringDelta} @ $${FIXED_COEFFICIENTS.hireMonthlyCost}/mo (fixed coefficient)`);
   }
   if (delta.churnDeltaPct != null && activeCustomers) {
     activeCustomers = Math.max(
@@ -134,7 +137,7 @@ export function simulateTwin(twinId: string, delta: TwinDelta): TwinSimulationRe
       notes,
     },
     disclaimer:
-      "Simulation estimate only. Not a forecast guarantee or financial advice.",
+      "Deterministic projection from supplied inputs and fixed coefficients. Same inputs always yield the same outputs. Not a real-world outcome guarantee or financial advice.",
     at: new Date().toISOString(),
   };
 }

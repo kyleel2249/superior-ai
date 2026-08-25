@@ -4,3 +4,8 @@ export * from "./funnel-attribution";
 export * from "./daily-brief";
 export * from "./digital-twin";
 export * from "./scenario";
+export * from "./kpi-intelligence";
+export * from "./root-cause";
+export * from "./ai-economics";
+export * from "./capacity-planner";
+export * from "./knowledge-graph";

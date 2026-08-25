@@ -6,7 +6,25 @@ import {
   simulateTwin,
   runScenario,
   runScenarioSet,
+  recordKpi,
+  analyzeKpi,
+  listKpiHistory,
+  createRootCauseGraph,
+  addEvidence,
+  confirmCause,
+  addFix,
+  resolveGraph,
+  listRootCauseGraphs,
+  recordEconomics,
+  economicsRollup,
+  planCapacity,
+  upsertEntity,
+  linkEntities,
+  searchEntities,
+  neighbors,
+  graphStats,
 } from "@superior-ai/intelligence";
+import { analyzeInstructions, mergeTrustedPrompt } from "@superior-ai/security";
 import {
   runSandboxChecks,
   promoteFromSandbox,
@@ -35,6 +53,10 @@ export async function GET(req: NextRequest) {
   if (view === "twins") return NextResponse.json({ twins: listTwins() });
   if (view === "canaries") return NextResponse.json({ canaries: listCanaries() });
   if (view === "verification") return NextResponse.json({ loops: listVerificationLoops() });
+  if (view === "kpi") return NextResponse.json({ history: listKpiHistory() });
+  if (view === "root_cause") return NextResponse.json({ graphs: listRootCauseGraphs() });
+  if (view === "economics") return NextResponse.json({ rollup: economicsRollup() });
+  if (view === "knowledge") return NextResponse.json(graphStats());
   if (view === "marketplace") {
     const category = req.nextUrl.searchParams.get("category") ?? undefined;
     const q = req.nextUrl.searchParams.get("q") ?? undefined;
@@ -44,7 +66,7 @@ export async function GET(req: NextRequest) {
     });
   }
   return NextResponse.json({
-    views: ["twins", "canaries", "verification", "marketplace"],
+    views: ["twins", "canaries", "verification", "marketplace", "kpi", "root_cause", "economics", "knowledge"],
     actions: [
       "twin_upsert",
       "twin_simulate",
@@ -146,6 +168,52 @@ export async function POST(req: NextRequest) {
     if (action === "marketplace_enable") {
       enablePack(String(body.packId));
       return NextResponse.json({ ok: true });
+    }
+
+
+    if (action === "kpi_record") {
+      recordKpi(body as any);
+      return NextResponse.json({ ok: true, insight: analyzeKpi(String(body.kpi)) });
+    }
+    if (action === "kpi_analyze") {
+      return NextResponse.json({ insight: analyzeKpi(String(body.kpi)), history: listKpiHistory(String(body.kpi)) });
+    }
+    if (action === "root_cause_create") {
+      return NextResponse.json(createRootCauseGraph(body), { status: 201 });
+    }
+    if (action === "root_cause_evidence") {
+      return NextResponse.json(addEvidence(String(body.graphId), String(body.causeId), String(body.evidence), body.confidence));
+    }
+    if (action === "root_cause_confirm") {
+      return NextResponse.json(confirmCause(String(body.graphId), String(body.causeId)));
+    }
+    if (action === "root_cause_fix") {
+      return NextResponse.json(addFix(String(body.graphId), String(body.fix)));
+    }
+    if (action === "root_cause_resolve") {
+      return NextResponse.json(resolveGraph(String(body.graphId), String(body.verification)));
+    }
+    if (action === "economics_record") {
+      return NextResponse.json(recordEconomics(body));
+    }
+    if (action === "economics_rollup") {
+      return NextResponse.json(economicsRollup(body.department ? { department: body.department } : undefined));
+    }
+    if (action === "capacity_plan") {
+      return NextResponse.json(planCapacity(body));
+    }
+    if (action === "trust_analyze") {
+      const analysis = analyzeInstructions(body);
+      return NextResponse.json({ analysis, merged: mergeTrustedPrompt(analysis) });
+    }
+    if (action === "kg_upsert") {
+      return NextResponse.json(upsertEntity(body));
+    }
+    if (action === "kg_link") {
+      return NextResponse.json(linkEntities(String(body.from), String(body.to), String(body.type), body.weight));
+    }
+    if (action === "kg_search") {
+      return NextResponse.json({ entities: searchEntities(String(body.q ?? "")), neighbors: body.id ? neighbors(String(body.id)) : [] });
     }
 
     return NextResponse.json({ error: "unknown action" }, { status: 400 });
