@@ -5,6 +5,12 @@ import {
   userModeToReasoning,
   mapReasoningToProvider,
   CINTEXA_SEED_MODELS,
+  planCascade,
+  planCouncil,
+  planDisagreement,
+  councilWithCascade,
+  evaluateQuality,
+  qualityGate,
 } from "@superior-ai/ai-gateway";
 import {
   creditPolicy,
@@ -80,6 +86,33 @@ export async function POST(req: NextRequest) {
         note: "analytics only — internal credits unlimited",
       });
       return NextResponse.json({ entry, credits: assertCreditsAvailable() });
+    }
+
+
+    if (action === "cascade") {
+      return NextResponse.json(planCascade(String(body.text ?? body.objective ?? "")));
+    }
+    if (action === "council") {
+      return NextResponse.json(planCouncil(String(body.objective ?? body.text ?? "")));
+    }
+    if (action === "disagreement") {
+      return NextResponse.json(
+        planDisagreement(String(body.claimA ?? ""), String(body.claimB ?? ""))
+      );
+    }
+    if (action === "council_cascade") {
+      return NextResponse.json(councilWithCascade(String(body.objective ?? body.text ?? "")));
+    }
+    if (action === "quality") {
+      const report = evaluateQuality({
+        outputText: String(body.outputText ?? body.output ?? ""),
+        instruction: body.instruction,
+        requireCitations: body.requireCitations === true,
+        requireCode: body.requireCode === true,
+        highRisk: body.highRisk === true,
+        threshold: body.threshold,
+      });
+      return NextResponse.json(qualityGate(report, body.threshold ?? 70));
     }
 
     return NextResponse.json({ error: "unknown action" }, { status: 400 });

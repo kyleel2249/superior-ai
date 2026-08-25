@@ -16,3 +16,6 @@ export * from "./reasoning/engine";
 
 import { ensureCintexaRegistry } from "./registry/cintexa-models";
 ensureCintexaRegistry();
+export * from "./router/cascade";
+export * from "./router/council";
+export * from "./quality/engine";
