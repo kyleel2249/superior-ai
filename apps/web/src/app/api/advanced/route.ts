@@ -35,9 +35,17 @@ import {
   openIncident,
   advanceIncident,
   listIncidents,
+  upsertUserProfile,
+  getUserProfile,
+  upsertProjectProfile,
+  getProjectProfile,
+  computeWorkforcePnL,
+  generateProactiveInsights,
+  staleEntities,
+  refreshEntityFreshness,
 } from "@superior-ai/intelligence";
-import { analyzeInstructions, mergeTrustedPrompt, scoreActionRisk, setAutonomyBoundary, isActionAllowed } from "@superior-ai/security";
-import { listSkills, composeSkills, generateRoleFromBrief } from "@superior-ai/agents";
+import { analyzeInstructions, mergeTrustedPrompt, scoreActionRisk, setAutonomyBoundary, isActionAllowed, planRemediation, approveRemediation, applyRemediation } from "@superior-ai/security";
+import { listSkills, composeSkills, generateRoleFromBrief, saveCheckpoint, listCheckpoints, buildReplaySpec, planRedTeam } from "@superior-ai/agents";
 import {
   runSandboxChecks,
   promoteFromSandbox,
@@ -51,6 +59,8 @@ import {
   verifyCheckpoint,
   getVerificationLoop,
   listVerificationLoops,
+  optimizePortfolio,
+  simulateRoutingPolicies,
 } from "@superior-ai/ai-gateway";
 import {
   listMarketplace,
@@ -272,6 +282,56 @@ export async function POST(req: NextRequest) {
     }
     if (action === "role_generate") {
       return NextResponse.json(generateRoleFromBrief(String(body.brief ?? "")));
+    }
+
+
+    if (action === "profile_user") {
+      return NextResponse.json(upsertUserProfile(body));
+    }
+    if (action === "profile_user_get") {
+      return NextResponse.json({ profile: getUserProfile(String(body.userId)) });
+    }
+    if (action === "profile_project") {
+      return NextResponse.json(upsertProjectProfile(body));
+    }
+    if (action === "workforce_pnl") {
+      return NextResponse.json(computeWorkforcePnL(body.periodLabel));
+    }
+    if (action === "proactive") {
+      return NextResponse.json(generateProactiveInsights(body));
+    }
+    if (action === "portfolio") {
+      return NextResponse.json(optimizePortfolio());
+    }
+    if (action === "routing_sim") {
+      return NextResponse.json(
+        simulateRoutingPolicies(String(body.text ?? ""), body.policyA ?? "FAST", body.policyB ?? "EXPERT")
+      );
+    }
+    if (action === "checkpoint") {
+      return NextResponse.json(saveCheckpoint(body));
+    }
+    if (action === "checkpoint_list") {
+      return NextResponse.json({ checkpoints: listCheckpoints(String(body.taskId)) });
+    }
+    if (action === "replay") {
+      return NextResponse.json(buildReplaySpec(String(body.taskId), body.checkpointId));
+    }
+    if (action === "red_team") {
+      return NextResponse.json(planRedTeam(String(body.subject ?? "")));
+    }
+    if (action === "stale_knowledge") {
+      return NextResponse.json({ stale: staleEntities(body.threshold) });
+    }
+    if (action === "refresh_freshness") {
+      return NextResponse.json({ entity: refreshEntityFreshness(String(body.id)) });
+    }
+    if (action === "remediate_plan") {
+      return NextResponse.json(planRemediation(String(body.problem ?? "")));
+    }
+    if (action === "remediate_apply") {
+      if (body.approve) approveRemediation(String(body.id));
+      return NextResponse.json(applyRemediation(String(body.id), body.approved === true || body.approve === true));
     }
 
     return NextResponse.json({ error: "unknown action" }, { status: 400 });

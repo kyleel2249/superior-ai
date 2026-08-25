@@ -21,3 +21,5 @@ export * from "./router/council";
 export * from "./quality/engine";
 export * from "./canary";
 export * from "./verification/continuous";
+export * from "./portfolio-optimizer";
+export * from "./routing-simulator";

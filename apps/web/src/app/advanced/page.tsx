@@ -235,6 +235,21 @@ export default function AdvancedFeaturesPage() {
           </div>
         </section>
 
+        
+        <section className="rounded-xl border border-zinc-800 p-5 space-y-3">
+          <h2 className="text-sm font-medium text-teal-200">Profiles / P&amp;L / Portfolio / Checkpoints / Red-team</h2>
+          <div className="flex flex-wrap gap-2">
+            <button type="button" className="text-xs px-3 py-1.5 rounded bg-teal-800" onClick={() => post("workforce_pnl", {})}>Workforce P&amp;L</button>
+            <button type="button" className="text-xs px-3 py-1.5 rounded border border-zinc-600" onClick={() => post("proactive", { enabled: true, openIncidents: 2, queueDepth: 25, churnSignal: true })}>Proactive</button>
+            <button type="button" className="text-xs px-3 py-1.5 rounded border border-zinc-600" onClick={() => post("portfolio", {})}>Portfolio optimize</button>
+            <button type="button" className="text-xs px-3 py-1.5 rounded border border-zinc-600" onClick={() => post("routing_sim", { text: "Design a secure multi-tenant billing system", policyA: "FAST", policyB: "MAXIMUM" })}>Routing sim</button>
+            <button type="button" className="text-xs px-3 py-1.5 rounded border border-zinc-600" onClick={() => post("checkpoint", { taskId: "t1", goal: "Ship billing", progressPct: 40, completedNodes: ["plan"], pendingNodes: ["build"], failedNodes: [], artifacts: [] })}>Checkpoint</button>
+            <button type="button" className="text-xs px-3 py-1.5 rounded border border-zinc-600" onClick={() => post("red_team", { subject: "New pricing strategy" })}>Red team</button>
+            <button type="button" className="text-xs px-3 py-1.5 rounded border border-zinc-600" onClick={() => post("remediate_plan", { problem: "API error rate spike" })}>Remediation plan</button>
+            <button type="button" className="text-xs px-3 py-1.5 rounded border border-zinc-600" onClick={() => post("profile_user", { userId: "local", preferredDepth: "deep", communicationStyle: "concise" })}>User profile</button>
+          </div>
+        </section>
+
         <pre className="rounded-xl border border-zinc-800 bg-zinc-950 p-4 text-[11px] text-zinc-400 whitespace-pre-wrap max-h-96 overflow-auto font-mono">
           {result || (loading ? "Loading…" : "Results appear here")}
         </pre>

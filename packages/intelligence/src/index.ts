@@ -12,3 +12,7 @@ export * from "./knowledge-graph";
 export * from "./opportunity-engine";
 export * from "./predictive-alerts";
 export * from "./sla-queue-incident";
+export * from "./profiles";
+export * from "./workforce-pnl";
+export * from "./proactive";
+export * from "./knowledge-freshness";
