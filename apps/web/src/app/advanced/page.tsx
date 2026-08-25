@@ -221,6 +221,20 @@ export default function AdvancedFeaturesPage() {
           </div>
         </section>
 
+        
+        <section className="rounded-xl border border-zinc-800 p-5 space-y-3">
+          <h2 className="text-sm font-medium text-fuchsia-200">Opportunity / Alerts / Queue / Skills / Autonomy</h2>
+          <div className="flex flex-wrap gap-2">
+            <button type="button" className="text-xs px-3 py-1.5 rounded bg-fuchsia-800" onClick={() => post("opportunities", { hasChurnPressure: true, hasManualOps: true, hasStrongNps: true })}>Opportunities</button>
+            <button type="button" className="text-xs px-3 py-1.5 rounded border border-zinc-600" onClick={() => post("alert_series", { kind: "revenue", name: "MRR", values: [100, 95, 80] })}>Revenue alert</button>
+            <button type="button" className="text-xs px-3 py-1.5 rounded border border-zinc-600" onClick={() => post("enqueue", { priority: "P1", payload: "Urgent research" }).then(() => post("dequeue", {}))}>Queue P1</button>
+            <button type="button" className="text-xs px-3 py-1.5 rounded border border-zinc-600" onClick={() => post("incident_open", { title: "Provider latency", severity: "high", body: "p95 elevated" })}>Open incident</button>
+            <button type="button" className="text-xs px-3 py-1.5 rounded border border-zinc-600" onClick={() => post("action_risk", { action: "refund", financialImpact: 50000, irreversibility: "irreversible", customerImpact: "segment" })}>Action risk</button>
+            <button type="button" className="text-xs px-3 py-1.5 rounded border border-zinc-600" onClick={() => post("role_generate", { brief: "Recover abandoned ecommerce carts and notify sales" })}>Generate role</button>
+            <button type="button" className="text-xs px-3 py-1.5 rounded border border-zinc-600" onClick={() => post("skills_compose", { skillIds: ["skill.web_research", "skill.seo"] })}>Compose skills</button>
+          </div>
+        </section>
+
         <pre className="rounded-xl border border-zinc-800 bg-zinc-950 p-4 text-[11px] text-zinc-400 whitespace-pre-wrap max-h-96 overflow-auto font-mono">
           {result || (loading ? "Loading…" : "Results appear here")}
         </pre>

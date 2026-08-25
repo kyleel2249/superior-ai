@@ -9,3 +9,6 @@ export * from "./root-cause";
 export * from "./ai-economics";
 export * from "./capacity-planner";
 export * from "./knowledge-graph";
+export * from "./opportunity-engine";
+export * from "./predictive-alerts";
+export * from "./sla-queue-incident";

@@ -14,3 +14,4 @@ export * from "./council-roles";
 export * from "./framework";
 export * from "./review";
 export * from "./packs/marketplace";
+export * from "./skills/registry";

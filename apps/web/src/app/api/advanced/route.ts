@@ -23,8 +23,21 @@ import {
   searchEntities,
   neighbors,
   graphStats,
+  generateOpportunities,
+  evaluateSeriesAlert,
+  pushAlert,
+  listAlerts,
+  listSlaPolicies,
+  enqueueTask,
+  dequeueNext,
+  completeTask,
+  listQueue,
+  openIncident,
+  advanceIncident,
+  listIncidents,
 } from "@superior-ai/intelligence";
-import { analyzeInstructions, mergeTrustedPrompt } from "@superior-ai/security";
+import { analyzeInstructions, mergeTrustedPrompt, scoreActionRisk, setAutonomyBoundary, isActionAllowed } from "@superior-ai/security";
+import { listSkills, composeSkills, generateRoleFromBrief } from "@superior-ai/agents";
 import {
   runSandboxChecks,
   promoteFromSandbox,
@@ -57,6 +70,10 @@ export async function GET(req: NextRequest) {
   if (view === "root_cause") return NextResponse.json({ graphs: listRootCauseGraphs() });
   if (view === "economics") return NextResponse.json({ rollup: economicsRollup() });
   if (view === "knowledge") return NextResponse.json(graphStats());
+  if (view === "alerts") return NextResponse.json({ alerts: listAlerts() });
+  if (view === "queue") return NextResponse.json({ queue: listQueue(), sla: listSlaPolicies() });
+  if (view === "incidents") return NextResponse.json({ incidents: listIncidents() });
+  if (view === "skills") return NextResponse.json({ skills: listSkills() });
   if (view === "marketplace") {
     const category = req.nextUrl.searchParams.get("category") ?? undefined;
     const q = req.nextUrl.searchParams.get("q") ?? undefined;
@@ -214,6 +231,47 @@ export async function POST(req: NextRequest) {
     }
     if (action === "kg_search") {
       return NextResponse.json({ entities: searchEntities(String(body.q ?? "")), neighbors: body.id ? neighbors(String(body.id)) : [] });
+    }
+
+
+    if (action === "opportunities") {
+      return NextResponse.json({ opportunities: generateOpportunities(body) });
+    }
+    if (action === "alert_series") {
+      const alert = evaluateSeriesAlert(body);
+      if (alert) pushAlert(alert);
+      return NextResponse.json({ alert });
+    }
+    if (action === "enqueue") {
+      return NextResponse.json(enqueueTask(body));
+    }
+    if (action === "dequeue") {
+      return NextResponse.json({ item: dequeueNext(body.tenantId) });
+    }
+    if (action === "complete_task") {
+      return NextResponse.json(completeTask(String(body.id), body.ok !== false));
+    }
+    if (action === "incident_open") {
+      return NextResponse.json(openIncident(body), { status: 201 });
+    }
+    if (action === "incident_advance") {
+      return NextResponse.json(advanceIncident(String(body.id), body.status));
+    }
+    if (action === "action_risk") {
+      return NextResponse.json(scoreActionRisk(body));
+    }
+    if (action === "autonomy_set") {
+      setAutonomyBoundary(body);
+      return NextResponse.json({ ok: true });
+    }
+    if (action === "autonomy_check") {
+      return NextResponse.json(isActionAllowed(String(body.agentId), String(body.action)));
+    }
+    if (action === "skills_compose") {
+      return NextResponse.json(composeSkills(body.skillIds ?? []));
+    }
+    if (action === "role_generate") {
+      return NextResponse.json(generateRoleFromBrief(String(body.brief ?? "")));
     }
 
     return NextResponse.json({ error: "unknown action" }, { status: 400 });
