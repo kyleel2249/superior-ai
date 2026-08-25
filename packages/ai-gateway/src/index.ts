@@ -11,3 +11,8 @@ export * from "./benchmark";
 export * from "./router/task-classifier";
 export * from "./router/ensemble";
 export * from "./media/image-edit";
+export * from "./registry/cintexa-models";
+export * from "./reasoning/engine";
+
+import { ensureCintexaRegistry } from "./registry/cintexa-models";
+ensureCintexaRegistry();
