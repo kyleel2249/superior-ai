@@ -34,7 +34,8 @@ Phased build (docs/PHASE0_MASTER_INVENTORY.md). **No phase skip.**
 | 26 Analytics & attribution | **LOCKED** |
 | 27 Daily intelligence | **LOCKED** |
 | 28 AI company command center | **LOCKED** |
-| 29 Security permissions sandbox | NEXT |
+| 29 Security permissions sandbox | **LOCKED** |
+| 30 Self-testing & self-healing | NEXT |
 | 2 Local-first UX | Queued |
 | 3–4 AI gateway & router | Partial code exists — re-verify |
 | 5 Memory & RAG | Partial code exists — re-verify |

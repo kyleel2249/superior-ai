@@ -5,7 +5,8 @@
   "main": "./src/index.ts",
   "dependencies": {
     "@superior-ai/core": "*",
-    "@superior-ai/audit": "*"
+    "@superior-ai/audit": "*",
+    "@superior-ai/auth": "*"
   },
   "devDependencies": {
     "typescript": "^5.8.0"

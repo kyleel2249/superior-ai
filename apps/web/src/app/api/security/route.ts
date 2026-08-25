@@ -14,6 +14,9 @@ import {
   advanceDsar,
   erasurePlan,
   consentRecordTemplate,
+  currentSandboxPolicy,
+  gvisorWorkerNotes,
+  assertSafeCodeSnippet,
 } from "@superior-ai/security";
 import { audit, listAuditEvents } from "@superior-ai/audit";
 import { listPoliciesForRole, EXTENDED_ROLE_PERMS, type Role } from "@superior-ai/auth";
@@ -41,8 +44,14 @@ export async function GET(req: NextRequest) {
       allRoles: Object.keys(EXTENDED_ROLE_PERMS),
     });
   }
+  if (view === "sandbox") {
+    return NextResponse.json({
+      policy: currentSandboxPolicy(),
+      gvisor: gvisorWorkerNotes(),
+    });
+  }
   return NextResponse.json({
-    views: ["classification", "soc2", "headers", "privacy", "audit", "gdpr", "rbac"],
+    views: ["classification", "soc2", "headers", "privacy", "audit", "gdpr", "rbac", "sandbox"],
     note: "Templates and operational helpers — not legal advice or SOC2 certification.",
   });
 }
@@ -89,6 +98,10 @@ export async function POST(req: NextRequest) {
 
     if (action === "register_processing") {
       return NextResponse.json(registerProcessingActivity(body.activity ?? body), { status: 201 });
+    }
+
+    if (action === "check_code") {
+      return NextResponse.json(assertSafeCodeSnippet(String(body.code ?? "")));
     }
 
     return NextResponse.json({ error: "unknown action" }, { status: 400 });

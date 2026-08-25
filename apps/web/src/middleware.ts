@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 
 /**
- * Edge middleware — lightweight rate limit headers.
- * Full token-bucket runs in Node route handlers via @superior-ai/observability.
- * Here we only add request IDs and basic abuse signals.
+ * Edge middleware — rate limit + security headers.
+ * Full token-bucket also available in Node via @superior-ai/observability.
  */
 
 const hits = new Map<string, { n: number; t: number }>();
@@ -16,8 +15,7 @@ function edgeLimit(ip: string, limit = 180, windowMs = 60_000): boolean {
     return true;
   }
   slot.n += 1;
-  if (slot.n > limit) return false;
-  return true;
+  return slot.n <= limit;
 }
 
 export function middleware(req: NextRequest) {
@@ -40,9 +38,12 @@ export function middleware(req: NextRequest) {
   const res = NextResponse.next();
   res.headers.set("X-Request-Id", requestId);
   res.headers.set("X-Content-Type-Options", "nosniff");
+  res.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  res.headers.set("X-Frame-Options", "DENY");
+  res.headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
   return res;
 }
 
 export const config = {
-  matcher: ["/api/:path*", "/login", "/chat", "/studio"],
+  matcher: ["/api/:path*", "/login", "/chat", "/studio", "/command", "/admin/:path*"],
 };
