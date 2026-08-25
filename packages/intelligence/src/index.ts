@@ -16,3 +16,5 @@ export * from "./profiles";
 export * from "./workforce-pnl";
 export * from "./proactive";
 export * from "./knowledge-freshness";
+export * from "./experimentation";
+export * from "./goal-alignment";

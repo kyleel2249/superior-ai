@@ -43,9 +43,16 @@ import {
   generateProactiveInsights,
   staleEntities,
   refreshEntityFreshness,
+  createExperiment,
+  startExperiment,
+  completeExperiment,
+  listExperiments,
+  upsertGoal,
+  listGoals,
+  alignTaskToGoals,
 } from "@superior-ai/intelligence";
 import { analyzeInstructions, mergeTrustedPrompt, scoreActionRisk, setAutonomyBoundary, isActionAllowed, planRemediation, approveRemediation, applyRemediation } from "@superior-ai/security";
-import { listSkills, composeSkills, generateRoleFromBrief, saveCheckpoint, listCheckpoints, buildReplaySpec, planRedTeam } from "@superior-ai/agents";
+import { listSkills, composeSkills, generateRoleFromBrief, saveCheckpoint, listCheckpoints, buildReplaySpec, planRedTeam, listAgentTemplates, cloneAgentTemplate } from "@superior-ai/agents";
 import {
   runSandboxChecks,
   promoteFromSandbox,
@@ -332,6 +339,35 @@ export async function POST(req: NextRequest) {
     if (action === "remediate_apply") {
       if (body.approve) approveRemediation(String(body.id));
       return NextResponse.json(applyRemediation(String(body.id), body.approved === true || body.approve === true));
+    }
+
+
+    if (action === "experiment_create") {
+      return NextResponse.json(createExperiment(body), { status: 201 });
+    }
+    if (action === "experiment_start") {
+      return NextResponse.json(startExperiment(String(body.id)));
+    }
+    if (action === "experiment_complete") {
+      return NextResponse.json(completeExperiment(String(body.id), body.results ?? {}));
+    }
+    if (action === "experiments_list") {
+      return NextResponse.json({ experiments: listExperiments() });
+    }
+    if (action === "goal_upsert") {
+      return NextResponse.json(upsertGoal(body));
+    }
+    if (action === "goals_list") {
+      return NextResponse.json({ goals: listGoals() });
+    }
+    if (action === "goal_align") {
+      return NextResponse.json({ alignment: alignTaskToGoals(String(body.taskSummary ?? "")) });
+    }
+    if (action === "templates_list") {
+      return NextResponse.json({ templates: listAgentTemplates() });
+    }
+    if (action === "template_clone") {
+      return NextResponse.json({ template: cloneAgentTemplate(String(body.id), body.suffix) });
     }
 
     return NextResponse.json({ error: "unknown action" }, { status: 400 });

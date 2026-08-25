@@ -7,11 +7,12 @@ import { CommandPalette } from "./CommandPalette";
 const NAV = [
   { href: "/", label: "Home" },
   { href: "/chat", label: "Chat" },
-  { href: "/workspace", label: "Workspace" },
+  { href: "/command", label: "Command" },
+  { href: "/advanced", label: "Advanced" },
+  { href: "/daily", label: "Daily" },
   { href: "/studio", label: "Studio" },
-  { href: "/brand", label: "Brand" },
-  { href: "/competitors", label: "War Room" },
-  { href: "/settings/preferences", label: "Settings" },
+  { href: "/admin/control", label: "Control" },
+  { href: "/workspace", label: "Workspace" },
 ];
 
 export function AppShell({ children }: { children: React.ReactNode }) {
@@ -19,23 +20,31 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <header className="sticky top-0 z-40 border-b border-[var(--card-border)] bg-[var(--background)]/90 backdrop-blur">
-        <div className="max-w-6xl mx-auto px-4 h-12 flex items-center gap-3 justify-between">
-          <div className="flex items-center gap-4 min-w-0">
-            <Link href="/" className="font-semibold tracking-tight text-sm shrink-0">
-              SUPERIOR AI
+      <header className="sticky top-0 z-50 border-b border-indigo-500/20 bg-[#07070f]/80 backdrop-blur-xl">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 h-14 flex items-center gap-3 justify-between">
+          <div className="flex items-center gap-3 min-w-0">
+            <Link
+              href="/"
+              className="flex items-center gap-2 shrink-0 group"
+            >
+              <span className="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500 via-fuchsia-500 to-cyan-400 flex items-center justify-center text-xs font-bold shadow-lg shadow-indigo-500/40 animate-pulse-glow group-hover:scale-105 transition-transform">
+                S
+              </span>
+              <span className="font-semibold tracking-tight text-sm text-gradient hidden xs:inline sm:inline">
+                SUPERIOR AI
+              </span>
             </Link>
-            <nav className="hidden md:flex items-center gap-1 text-xs overflow-x-auto">
+            <nav className="hidden lg:flex items-center gap-1 text-xs overflow-x-auto max-w-[50vw]">
               {NAV.map((n) => {
                 const active = n.href === "/" ? path === "/" : path.startsWith(n.href);
                 return (
                   <Link
                     key={n.href}
                     href={n.href}
-                    className={`px-2.5 py-1 rounded-lg ${
+                    className={`px-2.5 py-1.5 rounded-lg transition-all duration-200 ${
                       active
-                        ? "bg-zinc-800 text-white"
-                        : "text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900"
+                        ? "bg-gradient-to-r from-indigo-600/80 to-fuchsia-600/80 text-white shadow-md shadow-indigo-500/20"
+                        : "text-zinc-400 hover:text-white hover:bg-white/5"
                     }`}
                   >
                     {n.label}
@@ -47,7 +56,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           <div className="flex items-center gap-2 shrink-0">
             <button
               type="button"
-              className="text-[11px] text-zinc-500 border border-zinc-700 rounded-lg px-2 py-1 hover:border-zinc-500 hidden sm:inline"
+              className="text-[11px] text-zinc-300 border border-indigo-500/30 rounded-lg px-2.5 py-1 hover:border-fuchsia-400/50 hover:bg-indigo-500/10 transition-all hidden sm:inline"
               onClick={() => {
                 window.dispatchEvent(
                   new KeyboardEvent("keydown", { key: "k", ctrlKey: true, bubbles: true })
@@ -57,24 +66,35 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             >
               ⌘K
             </button>
-            <span className="text-[10px] text-zinc-600 hidden lg:inline">Local-first</span>
+            <Link
+              href="/chat"
+              className="btn-rainbow text-[11px] px-3 py-1.5 rounded-lg shadow-lg shadow-fuchsia-500/20"
+            >
+              Launch
+            </Link>
           </div>
         </div>
-        {/* Mobile nav */}
-        <nav className="md:hidden flex gap-1 px-3 pb-2 overflow-x-auto text-xs">
-          {NAV.map((n) => (
-            <Link
-              key={n.href}
-              href={n.href}
-              className="px-2 py-1 rounded-lg text-zinc-400 hover:text-white whitespace-nowrap"
-            >
-              {n.label}
-            </Link>
-          ))}
+        <nav className="lg:hidden flex gap-1.5 px-3 pb-2.5 overflow-x-auto text-xs scrollbar-none">
+          {NAV.map((n) => {
+            const active = n.href === "/" ? path === "/" : path.startsWith(n.href);
+            return (
+              <Link
+                key={n.href}
+                href={n.href}
+                className={`px-2.5 py-1 rounded-full whitespace-nowrap transition-all ${
+                  active
+                    ? "bg-indigo-600 text-white"
+                    : "text-zinc-400 bg-white/5 hover:text-white"
+                }`}
+              >
+                {n.label}
+              </Link>
+            );
+          })}
         </nav>
       </header>
       <CommandPalette />
-      {children}
+      <div className="relative z-10 animate-fade-up">{children}</div>
     </>
   );
 }
