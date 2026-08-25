@@ -51,3 +51,16 @@ export async function cacheGetOrSet<T>(
   cacheSet(key, value, ttlMs);
   return value;
 }
+
+const MAX_KEYS = Number(process.env.CACHE_MAX_KEYS ?? 5000);
+
+/** Evict expired then oldest if over capacity */
+export function cacheSetBounded<T>(key: string, value: T, ttlMs = 60_000): void {
+  cacheSet(key, value, ttlMs);
+  const { keys } = cacheStats();
+  if (keys > MAX_KEYS) {
+    // delete first inserted (Map insertion order)
+    const first = store.keys().next().value;
+    if (first !== undefined) store.delete(first);
+  }
+}

@@ -5,3 +5,4 @@ export * from "./otlp";
 export * from "./status";
 export * from "./self-test";
 export * from "./self-heal";
+export * from "./performance";

@@ -36,7 +36,8 @@ Phased build (docs/PHASE0_MASTER_INVENTORY.md). **No phase skip.**
 | 28 AI company command center | **LOCKED** |
 | 29 Security permissions sandbox | **LOCKED** |
 | 30 Self-testing & self-healing | **LOCKED** |
-| 31 Performance & scalability | NEXT |
+| 31 Performance & scalability | **LOCKED** |
+| 32 End-to-end testing | NEXT |
 | 2 Local-first UX | Queued |
 | 3–4 AI gateway & router | Partial code exists — re-verify |
 | 5 Memory & RAG | Partial code exists — re-verify |
