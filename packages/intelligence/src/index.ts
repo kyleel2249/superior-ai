@@ -2,3 +2,5 @@ export * from "./master-loop";
 export * from "./analytics";
 export * from "./funnel-attribution";
 export * from "./daily-brief";
+export * from "./digital-twin";
+export * from "./scenario";

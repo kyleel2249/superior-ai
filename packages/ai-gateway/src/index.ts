@@ -19,3 +19,5 @@ ensureCintexaRegistry();
 export * from "./router/cascade";
 export * from "./router/council";
 export * from "./quality/engine";
+export * from "./canary";
+export * from "./verification/continuous";
