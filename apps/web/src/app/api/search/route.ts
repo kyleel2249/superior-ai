@@ -5,6 +5,7 @@ import {
   multiEngineSearch,
   searchAllEngines,
   searchWithEngine,
+  summarizeSearchResults,
   type SearchEngineId,
 } from "@superior-ai/tools";
 
@@ -23,17 +24,26 @@ export async function GET(req: NextRequest) {
   const q = String(req.nextUrl.searchParams.get("q") ?? "").trim();
   const mode = req.nextUrl.searchParams.get("mode") ?? "auto";
   const engine = req.nextUrl.searchParams.get("engine") as SearchEngineId | null;
+  const wantSummary = req.nextUrl.searchParams.get("summarize") === "1";
   try {
+    let payload: Record<string, unknown>;
     if (mode === "all") {
-      return NextResponse.json(await searchAllEngines(q));
+      payload = await searchAllEngines(q) as unknown as Record<string, unknown>;
+    } else if (mode === "multi") {
+      payload = await multiEngineSearch(q) as unknown as Record<string, unknown>;
+    } else if (engine) {
+      payload = await searchWithEngine(q, engine) as unknown as Record<string, unknown>;
+    } else {
+      payload = await liveSearch(q) as unknown as Record<string, unknown>;
     }
-    if (mode === "multi") {
-      return NextResponse.json(await multiEngineSearch(q));
+    if (wantSummary) {
+      const hits = (payload.merged as any[]) || (payload.results as any[]) || [];
+      payload.aiSummary = await summarizeSearchResults(q, hits, {
+        preferAbstractive: true,
+        computationalAnswer: typeof payload.answer === "string" ? payload.answer : undefined,
+      });
     }
-    if (engine) {
-      return NextResponse.json(await searchWithEngine(q, engine));
-    }
-    return NextResponse.json(await liveSearch(q));
+    return NextResponse.json(payload);
   } catch (err) {
     return NextResponse.json(
       { error: err instanceof Error ? err.message : String(err) },

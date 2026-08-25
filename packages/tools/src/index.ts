@@ -12,9 +12,15 @@ export {
   multiEngineSearch,
   searchAllEngines,
   listSearchEngines,
+  mergeSearchHits,
+  formatEngineSummary,
+  summarizeSearchExtractive,
+  summarizeSearchResults,
   type SearchHit,
   type SearchResponse,
   type SearchEngineId,
   type EngineDescriptor,
+  type SearchSummary,
 } from "./web-search";
+export * from "./search";
 export { registerDocumentTools } from "./document-tools";

@@ -22,6 +22,12 @@
 
 import { registerTool } from "./registry";
 import type { ToolResult } from "./types";
+import { mergeSearchHits, formatEngineSummary } from "./search/merge";
+import {
+  summarizeSearchExtractive,
+  summarizeSearchResults,
+  type SearchSummary,
+} from "./search/summarize";
 
 export interface SearchHit {
   title: string;
@@ -724,17 +730,14 @@ export async function multiEngineSearch(
   const unique = [...new Set(targets.length ? targets : (["duckduckgo"] as SearchEngineId[]))];
 
   const byEngine = await Promise.all(unique.map((e) => searchWithEngine(query, e)));
-  const seen = new Set<string>();
-  const merged: SearchHit[] = [];
-  for (const resp of byEngine) {
-    for (const hit of resp.results) {
-      const key = hit.url.replace(/#.*$/, "").toLowerCase();
-      if (!key || seen.has(key)) continue;
-      seen.add(key);
-      merged.push(hit);
-    }
-  }
-  return { query, byEngine, merged, enginesConfigured: catalog };
+  const merged = mergeSearchHits(byEngine);
+  return {
+    query,
+    byEngine,
+    merged,
+    enginesConfigured: catalog,
+    summary: formatEngineSummary(byEngine),
+  };
 }
 
 registerTool({
@@ -804,24 +807,23 @@ export async function searchAllEngines(query: string): Promise<{
       note: err instanceof Error ? err.message : String(err),
     })))
   );
-  const seen = new Set<string>();
-  const merged: SearchHit[] = [];
-  for (const resp of byEngine) {
-    for (const hit of resp.results ?? []) {
-      const key = (hit.url || "").replace(/#.*$/, "").toLowerCase();
-      if (!key || seen.has(key)) continue;
-      seen.add(key);
-      merged.push({ ...hit, engine: hit.engine ?? resp.engine });
-    }
-  }
-  const ok = byEngine.filter((r) => (r.results?.length ?? 0) > 0).length;
-  const needConfig = byEngine.filter((r) => r.status === "CONFIGURATION_REQUIRED").length;
+  const merged = mergeSearchHits(byEngine as SearchResponse[]);
   return {
     query,
     attempted,
-    byEngine,
+    byEngine: byEngine as SearchResponse[],
     merged,
+    enginesConfigured: catalog,
     configured: catalog,
-    summary: `Engines with hits: ${ok}/${attempted.length}. Need API keys: ${needConfig}. Merged unique URLs: ${merged.length}.`,
+    summary: formatEngineSummary(byEngine as SearchResponse[]),
   };
 }
+
+/** Re-export summarization for agents & API */
+export {
+  mergeSearchHits,
+  formatEngineSummary,
+  summarizeSearchExtractive,
+  summarizeSearchResults,
+};
+export type { SearchSummary };
