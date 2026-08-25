@@ -49,6 +49,7 @@ export default function HomePage() {
             <Link href="/ceo" className="px-5 py-2.5 rounded-xl border border-zinc-700 hover:border-zinc-500 font-medium">CEO Center</Link>
             <Link href="/marketing" className="px-5 py-2.5 rounded-xl border border-zinc-700 hover:border-zinc-500 font-medium">Marketing</Link>
             <Link href="/seo" className="px-5 py-2.5 rounded-xl border border-zinc-700 hover:border-zinc-500 font-medium">SEO</Link>
+            <Link href="/daily" className="px-5 py-2.5 rounded-xl border border-zinc-700 hover:border-zinc-500 font-medium">Daily Intel</Link>
             <Link href="/dashboard" className="px-5 py-2.5 rounded-xl border border-zinc-700 hover:border-zinc-500 font-medium">KPI Dashboard</Link>
             <Link href="/brand" className="px-5 py-2.5 rounded-xl border border-zinc-700 hover:border-zinc-500 font-medium">Brand Studio</Link>
           </div>

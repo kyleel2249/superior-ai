@@ -32,7 +32,8 @@ Phased build (docs/PHASE0_MASTER_INVENTORY.md). **No phase skip.**
 | 24 Infrastructure & observability | **LOCKED** |
 | 25 Social & autopublish | **LOCKED** |
 | 26 Analytics & attribution | **LOCKED** |
-| 27 Daily intelligence | NEXT |
+| 27 Daily intelligence | **LOCKED** |
+| 28 AI company command center | NEXT |
 | 2 Local-first UX | Queued |
 | 3–4 AI gateway & router | Partial code exists — re-verify |
 | 5 Memory & RAG | Partial code exists — re-verify |
