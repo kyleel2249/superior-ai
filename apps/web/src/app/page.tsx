@@ -15,6 +15,7 @@ export default function HomePage() {
             <Link href="/studio" className="hover:text-white">Studio</Link>
             <Link href="/sales" className="hover:text-white">Sales</Link>
             <Link href="/competitors" className="hover:text-white">Competitors</Link>
+            <Link href="/command" className="hover:text-white">Command</Link>
             <Link href="/ceo" className="hover:text-white">CEO</Link>
             <Link href="/marketing" className="hover:text-white">Marketing</Link>
             <Link href="/seo" className="hover:text-white">SEO</Link>
