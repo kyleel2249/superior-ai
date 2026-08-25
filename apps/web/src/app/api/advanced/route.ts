@@ -1,3 +1,4 @@
+import { autoGatherResearch } from "@superior-ai/research";
 import { NextRequest, NextResponse } from "next/server";
 import {
   upsertTwin,
@@ -368,6 +369,14 @@ export async function POST(req: NextRequest) {
     }
     if (action === "template_clone") {
       return NextResponse.json({ template: cloneAgentTemplate(String(body.id), body.suffix) });
+    }
+
+
+    if (action === "research_gather") {
+      const brief = await autoGatherResearch(String(body.query ?? body.q ?? ""), {
+        allEngines: body.allEngines !== false,
+      });
+      return NextResponse.json(brief);
     }
 
     return NextResponse.json({ error: "unknown action" }, { status: 400 });

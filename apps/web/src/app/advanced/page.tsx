@@ -261,6 +261,13 @@ export default function AdvancedFeaturesPage() {
             >
               Align task
             </button>
+            <button
+              type="button"
+              className="chip"
+              onClick={() => post("research_gather", { query: twinName + " market overview", allEngines: true })}
+            >
+              Multi-engine research
+            </button>
           </div>
         </section>
 

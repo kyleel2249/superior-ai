@@ -10,6 +10,7 @@ export {
   liveSearch,
   searchWithEngine,
   multiEngineSearch,
+  searchAllEngines,
   listSearchEngines,
   type SearchHit,
   type SearchResponse,

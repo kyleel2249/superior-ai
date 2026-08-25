@@ -273,3 +273,99 @@ body::before {
   position: relative;
   z-index: 1;
 }
+
+/* ——— Theme variants (dark default) ——— */
+html,
+html[data-theme="dark"],
+.theme-dark {
+  color-scheme: dark;
+  --background: #07070f;
+  --foreground: #f8fafc;
+  --card: rgba(18, 18, 32, 0.85);
+  --card-border: rgba(99, 102, 241, 0.25);
+  --accent: #6366f1;
+  --accent-soft: #a78bfa;
+  --muted: #94a3b8;
+  --surface: rgba(15, 15, 25, 0.9);
+  --surface-2: rgba(30, 30, 50, 0.8);
+  --text-secondary: #a1a1aa;
+  --glow-strength: 0.35;
+}
+
+html[data-theme="light"],
+.theme-light {
+  color-scheme: light;
+  --background: #f4f4f8;
+  --foreground: #0f172a;
+  --card: rgba(255, 255, 255, 0.92);
+  --card-border: rgba(99, 102, 241, 0.2);
+  --accent: #4f46e5;
+  --accent-soft: #7c3aed;
+  --muted: #64748b;
+  --surface: rgba(255, 255, 255, 0.95);
+  --surface-2: rgba(241, 245, 249, 0.95);
+  --text-secondary: #475569;
+  --glow-strength: 0.15;
+  --success: #059669;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --glow-pink: #db2777;
+  --glow-cyan: #0891b2;
+  --glow-violet: #7c3aed;
+}
+
+html[data-theme="light"] body,
+.theme-light body {
+  background-image:
+    radial-gradient(ellipse 80% 50% at 20% -10%, rgba(99, 102, 241, 0.12), transparent 50%),
+    radial-gradient(ellipse 60% 40% at 90% 10%, rgba(236, 72, 153, 0.08), transparent 45%),
+    radial-gradient(ellipse 50% 30% at 50% 100%, rgba(34, 211, 238, 0.06), transparent 40%);
+}
+
+html[data-theme="midnight"],
+.theme-midnight {
+  color-scheme: dark;
+  --background: #020617;
+  --foreground: #e2e8f0;
+  --card: rgba(15, 23, 42, 0.9);
+  --card-border: rgba(56, 189, 248, 0.25);
+  --accent: #38bdf8;
+  --accent-soft: #818cf8;
+  --muted: #64748b;
+  --glow-pink: #e879f9;
+  --glow-cyan: #22d3ee;
+  --glow-violet: #818cf8;
+  --glow-strength: 0.4;
+}
+
+html[data-theme="aurora"],
+.theme-aurora {
+  color-scheme: dark;
+  --background: #0a0f0d;
+  --foreground: #ecfdf5;
+  --card: rgba(6, 28, 22, 0.88);
+  --card-border: rgba(52, 211, 153, 0.3);
+  --accent: #34d399;
+  --accent-soft: #2dd4bf;
+  --muted: #6ee7b7;
+  --glow-pink: #f472b6;
+  --glow-cyan: #2dd4bf;
+  --glow-violet: #a78bfa;
+  --glow-strength: 0.45;
+}
+
+html[data-theme="light"] .card-glow {
+  background: linear-gradient(145deg, rgba(255,255,255,0.95), rgba(248,250,252,0.9));
+  box-shadow:
+    0 0 0 1px rgba(15, 23, 42, 0.04) inset,
+    0 4px 24px -6px rgba(15, 23, 42, 0.08),
+    0 0 40px -12px rgba(99, 102, 241, 0.15);
+}
+
+html[data-theme="light"] .text-gradient {
+  background: linear-gradient(135deg, #4f46e5, #db2777, #0891b2, #4f46e5);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}

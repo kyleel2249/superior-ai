@@ -779,3 +779,49 @@ registerTool({
     }
   },
 });
+
+/**
+ * Auto-connect: fan out to every engine that is configured OR has a keyless path.
+ * Does not invent results. Engines requiring keys report CONFIGURATION_REQUIRED.
+ */
+export async function searchAllEngines(query: string): Promise<{
+  query: string;
+  attempted: SearchEngineId[];
+  byEngine: SearchResponse[];
+  merged: SearchHit[];
+  configured: EngineDescriptor[];
+  summary: string;
+}> {
+  const catalog = listSearchEngines();
+  // Prefer all engines — searchWithEngine handles missing keys honestly
+  const attempted = catalog.map((e) => e.id) as SearchEngineId[];
+  const byEngine = await Promise.all(
+    attempted.map((id) => searchWithEngine(query, id).catch((err) => ({
+      query,
+      results: [] as SearchHit[],
+      engine: id,
+      status: "ERROR" as const,
+      note: err instanceof Error ? err.message : String(err),
+    })))
+  );
+  const seen = new Set<string>();
+  const merged: SearchHit[] = [];
+  for (const resp of byEngine) {
+    for (const hit of resp.results ?? []) {
+      const key = (hit.url || "").replace(/#.*$/, "").toLowerCase();
+      if (!key || seen.has(key)) continue;
+      seen.add(key);
+      merged.push({ ...hit, engine: hit.engine ?? resp.engine });
+    }
+  }
+  const ok = byEngine.filter((r) => (r.results?.length ?? 0) > 0).length;
+  const needConfig = byEngine.filter((r) => r.status === "CONFIGURATION_REQUIRED").length;
+  return {
+    query,
+    attempted,
+    byEngine,
+    merged,
+    configured: catalog,
+    summary: `Engines with hits: ${ok}/${attempted.length}. Need API keys: ${needConfig}. Merged unique URLs: ${merged.length}.`,
+  };
+}

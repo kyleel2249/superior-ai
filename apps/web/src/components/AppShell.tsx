@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { CommandPalette } from "./CommandPalette";
+import { ThemeToggle } from "./ThemeToggle";
 
 const NAV = [
   { href: "/", label: "Home" },
@@ -66,6 +67,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             >
               ⌘K
             </button>
+            <ThemeToggle compact />
             <Link
               href="/chat"
               className="btn-rainbow text-[11px] px-3 py-1.5 rounded-lg shadow-lg shadow-fuchsia-500/20"
