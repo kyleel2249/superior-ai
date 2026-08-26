@@ -50,7 +50,7 @@ export interface CrmConnector {
   createDeal(deal: CrmDeal): Promise<CrmResult<CrmDeal>>;
 }
 
-function notConfigured(provider: CrmProvider): CrmResult {
+function notConfigured<T>(provider: CrmProvider): CrmResult<T> {
   return {
     success: false,
     provider,
@@ -146,13 +146,13 @@ class HubSpotConnector implements CrmConnector {
 class StubConnector implements CrmConnector {
   constructor(public provider: CrmProvider) {}
   async testConnection() {
-    return notConfigured(this.provider);
+    return notConfigured<{ ok: boolean }>(this.provider);
   }
   async upsertContact() {
-    return notConfigured(this.provider);
+    return notConfigured<CrmContact>(this.provider);
   }
   async createDeal() {
-    return notConfigured(this.provider);
+    return notConfigured<CrmDeal>(this.provider);
   }
 }
 

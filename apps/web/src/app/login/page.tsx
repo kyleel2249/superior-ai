@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("admin@superior.local");
@@ -15,9 +15,9 @@ export default function LoginPage() {
     setMode(data.mode);
   }
 
-  useState(() => {
+  useEffect(() => {
     loadMode();
-  });
+  }, []);
 
   async function devLogin() {
     setError(null);

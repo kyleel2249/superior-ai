@@ -34,13 +34,13 @@ export async function POST(req: NextRequest) {
         repoUrl: body.repoUrl,
         localPath: body.localPath,
       });
-      await audit({
+      audit({
         action: "factory.create",
         outcome: "success",
         resourceType: "software_factory",
         resourceId: task.id,
         meta: { objective: task.objective },
-      }).catch(() => undefined);
+      });
       return NextResponse.json(task, { status: 201 });
     }
 

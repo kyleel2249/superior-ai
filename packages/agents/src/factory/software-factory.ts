@@ -227,12 +227,13 @@ export async function runFactoryPipeline(input: {
     await factoryValidateCode(task.id, input.snippet);
   }
 
-  if (!task.pendingHumanApproval && task.stage !== "blocked") {
-    task.stage = "review";
-    task.notes.push("Pipeline ready for human review / PR stage.");
+  const currentTask = tasks.get(task.id)!;
+  if (!currentTask.pendingHumanApproval && currentTask.stage !== "blocked") {
+    currentTask.stage = "review";
+    currentTask.notes.push("Pipeline ready for human review / PR stage.");
   }
-  task.updatedAt = new Date().toISOString();
-  return tasks.get(task.id)!;
+  currentTask.updatedAt = new Date().toISOString();
+  return currentTask;
 }
 
 /** Generate structured software specs — artifacts only, not claimed as deployed. */

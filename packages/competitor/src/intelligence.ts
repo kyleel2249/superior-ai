@@ -4,6 +4,7 @@
  */
 
 import type { CompetitorProfile, CompetitorScorecard, DataProvenance } from "@superior-ai/core";
+export type { CompetitorProfile };
 
 export function emptyCompetitor(name: string, website: string): CompetitorProfile {
   return {

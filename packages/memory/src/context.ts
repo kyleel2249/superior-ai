@@ -17,7 +17,7 @@ export async function buildMemoryContext(input: {
   ragHits: number;
   backend: string;
 }> {
-  const { records } = retrieveRelevant({
+  const records = retrieveRelevant({
     query: input.query,
     types: input.types,
     projectId: input.projectId,

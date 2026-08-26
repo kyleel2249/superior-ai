@@ -2,7 +2,7 @@
  * Design document factory and design-system helpers.
  */
 
-import type { DesignDocument, PathNode, SymbolDef, VectorNode } from "./types";
+import type { DesignDocument, PathNode, Paint, SymbolDef, VectorNode } from "./types";
 import { bezierThrough, rectPath } from "./path";
 import { documentToSvg } from "./svg";
 
@@ -32,7 +32,7 @@ export function createDocument(input?: {
 
 export function addRect(
   doc: DesignDocument,
-  opts: { x: number; y: number; width: number; height: number; fill?: string; rx?: number; name?: string }
+  opts: { x: number; y: number; width: number; height: number; fill?: Paint; rx?: number; name?: string }
 ): DesignDocument {
   const node: VectorNode = {
     kind: "rect",
@@ -51,7 +51,7 @@ export function addRect(
 export function addBezierPath(
   doc: DesignDocument,
   points: Array<{ x: number; y: number }>,
-  opts?: { fill?: string; stroke?: string; name?: string }
+  opts?: { fill?: Paint; stroke?: Paint; name?: string }
 ): DesignDocument {
   const node: PathNode = {
     kind: "path",

@@ -54,13 +54,13 @@ export async function POST(req: NextRequest) {
     if (action === "publish_queue") {
       const item = await publishQueueItem(String(body.id), body.accessToken);
       if (!item) return NextResponse.json({ error: "not found" }, { status: 404 });
-      await audit({
+      audit({
         action: "social.publish",
         outcome: item.status === "published" ? "success" : "failure",
         resourceType: "social_queue",
         resourceId: item.id,
         meta: { platform: item.platform, status: item.status },
-      }).catch(() => undefined);
+      });
       return NextResponse.json(item);
     }
 
@@ -89,12 +89,12 @@ export async function POST(req: NextRequest) {
       accessToken: body.accessToken,
     });
 
-    await audit({
+    audit({
       action: "social.publish",
       outcome: result.success ? "success" : "failure",
       resourceType: "social",
       meta: { platform: result.platform, status: result.status },
-    }).catch(() => undefined);
+    });
 
     return NextResponse.json(result, { status: result.success ? 200 : 400 });
   } catch (err) {

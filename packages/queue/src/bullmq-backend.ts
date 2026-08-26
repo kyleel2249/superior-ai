@@ -10,7 +10,15 @@ export interface BullJobHandle {
   backend: "bullmq";
 }
 
-let queueInstance: { add: (name: string, data: unknown, opts?: unknown) => Promise<{ id?: string }> } | null = null;
+interface MinimalJobOpts {
+  priority?: number;
+  attempts?: number;
+  backoff?: { type: string; delay: number };
+  removeOnComplete?: number;
+  removeOnFail?: number;
+}
+
+let queueInstance: { add: (name: string, data: unknown, opts?: MinimalJobOpts) => Promise<{ id?: string }> } | null = null;
 let workerStarted = false;
 
 export async function initBullMQ(): Promise<boolean> {

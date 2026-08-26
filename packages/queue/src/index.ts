@@ -1,5 +1,5 @@
-export * from "./memory-queue";
 export * from "./redis-queue";
-export * from "./worker";
+export type { QueueJob, QueueLane } from "./memory-queue";
+export { startStandaloneWorker, enqueueOrchestrationViaWorker } from "./worker";
 export * from "./job-handlers";
 export { initBullMQ, bullEnqueue, isBullReady } from "./bullmq-backend";

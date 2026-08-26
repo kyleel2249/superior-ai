@@ -13,8 +13,7 @@
     "@superior-ai/marketing": "*",
     "@superior-ai/memory": "*",
     "@superior-ai/tools": "*",
-    "@superior-ai/db": "*",
-    "@superior-ai/queue": "*"
+    "@superior-ai/db": "*"
   },
   "devDependencies": {
     "typescript": "^5.8.0"

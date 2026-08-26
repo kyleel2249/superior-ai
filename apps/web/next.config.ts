@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  serverExternalPackages: ["bullmq", "ioredis"],
   transpilePackages: [
     "@superior-ai/core",
     "@superior-ai/ai-gateway",

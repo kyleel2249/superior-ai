@@ -130,6 +130,7 @@ export async function executeCode(req: CodeExecRequest): Promise<CodeExecResult>
           PATH: process.env.PATH,
           HOME: dir,
           NODE_OPTIONS: "--max-old-space-size=128",
+          NODE_ENV: process.env.NODE_ENV ?? "production",
           // No AWS/GCP/API keys forwarded
         },
       });

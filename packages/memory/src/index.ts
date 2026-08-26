@@ -7,3 +7,4 @@ export * from "./postgres";
 export * from "./knowledge-graph";
 export * from "./conflicts";
 export * from "./context";
+export * from "./lexical-rag";

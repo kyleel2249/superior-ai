@@ -67,13 +67,13 @@ export async function POST(req: NextRequest) {
         subjectRef: String(body.subjectRef ?? "unknown"),
         note: body.note,
       });
-      await audit({
+      audit({
         action: "data.export",
         outcome: "success",
         resourceType: "privacy_request",
         resourceId: r.id,
         meta: { type: r.type },
-      }).catch(() => undefined);
+      });
       return NextResponse.json(r, { status: 201 });
     }
 

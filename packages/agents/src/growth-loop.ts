@@ -31,7 +31,7 @@ export const GROWTH_LOOP_STAGES = [
 export type GrowthStage = (typeof GROWTH_LOOP_STAGES)[number];
 
 export function growthLoopPlan(objective: string): Array<{ stage: GrowthStage; owner: string; output: string }> {
-  return [
+  const stages: Array<{ stage: GrowthStage; owner: string; output: string }> = [
     { stage: "RESEARCH", owner: "Deep Research + Market Researcher", output: "Evidence pack" },
     { stage: "UNDERSTAND_CUSTOMER", owner: "VoC + Strategist", output: "Jobs, pains, language" },
     { stage: "ANALYZE_COMPETITORS", owner: "Competitor Research", output: "Scorecard + gaps" },
@@ -54,5 +54,6 @@ export function growthLoopPlan(objective: string): Array<{ stage: GrowthStage; o
     { stage: "COLLECT_FEEDBACK", owner: "VoC", output: "Insights" },
     { stage: "ANALYZE_PERFORMANCE", owner: "Marketing + Sales Analyst", output: "Scorecard" },
     { stage: "OPTIMIZE", owner: "Growth Engine", output: "Next experiments" },
-  ].map((s) => ({ ...s, output: `${s.output} for: ${objective.slice(0, 80)}` }));
+  ];
+  return stages.map((s) => ({ ...s, output: `${s.output} for: ${objective.slice(0, 80)}` }));
 }

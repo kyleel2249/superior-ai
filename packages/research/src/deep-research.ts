@@ -40,8 +40,13 @@ export async function runDeepResearch(input: DeepResearchInput): Promise<DeepRes
   if (query) {
     if (input.multiEngine) {
       const multi = await multiEngineSearch(query);
-      hits = multi.results ?? [];
-      searchStatus = multi.status ?? "OK";
+      hits = multi.merged ?? [];
+      searchStatus =
+        hits.length > 0
+          ? "OK"
+          : multi.enginesConfigured.every((e) => !e.configured)
+            ? "CONFIGURATION_REQUIRED"
+            : "ERROR";
       engine = "multi";
     } else {
       const res = await liveSearch(query);

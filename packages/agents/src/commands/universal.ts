@@ -57,6 +57,7 @@ const COMMAND_MAP: Record<
   code: { taskType: "coding", departmentHint: "technology" },
   review: { taskType: "coding", departmentHint: "technology" },
   debug: { taskType: "coding", departmentHint: "technology" },
+  fix: { taskType: "coding", departmentHint: "technology" },
   analyze: { taskType: "analysis", departmentHint: "strategy" },
   strategy: { taskType: "strategy", departmentHint: "strategy" },
   finance: { taskType: "financial", departmentHint: "finance" },
