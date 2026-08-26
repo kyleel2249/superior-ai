@@ -4,7 +4,8 @@
   "private": true,
   "main": "./src/index.ts",
   "dependencies": {
-    "@superior-ai/core": "*"
+    "@superior-ai/core": "*",
+    "@superior-ai/security": "*"
   },
   "devDependencies": {
     "typescript": "^5.8.0"

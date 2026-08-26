@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SUPERIOR AI — Dashboard Snapshot</title>
+  <style>
+    :root {
+      --bg: #07070f;
+      --fg: #f8fafc;
+      --muted: #94a3b8;
+      --card: rgba(18, 18, 32, 0.9);
+      --border: rgba(99, 102, 241, 0.35);
+      --indigo: #818cf8;
+      --fuchsia: #e879f9;
+      --cyan: #22d3ee;
+      --emerald: #34d399;
+      --amber: #fbbf24;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      min-height: 100vh;
+      background-image:
+        radial-gradient(ellipse 80% 50% at 20% -10%, rgba(99, 102, 241, 0.35), transparent 50%),
+        radial-gradient(ellipse 60% 40% at 90% 10%, rgba(236, 72, 153, 0.2), transparent 45%),
+        radial-gradient(ellipse 50% 30% at 50% 100%, rgba(34, 211, 238, 0.12), transparent 40%);
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 1.5rem;
+      border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+      backdrop-filter: blur(12px);
+      background: rgba(7, 7, 15, 0.75);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    .logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #6366f1, #a855f7, #22d3ee);
+      display: grid;
+      place-items: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+    }
+    .brand span.grad {
+      background: linear-gradient(135deg, #a5b4fc, #f0abfc, #67e8f9);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    nav { display: flex; gap: 0.35rem; flex-wrap: wrap; }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.75rem;
+      padding: 0.35rem 0.65rem;
+      border-radius: 0.5rem;
+    }
+    nav a.active, nav a:hover {
+      background: linear-gradient(90deg, rgba(99,102,241,0.7), rgba(168,85,247,0.6));
+      color: white;
+    }
+    .launch {
+      background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899, #22d3ee);
+      background-size: 200% 200%;
+      color: white;
+      border: none;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.4rem 0.85rem;
+      border-radius: 0.5rem;
+      cursor: default;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 3rem;
+    }
+    .hero {
+      margin-bottom: 1.75rem;
+    }
+    .hero h1 {
+      font-size: clamp(1.6rem, 4vw, 2.25rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+    }
+    .hero h1 .grad {
+      background: linear-gradient(135deg, #a5b4fc, #f0abfc, #67e8f9, #a5b4fc);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero p {
+      margin-top: 0.6rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 36rem;
+    }
+    .tagline {
+      display: inline-block;
+      margin-top: 0.75rem;
+      font-size: 0.7rem;
+      color: var(--cyan);
+      border: 1px solid rgba(34, 211, 238, 0.3);
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+    .card {
+      position: relative;
+      background: linear-gradient(145deg, rgba(24,24,40,0.92), rgba(18,18,32,0.88));
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 1.15rem 1.2rem;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.03) inset,
+        0 4px 24px -6px rgba(0,0,0,0.45),
+        0 0 40px -12px rgba(99, 102, 241, 0.25);
+      overflow: hidden;
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(165,180,252,0.4), rgba(236,72,153,0.2), rgba(34,211,238,0.3));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      opacity: 0.7;
+    }
+    .card h3 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--indigo);
+      box-shadow: 0 0 8px var(--indigo);
+    }
+    .dot.emerald { background: var(--emerald); box-shadow: 0 0 8px var(--emerald); }
+    .dot.amber { background: var(--amber); box-shadow: 0 0 8px var(--amber); }
+    .dot.fuchsia { background: var(--fuchsia); box-shadow: 0 0 8px var(--fuchsia); }
+    .dot.cyan { background: var(--cyan); box-shadow: 0 0 8px var(--cyan); }
+    .card p {
+      font-size: 0.75rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+    .stat {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0.4rem 0 0.15rem;
+      letter-spacing: -0.02em;
+    }
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+    @media (max-width: 720px) {
+      .kpi-row { grid-template-columns: repeat(2, 1fr); }
+      nav { display: none; }
+    }
+    .footer {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.7rem;
+      color: #64748b;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      padding: 0.15rem 0.45rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.3);
+      color: var(--muted);
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">S</div>
+      <span class="grad">SUPERIOR AI</span>
+    </div>
+    <nav>
+      <a class="active" href="#">Home</a>
+      <a href="#">Chat</a>
+      <a href="#">Command</a>
+      <a href="#">Advanced</a>
+      <a href="#">Daily</a>
+      <a href="#">Studio</a>
+      <a href="#">Control</a>
+    </nav>
+    <button class="launch" type="button">Launch</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1><span class="grad">One AI.</span><br />An Entire Team Behind It.</h1>
+      <p>
+        Model-agnostic operating system — research, code, market, sell, and operate
+        through one local-first interface. Cascade · Council · Multi-engine search.
+      </p>
+      <span class="tagline">Local-first · No mandatory sign-in · OpenRouter gateway</span>
+    </section>
+
+    <div class="kpi-row">
+      <div class="card">
+        <h3><span class="dot emerald"></span> Models registered</h3>
+        <div class="stat" style="color:var(--emerald)">40+</div>
+        <p>CINTEXA registry · honest status labels</p>
+      </div>
+      <div class="card">
+        <h3><span class="dot cyan"></span> Search engines</h3>
+        <div class="stat" style="color:var(--cyan)">15</div>
+        <p>Google · Bing · DDG · Brave · regional…</p>
+      </div>
+      <div class="card">
+        <h3><span class="dot fuchsia"></span> Agent packs</h3>
+        <div class="stat" style="color:var(--fuchsia)">3+</div>
+        <p>Growth · Engineering · Creative studio</p>
+      </div>
+      <div class="card">
+        <h3><span class="dot amber"></span> Themes</h3>
+        <div class="stat" style="color:var(--amber)">4</div>
+        <p>Dark · Midnight · Aurora · Light</p>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h3><span class="dot"></span> Command Center</h3>
+        <p>Company-mode orchestration, department agents, approval gates.</p>
+        <span class="badge">/command</span>
+      </div>
+      <div class="card">
+        <h3><span class="dot cyan"></span> Advanced engines</h3>
+        <p>Digital twin · scenarios · canary · KPI · marketplace · trust.</p>
+        <span class="badge">/advanced</span>
+      </div>
+      <div class="card">
+        <h3><span class="dot emerald"></span> Multi-engine research</h3>
+        <p>Fan-out search + extractive/AI summary · no invented sources.</p>
+        <span class="badge">/api/search</span>
+      </div>
+      <div class="card">
+        <h3><span class="dot fuchsia"></span> Software factory</h3>
+        <p>Plan → implement → test → review with human approval.</p>
+        <span class="badge">packs/engineering</span>
+      </div>
+      <div class="card">
+        <h3><span class="dot amber"></span> Daily intelligence</h3>
+        <p>Briefing, alerts, funnel signals, proactive insights.</p>
+        <span class="badge">/daily</span>
+      </div>
+      <div class="card">
+        <h3><span class="dot"></span> Admin control</h3>
+        <p>Router live test · cascade · council · quality gates.</p>
+        <span class="badge">/admin/control</span>
+      </div>
+    </div>
+
+    <p class="footer">
+      Static HTML snapshot of the SUPERIOR AI dashboard look · Not a live server render ·
+      superior-ai · One AI. An Entire Team Behind It.
+    </p>
+  </main>
+</body>
+</html>

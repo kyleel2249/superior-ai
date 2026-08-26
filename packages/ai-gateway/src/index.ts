@@ -11,3 +11,15 @@ export * from "./benchmark";
 export * from "./router/task-classifier";
 export * from "./router/ensemble";
 export * from "./media/image-edit";
+export * from "./registry/cintexa-models";
+export * from "./reasoning/engine";
+
+import { ensureCintexaRegistry } from "./registry/cintexa-models";
+ensureCintexaRegistry();
+export * from "./router/cascade";
+export * from "./router/council";
+export * from "./quality/engine";
+export * from "./canary";
+export * from "./verification/continuous";
+export * from "./portfolio-optimizer";
+export * from "./routing-simulator";

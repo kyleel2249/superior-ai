@@ -3,7 +3,7 @@
  * Never invents sources.
  */
 
-import { liveSearch, multiEngineSearch } from "@superior-ai/tools";
+import { liveSearch, multiEngineSearch, searchAllEngines, summarizeSearchResults } from "@superior-ai/tools";
 import { sourcesFromSearchHits, formatBibliography, citeClaims, type SourceRef } from "./citations";
 import { buildEvidence, evidenceReport } from "./evidence";
 import { detectSourceContradictions } from "./contradictions";
@@ -13,8 +13,12 @@ export interface DeepResearchInput {
   query: string;
   urls?: string[];
   multiEngine?: boolean;
+  /** Fan out to every registered engine (slower; honest config statuses) */
+  allEngines?: boolean;
   fetchTop?: number;
   claims?: string[];
+  /** AI abstractive summary when LLM key present; else extractive */
+  summarize?: boolean;
 }
 
 export interface DeepResearchResult {
@@ -29,6 +33,7 @@ export interface DeepResearchResult {
   evidenceReport: string;
   citations?: ReturnType<typeof citeClaims>;
   note: string;
+  aiSummary?: Awaited<ReturnType<typeof summarizeSearchResults>>;
 }
 
 export async function runDeepResearch(input: DeepResearchInput): Promise<DeepResearchResult> {
@@ -38,15 +43,15 @@ export async function runDeepResearch(input: DeepResearchInput): Promise<DeepRes
   let hits: Array<{ title: string; url: string; snippet?: string; engine?: string }> = [];
 
   if (query) {
-    if (input.multiEngine) {
+    if (input.allEngines) {
+      const all = await searchAllEngines(query);
+      hits = all.merged ?? [];
+      searchStatus = all.summary ?? (hits.length ? "OK" : "CONFIGURATION_REQUIRED");
+      engine = "all";
+    } else if (input.multiEngine) {
       const multi = await multiEngineSearch(query);
       hits = multi.merged ?? [];
-      searchStatus =
-        hits.length > 0
-          ? "OK"
-          : multi.enginesConfigured.every((e) => !e.configured)
-            ? "CONFIGURATION_REQUIRED"
-            : "ERROR";
+      searchStatus = multi.summary ?? (hits.length ? "OK" : "CONFIGURATION_REQUIRED");
       engine = "multi";
     } else {
       const res = await liveSearch(query);

@@ -27,6 +27,9 @@
     "db:push": "npm run push --workspace=@superior-ai/db",
     "postinstall": "node scripts/postinstall.mjs"
   },
+  "overrides": {
+    "ioredis": "^5.4.0"
+  },
   "devDependencies": {
     "turbo": "^2.5.0",
     "typescript": "^5.8.0",

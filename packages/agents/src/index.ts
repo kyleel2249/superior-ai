@@ -13,3 +13,8 @@ export * from "./commands/universal";
 export * from "./council-roles";
 export * from "./framework";
 export * from "./review";
+export * from "./packs/marketplace";
+export * from "./skills/registry";
+export * from "./tasks/replay";
+export * from "./red-team";
+export * from "./templates/library";

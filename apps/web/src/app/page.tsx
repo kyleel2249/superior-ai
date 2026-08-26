@@ -23,6 +23,8 @@ export default function HomePage() {
             
             
             <Link href="/status" className="hover:text-white">Status</Link>
+            <Link href="/advanced" className="hover:text-white">Advanced</Link>
+            <Link href="/admin/control" className="hover:text-white">AI Control</Link>
             <Link href="/admin/overview" className="hover:text-white">Admin</Link>
             <Link href="/admin/packs" className="hover:text-white">Packs</Link>
             <Link href="/publisher" className="hover:text-white">Publish</Link>
