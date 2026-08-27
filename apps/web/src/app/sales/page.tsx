@@ -33,10 +33,10 @@ export default function SalesCommandPage() {
           Lead gen · Scoring · Personalized outreach drafts · Funnel · Autopilot modes (approval-gated). Never invents contact data.
         </p>
         <textarea value={msg} onChange={(e) => setMsg(e.target.value)} rows={3} className="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-4 py-3 text-sm" />
-        <button onClick={run} disabled={loading} className="px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40">
+        <button onClick={run} disabled={loading} className="btn-rainbow px-6 py-3 rounded-xl disabled:opacity-40">
           {loading ? "…" : "Run sales engine"}
         </button>
-        {result && <pre className="whitespace-pre-wrap text-sm bg-[var(--card)] border border-[var(--card-border)] rounded-xl p-6">{result}</pre>}
+        {result && <pre className="whitespace-pre-wrap text-sm card-glow p-6 animate-fade-up">{result}</pre>}
       </main>
     </div>
   );

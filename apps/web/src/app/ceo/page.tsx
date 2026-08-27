@@ -30,18 +30,18 @@ export default function CeoCommandCenter() {
       </header>
       <main className="max-w-4xl mx-auto px-6 py-10 space-y-6">
         <div className="grid md:grid-cols-3 gap-4 text-sm">
-          {["Revenue", "Pipeline", "Marketing", "Traffic", "Competitors", "Customers", "Finance", "Risks", "Experiments"].map((k) => (
-            <div key={k} className="p-4 rounded-xl bg-[var(--card)] border border-[var(--card-border)]">
+          {["Revenue", "Pipeline", "Marketing", "Traffic", "Competitors", "Customers", "Finance", "Risks", "Experiments"].map((k, i) => (
+            <div key={k} className="p-4 card-glow animate-fade-up" style={{ animationDelay: `${i * 50}ms` }}>
               <div className="text-zinc-500 text-xs uppercase">{k}</div>
               <div className="text-zinc-400 mt-1">Connect analytics to populate</div>
             </div>
           ))}
         </div>
         <textarea value={msg} onChange={(e) => setMsg(e.target.value)} rows={3} className="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-4 py-3 text-sm" />
-        <button onClick={run} disabled={loading} className="px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40">
+        <button onClick={run} disabled={loading} className="btn-rainbow px-6 py-3 rounded-xl disabled:opacity-40">
           {loading ? "…" : "Ask AI CEO"}
         </button>
-        {result && <pre className="whitespace-pre-wrap text-sm bg-[var(--card)] border border-[var(--card-border)] rounded-xl p-6">{result}</pre>}
+        {result && <pre className="whitespace-pre-wrap text-sm card-glow p-6 animate-fade-up">{result}</pre>}
       </main>
     </div>
   );

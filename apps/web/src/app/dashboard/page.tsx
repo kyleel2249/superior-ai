@@ -157,7 +157,7 @@ export default function KpiDashboardPage() {
           </div>
         )}
 
-        <section className="rounded-xl border border-[var(--card-border)] bg-[var(--card)] p-6">
+        <section className="card-glow p-6 animate-fade-up">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-sm font-medium text-zinc-300">Observed metrics</h2>
             <div className="flex gap-2">
@@ -230,7 +230,7 @@ export default function KpiDashboardPage() {
 
         {briefing && (
           <section className="grid gap-6 lg:grid-cols-2">
-            <div className="rounded-xl border border-[var(--card-border)] bg-[var(--card)] p-6">
+            <div className="card-glow card-glow--indigo p-6 animate-fade-up">
               <h2 className="text-sm font-medium text-zinc-300">{briefing.title}</h2>
               <p className="mt-1 text-xs text-zinc-500">{briefing.period}</p>
               <p className="mt-4 text-sm text-zinc-300 leading-relaxed">{briefing.narrative}</p>

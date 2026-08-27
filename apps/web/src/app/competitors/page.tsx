@@ -67,7 +67,7 @@ export default function CompetitorWarRoom() {
           Never fabricates metrics or contacts.
         </p>
 
-        <section className="grid gap-4 rounded-2xl border border-[var(--card-border)] bg-[var(--card)] p-6">
+        <section className="grid gap-4 card-glow p-6 animate-fade-up">
           <label className="text-sm">
             <span className="text-zinc-400">Our product</span>
             <input
@@ -108,7 +108,7 @@ export default function CompetitorWarRoom() {
             <p className="text-xs text-zinc-500">{result.provenance}</p>
 
             <section className="grid md:grid-cols-2 gap-4">
-              <div className="rounded-2xl border border-emerald-900/50 bg-emerald-950/20 p-5">
+              <div className="card-glow card-glow--emerald p-5 animate-fade-up">
                 <h2 className="font-semibold text-emerald-300 mb-2">Opportunities</h2>
                 <ul className="text-sm space-y-1 text-zinc-300">
                   {result.scorecard.opportunityMap.map((x) => (
@@ -116,7 +116,7 @@ export default function CompetitorWarRoom() {
                   ))}
                 </ul>
               </div>
-              <div className="rounded-2xl border border-amber-900/50 bg-amber-950/20 p-5">
+              <div className="card-glow card-glow--amber p-5 animate-fade-up" style={{animationDelay: "80ms"}}>
                 <h2 className="font-semibold text-amber-300 mb-2">Threats</h2>
                 <ul className="text-sm space-y-1 text-zinc-300">
                   {result.scorecard.threatMap.map((x) => (
@@ -126,8 +126,8 @@ export default function CompetitorWarRoom() {
               </div>
             </section>
 
-            <section className="rounded-2xl border border-[var(--card-border)] bg-[var(--card)] p-5 space-y-3">
-              <h2 className="font-semibold">Profiles & page fetches</h2>
+            <section className="card-glow card-glow--cyan p-5 space-y-3 animate-fade-up">
+              <h2 className="font-semibold">Profiles &amp; page fetches</h2>
               {result.pageFetches.map((p) => (
                 <div key={p.url} className="text-sm border-b border-zinc-800 pb-3">
                   <div className="flex justify-between gap-2">
@@ -145,7 +145,7 @@ export default function CompetitorWarRoom() {
             </section>
 
             {result.searchHits.length > 0 && (
-              <section className="rounded-2xl border border-[var(--card-border)] bg-[var(--card)] p-5 space-y-2">
+              <section className="card-glow p-5 space-y-2 animate-fade-up">
                 <h2 className="font-semibold">Live search hits</h2>
                 {result.searchHits.slice(0, 12).map((h) => (
                   <div key={h.url + h.title} className="text-sm">
@@ -158,7 +158,7 @@ export default function CompetitorWarRoom() {
               </section>
             )}
 
-            <section className="rounded-2xl border border-[var(--card-border)] bg-[var(--card)] p-5 space-y-3">
+            <section className="card-glow p-5 space-y-3 animate-fade-up">
               <h2 className="font-semibold">Traffic shells (no invented numbers)</h2>
               {result.trafficShells.map((t) => (
                 <div key={t.domain} className="text-sm text-zinc-400">
@@ -168,7 +168,7 @@ export default function CompetitorWarRoom() {
               ))}
             </section>
 
-            <section className="rounded-2xl border border-[var(--card-border)] bg-[var(--card)] p-5">
+            <section className="card-glow p-5 animate-fade-up">
               <h2 className="font-semibold mb-2">Comparison templates</h2>
               <pre className="whitespace-pre-wrap text-xs text-zinc-400">
                 {result.comparisons.join("\n\n")}

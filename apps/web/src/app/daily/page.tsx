@@ -84,7 +84,7 @@ export default function DailyIntelligencePage() {
 
         {brief && (
           <>
-            <div className="rounded-xl border border-[var(--card-border)] bg-[var(--card)] p-6">
+            <div className="card-glow p-6 animate-fade-up">
               <h2 className="text-base font-semibold">{brief.title}</h2>
               <p className="text-xs text-zinc-500 mt-1">{brief.generatedAt}</p>
               <h3 className="mt-4 text-sm font-medium text-indigo-300">Focus today</h3>
@@ -97,10 +97,11 @@ export default function DailyIntelligencePage() {
               </ul>
             </div>
 
-            {brief.sections.map((s) => (
+            {brief.sections.map((s, idx) => (
               <section
                 key={s.id}
-                className="rounded-xl border border-[var(--card-border)] bg-[var(--card)] p-5"
+                className="card-glow card-glow--cyan p-5 animate-fade-up"
+                style={{ animationDelay: `${idx * 70}ms` }}
               >
                 <h3 className="text-sm font-medium text-zinc-200">{s.title}</h3>
                 <ul className="mt-3 space-y-1.5">

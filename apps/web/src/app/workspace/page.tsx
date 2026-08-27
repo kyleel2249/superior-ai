@@ -120,7 +120,7 @@ export default function WorkspacePage() {
 
         {msg && <p className="text-sm text-emerald-400">{msg}</p>}
 
-        <section className="rounded-2xl border border-[var(--card-border)] bg-[var(--card)] p-6 space-y-4">
+        <section className="card-glow p-6 space-y-4 animate-fade-up">
           <h2 className="font-medium">Profiles</h2>
           <p className="text-xs text-zinc-500">
             Active: <strong className="text-zinc-300">{active?.name ?? "—"}</strong>
@@ -173,7 +173,7 @@ export default function WorkspacePage() {
 
         <section
           id="projects"
-          className="rounded-2xl border border-[var(--card-border)] bg-[var(--card)] p-6 space-y-4"
+          className="card-glow card-glow--cyan p-6 space-y-4 animate-fade-up"
         >
           <h2 className="font-medium">Projects</h2>
           <div className="grid gap-2 sm:grid-cols-2">
@@ -215,7 +215,7 @@ export default function WorkspacePage() {
           )}
         </section>
 
-        <section className="rounded-2xl border border-[var(--card-border)] bg-[var(--card)] p-6 space-y-3">
+        <section className="card-glow card-glow--indigo p-6 space-y-3 animate-fade-up">
           <h2 className="font-medium">Quick preference note</h2>
           <textarea
             value={note}

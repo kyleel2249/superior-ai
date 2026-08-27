@@ -125,7 +125,7 @@ export default function CommandCenterPage() {
           </div>
         )}
 
-        <section className="rounded-xl border border-[var(--card-border)] bg-[var(--card)] p-6">
+        <section className="card-glow p-6 animate-fade-up">
           <h2 className="text-sm font-medium text-zinc-300 mb-3">Run as a company</h2>
           <div className="flex flex-col md:flex-row gap-3">
             <input
@@ -151,10 +151,11 @@ export default function CommandCenterPage() {
         <section>
           <h2 className="text-sm font-medium text-zinc-400 mb-3">Departments</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {departments.map((d) => (
+            {departments.map((d, i) => (
               <div
                 key={d.id}
-                className="rounded-xl border border-zinc-800 bg-zinc-950/50 p-4 hover:border-zinc-600 transition-colors"
+                className="card-glow card-glow--indigo p-4 animate-fade-up"
+                style={{ animationDelay: `${i * 60}ms` }}
               >
                 <div className="flex items-center justify-between gap-2">
                   <h3 className="text-sm font-semibold">{d.name}</h3>
@@ -175,13 +176,13 @@ export default function CommandCenterPage() {
 
         {company && (
           <section className="grid lg:grid-cols-2 gap-6">
-            <div className="rounded-xl border border-indigo-500/30 bg-indigo-500/5 p-6">
+            <div className="card-glow card-glow--indigo p-6 animate-fade-up">
               <h2 className="text-sm font-medium text-indigo-200">Executive synthesis</h2>
               <p className="mt-3 text-sm text-zinc-300 whitespace-pre-wrap leading-relaxed">
                 {company.executiveSynthesis || "—"}
               </p>
             </div>
-            <div className="rounded-xl border border-[var(--card-border)] bg-[var(--card)] p-6">
+            <div className="card-glow card-glow--cyan p-6 animate-fade-up" style={{animationDelay: "80ms"}}>
               <h2 className="text-sm font-medium text-zinc-300">Department contributions</h2>
               <ul className="mt-3 space-y-3 max-h-80 overflow-y-auto">
                 {(company.contributions ?? []).map((c, i) => (
@@ -199,7 +200,7 @@ export default function CommandCenterPage() {
         )}
 
         {brief && (
-          <section className="rounded-xl border border-[var(--card-border)] bg-[var(--card)] p-6">
+          <section className="card-glow card-glow--amber p-6 animate-fade-up">
             <h2 className="text-sm font-medium text-zinc-300">{brief.title}</h2>
             <ul className="mt-3 space-y-1">
               {brief.focusToday.map((f, i) => (
@@ -213,7 +214,7 @@ export default function CommandCenterPage() {
         )}
 
         <section className="grid md:grid-cols-2 gap-6">
-          <div className="rounded-xl border border-zinc-800 p-5">
+          <div className="card-glow p-5 animate-fade-up">
             <h2 className="text-sm font-medium text-zinc-400 mb-3">Quick links</h2>
             <div className="flex flex-wrap gap-2">
               {LINKS.map((l) => (
@@ -227,7 +228,7 @@ export default function CommandCenterPage() {
               ))}
             </div>
           </div>
-          <div className="rounded-xl border border-zinc-800 p-5">
+          <div className="card-glow p-5 animate-fade-up" style={{animationDelay: "80ms"}}>
             <h2 className="text-sm font-medium text-zinc-400 mb-3">Org chart preview</h2>
             <pre className="text-[11px] text-zinc-500 whitespace-pre-wrap max-h-48 overflow-y-auto font-mono">
               {orgChart || "Loading…"}

@@ -67,7 +67,7 @@ export default function BrandStudioPage() {
       </header>
 
       <main className="max-w-5xl mx-auto px-6 py-10 space-y-8">
-        <section className="rounded-2xl border border-[var(--card-border)] bg-[var(--card)] p-6 space-y-4">
+        <section className="card-glow p-6 space-y-4 animate-fade-up">
           <p className="text-sm text-zinc-400 leading-relaxed">
             Geometric letterform laboratory — monograms, negative space, and sleek marks from your
             initials. SVG is generated locally; no fabricated logo URLs.
@@ -136,10 +136,11 @@ export default function BrandStudioPage() {
 
         {concepts.length > 0 && (
           <section className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {concepts.map((c) => (
+            {concepts.map((c, i) => (
               <article
                 key={c.id || c.name}
-                className="rounded-2xl border border-[var(--card-border)] bg-[var(--card)] p-5 space-y-3"
+                className="card-glow card-glow--fuchsia p-5 space-y-3 animate-fade-up"
+                style={{ animationDelay: `${i * 70}ms` }}
               >
                 <div
                   className="aspect-square rounded-xl flex items-center justify-center bg-zinc-950 border border-zinc-800"

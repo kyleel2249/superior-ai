@@ -103,7 +103,7 @@ export default function PublisherPortalPage() {
           70% publisher / 30% platform).
         </p>
 
-        <section className="space-y-3 p-5 rounded-2xl border border-zinc-800 bg-zinc-900/40">
+        <section className="space-y-3 p-5 card-glow animate-fade-up">
           <h2 className="font-medium text-sm">1. Register</h2>
           <input
             value={name}
@@ -128,7 +128,7 @@ export default function PublisherPortalPage() {
           )}
         </section>
 
-        <section className="space-y-3 p-5 rounded-2xl border border-zinc-800 bg-zinc-900/40">
+        <section className="space-y-3 p-5 card-glow animate-fade-up">
           <h2 className="font-medium text-sm">2. Publish pack manifest</h2>
           <textarea
             value={packJson}
@@ -144,7 +144,7 @@ export default function PublisherPortalPage() {
           </button>
         </section>
 
-        <section className="space-y-3 p-5 rounded-2xl border border-zinc-800 bg-zinc-900/40">
+        <section className="space-y-3 p-5 card-glow animate-fade-up">
           <h2 className="font-medium text-sm">3. Revenue share</h2>
           <button
             onClick={simulateSale}

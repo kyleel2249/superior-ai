@@ -89,7 +89,7 @@ export default function StatusPage() {
 
             <section className="space-y-2">
               <h2 className="text-sm font-medium text-zinc-400">Components</h2>
-              <ul className="rounded-2xl border border-zinc-800 divide-y divide-zinc-800 bg-zinc-900/50">
+              <ul className="card-glow divide-y divide-zinc-800 animate-fade-up">
                 {data.components.map((c) => (
                   <li key={c.id} className="flex items-center justify-between px-4 py-3 text-sm">
                     <div>
@@ -114,7 +114,7 @@ export default function StatusPage() {
               ) : (
                 <ul className="space-y-3">
                   {data.incidents.map((i) => (
-                    <li key={i.id} className="p-4 rounded-xl border border-zinc-800 bg-zinc-900/50">
+                    <li key={i.id} className="p-4 card-glow card-glow--amber animate-fade-up">
                       <div className="flex justify-between gap-2 text-sm">
                         <p className="font-medium">{i.title}</p>
                         <span className="text-xs text-zinc-500 capitalize">{i.status}</span>
