@@ -69,6 +69,11 @@ export default function ChatPage() {
     <div className="h-screen flex flex-col bg-[var(--background)]">
       <header className="border-b border-[var(--card-border)] bg-[var(--card)] px-4 h-14 flex items-center justify-between shrink-0">
         <div className="flex items-center gap-3">
+          <div className={`ai-ring ${loading ? "ai-ring--active" : ""}`}>
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-xs font-bold">
+              S
+            </div>
+          </div>
           <Link href="/" className="text-zinc-400 hover:text-white text-sm">
             ← Home
           </Link>
@@ -115,6 +120,18 @@ export default function ChatPage() {
             </div>
           </div>
         ))}
+        {loading && (
+          <div className="flex justify-start animate-fade-up">
+            <div className="max-w-[85%] rounded-2xl px-4 py-3 bg-[var(--card)] border border-[var(--card-border)] flex items-center gap-3">
+              <div className="ai-ring ai-ring--active">
+                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-[10px] font-bold">
+                  S
+                </div>
+              </div>
+              <span className="text-sm text-zinc-400">{status ?? "Responding…"}</span>
+            </div>
+          </div>
+        )}
         <div ref={bottomRef} />
       </div>
 

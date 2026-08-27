@@ -94,6 +94,55 @@ body::before {
   animation: pulse-glow 2.5s ease-in-out infinite;
 }
 
+@keyframes ring-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes ring-breathe {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.04); }
+}
+
+/*
+ * .ai-ring — a literal rotating ring around an avatar/orb, meant to
+ * indicate SUPERIOR AI is actively responding (thinking/streaming).
+ * Only add --active while a real async response is in flight; this is a
+ * status indicator, not decoration, so it must reflect real loading state.
+ */
+.ai-ring {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+}
+
+.ai-ring::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 9999px;
+  padding: 3px;
+  background: conic-gradient(from 0deg, #6366f1, #a855f7, #ec4899, #22d3ee, #6366f1);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.25;
+  transition: opacity 0.3s ease;
+}
+
+.ai-ring--active::before {
+  opacity: 1;
+  animation: ring-spin 1.6s linear infinite, ring-breathe 1.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ai-ring--active::before {
+    animation: none;
+    opacity: 0.9;
+  }
+}
+
 .animate-gradient {
   background-size: 200% 200%;
   animation: gradient-shift 8s ease infinite;

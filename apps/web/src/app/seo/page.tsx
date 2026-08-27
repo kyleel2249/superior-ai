@@ -59,6 +59,16 @@ export default function SeoPage() {
             <button onClick={keywords} disabled={loading} className="px-4 rounded-xl border border-zinc-700 hover:border-zinc-500 disabled:opacity-40">Plan</button>
           </div>
         </div>
+        {loading && (
+          <div className="flex items-center gap-2 text-sm text-zinc-400 animate-fade-up">
+            <div className="ai-ring ai-ring--active">
+              <div className="w-6 h-6 rounded-full bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-[10px] font-bold">
+                S
+              </div>
+            </div>
+            Working…
+          </div>
+        )}
         {result && <pre className="whitespace-pre-wrap text-sm card-glow p-6 overflow-x-auto animate-fade-up">{result}</pre>}
       </main>
     </div>

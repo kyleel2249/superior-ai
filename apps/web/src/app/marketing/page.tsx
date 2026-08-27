@@ -58,9 +58,18 @@ export default function MarketingPage() {
           className="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-4 py-3 text-sm"
           placeholder="Product name"
         />
-        <button onClick={run} disabled={loading} className="btn-rainbow px-6 py-3 rounded-xl disabled:opacity-40">
-          {loading ? "Orchestrating…" : "Run growth orchestrator"}
-        </button>
+        <div className="flex items-center gap-3">
+          <button onClick={run} disabled={loading} className="btn-rainbow px-6 py-3 rounded-xl disabled:opacity-40">
+            {loading ? "Orchestrating…" : "Run growth orchestrator"}
+          </button>
+          {loading && (
+            <div className="ai-ring ai-ring--active">
+              <div className="w-6 h-6 rounded-full bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-[10px] font-bold">
+                S
+              </div>
+            </div>
+          )}
+        </div>
         {result && <pre className="whitespace-pre-wrap text-sm card-glow p-6 animate-fade-up">{result}</pre>}
       </main>
     </div>
