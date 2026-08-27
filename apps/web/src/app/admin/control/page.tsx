@@ -124,7 +124,7 @@ export default function AiControlCenterPage() {
           </div>
         )}
 
-        <section className="rounded-xl border border-[var(--card-border)] bg-[var(--card)] p-5 space-y-3">
+        <section className="card-glow p-5 space-y-3 animate-fade-up">
           <label className="text-xs text-zinc-500">Task / objective</label>
           <textarea
             value={task}
@@ -177,7 +177,7 @@ export default function AiControlCenterPage() {
           )}
         </section>
 
-        <section className="rounded-xl border border-zinc-800 bg-zinc-950/60 p-5">
+        <section className="card-glow card-glow--cyan p-5 animate-fade-up" style={{animationDelay: "80ms"}}>
           <h2 className="text-sm font-medium text-zinc-300 mb-3">Result</h2>
           <pre className="text-[11px] text-zinc-400 whitespace-pre-wrap overflow-x-auto max-h-[480px] font-mono leading-relaxed">
             {data ? JSON.stringify(data, null, 2) : loading ? "Loading…" : "—"}

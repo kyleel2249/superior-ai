@@ -39,7 +39,7 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-[var(--background)] flex items-center justify-center px-4">
-      <div className="w-full max-w-md p-8 rounded-2xl bg-[var(--card)] border border-[var(--card-border)] space-y-6">
+      <div className="w-full max-w-md p-8 card-glow card-glow--indigo space-y-6 animate-fade-up">
         <div>
           <Link href="/" className="text-xs text-zinc-500 hover:text-white">
             ← SUPERIOR AI

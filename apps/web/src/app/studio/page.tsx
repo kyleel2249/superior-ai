@@ -75,7 +75,7 @@ export default function CreativeStudioPage() {
         </div>
 
         {result && (
-          <pre className="whitespace-pre-wrap text-sm bg-[var(--card)] border border-[var(--card-border)] rounded-xl p-6 leading-relaxed">
+          <pre className="whitespace-pre-wrap text-sm card-glow p-6 leading-relaxed animate-fade-up">
             {result}
           </pre>
         )}

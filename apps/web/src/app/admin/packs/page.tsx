@@ -191,10 +191,11 @@ export default function PacksAdminPage() {
         {msg && <p className="text-sm text-emerald-400">{msg}</p>}
 
         <div className="grid gap-4">
-          {ranked.map((p) => (
+          {ranked.map((p, i) => (
             <article
               key={p.id}
-              className="p-5 rounded-2xl border border-zinc-800 bg-zinc-900/40 space-y-3"
+              className="p-5 card-glow card-glow--indigo space-y-3 animate-fade-up"
+              style={{ animationDelay: `${i * 50}ms` }}
             >
               <div className="flex justify-between gap-4 flex-wrap">
                 <div>

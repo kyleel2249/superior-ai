@@ -82,8 +82,8 @@ export default function ProvidersAdminPage() {
           {loading && !health.length ? (
             <p className="text-zinc-500">Checking…</p>
           ) : (
-            health.map((h) => (
-              <div key={h.provider} className="p-4 rounded-xl bg-[var(--card)] border border-[var(--card-border)]">
+            health.map((h, i) => (
+              <div key={h.provider} className="p-4 card-glow animate-fade-up" style={{ animationDelay: `${i * 50}ms` }}>
                 <div className="flex justify-between items-center">
                   <span className="font-medium uppercase text-sm">{h.provider}</span>
                   <span className={`text-xs ${STATUS_COLOR[h.status] ?? "text-zinc-400"}`}>{h.status}</span>
@@ -106,7 +106,7 @@ export default function ProvidersAdminPage() {
         {Object.entries(byProvider).map(([provider, list]) => (
           <section key={provider} className="mb-10">
             <h2 className="text-lg font-semibold capitalize mb-3">{provider} <span className="text-xs font-normal text-zinc-500">{list.length}</span></h2>
-            <div className="overflow-x-auto rounded-xl border border-[var(--card-border)]">
+            <div className="overflow-x-auto card-glow animate-fade-up">
               <table className="w-full text-sm">
                 <thead className="bg-zinc-900/80 text-zinc-400 text-left">
                   <tr>

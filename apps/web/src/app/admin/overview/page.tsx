@@ -55,25 +55,25 @@ export default function AdminOverviewPage() {
         </nav>
 
         <div className="grid md:grid-cols-2 gap-4">
-          <section className="p-4 rounded-2xl border border-zinc-800 bg-zinc-900/40">
+          <section className="p-4 card-glow animate-fade-up" style={{ animationDelay: "0ms" }}>
             <h2 className="text-sm font-medium text-zinc-400 mb-2">Health</h2>
             <pre className="text-[11px] text-zinc-400 overflow-auto max-h-48">
               {JSON.stringify(health, null, 2)}
             </pre>
           </section>
-          <section className="p-4 rounded-2xl border border-zinc-800 bg-zinc-900/40">
+          <section className="p-4 card-glow animate-fade-up" style={{ animationDelay: "60ms" }}>
             <h2 className="text-sm font-medium text-zinc-400 mb-2">Status</h2>
             <pre className="text-[11px] text-zinc-400 overflow-auto max-h-48">
               {JSON.stringify(status, null, 2)}
             </pre>
           </section>
-          <section className="p-4 rounded-2xl border border-zinc-800 bg-zinc-900/40">
+          <section className="p-4 card-glow animate-fade-up" style={{ animationDelay: "120ms" }}>
             <h2 className="text-sm font-medium text-zinc-400 mb-2">Metrics</h2>
             <pre className="text-[11px] text-zinc-400 overflow-auto max-h-48">
               {JSON.stringify(metrics, null, 2)}
             </pre>
           </section>
-          <section className="p-4 rounded-2xl border border-zinc-800 bg-zinc-900/40">
+          <section className="p-4 card-glow animate-fade-up" style={{ animationDelay: "180ms" }}>
             <h2 className="text-sm font-medium text-zinc-400 mb-2">Recent audit</h2>
             <pre className="text-[11px] text-zinc-400 overflow-auto max-h-48">
               {JSON.stringify(audit, null, 2)}

@@ -106,7 +106,7 @@ export default function CostsPage() {
 
         {report && (
           <>
-            <div className="p-5 rounded-2xl bg-[var(--card)] border border-[var(--card-border)]">
+            <div className="p-5 card-glow card-glow--indigo animate-fade-up">
               <p className="text-xs text-zinc-500">Total attributed (in-process)</p>
               <p className="text-3xl font-semibold mt-1">${report.totalCostUsd.toFixed(4)}</p>
               <p className="text-xs text-zinc-500 mt-2">
@@ -131,7 +131,7 @@ export default function CostsPage() {
                 {rows.length === 0 ? (
                   <p className="text-xs text-zinc-600">No data yet</p>
                 ) : (
-                  <ul className="rounded-xl border border-zinc-800 divide-y divide-zinc-800">
+                  <ul className="card-glow divide-y divide-zinc-800 animate-fade-up">
                     {rows.map(([k, cost, share]) => (
                       <li key={String(k)} className="flex justify-between px-4 py-2 text-sm">
                         <span className="text-zinc-300 truncate mr-4">{k}</span>

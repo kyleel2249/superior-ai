@@ -114,7 +114,7 @@ export default function PreferencesPage() {
         {saved && <p className="text-sm text-emerald-400">Saved locally and to workspace.</p>}
 
         {server && (
-          <pre className="text-xs text-zinc-500 bg-[var(--card)] border border-[var(--card-border)] rounded-xl p-4 overflow-auto">
+          <pre className="text-xs text-zinc-500 card-glow p-4 overflow-auto animate-fade-up">
             Server profile prefs: {JSON.stringify(server, null, 2)}
           </pre>
         )}
