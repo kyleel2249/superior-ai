@@ -2,6 +2,31 @@
  * Dynamic Model Registry
  * Editable from admin console without rebuild.
  * Models only become AVAILABLE after successful validation.
+ *
+ * IMPORTANT: this file used to contain a second, independent seed list
+ * for the same stylized model names (GPT-5.6 Sol, Claude Opus 5, Grok 4.6,
+ * etc.) that cintexa-models.ts also seeds. That caused genuine duplicate
+ * registry entries — this file's version used the fictional display-name
+ * string as a literal, raw provider model ID (e.g. provider: "anthropic",
+ * modelId: "claude-opus-5"), which isn't a real Anthropic model ID; if a
+ * real Anthropic key were ever configured (not via OpenRouter), that
+ * entry would fail with "model not found" rather than the honest
+ * CONFIGURATION_REQUIRED an unconfigured model should show. Worse,
+ * per-role selection (planCouncil) could inconsistently pick either the
+ * correct cintexa-models.ts entry or this broken duplicate depending on
+ * registration order and sort ties.
+ *
+ * Fix: the 9 models that overlapped with cintexa-models.ts's correctly
+ * OpenRouter-routed entries were removed from here entirely — that file
+ * (via ensureCintexaRegistry()) is now the sole source for those. The two
+ * remaining stylized-name entries that were unique to this file (GPT-5.6
+ * Luna, GPT-5.3 Codex) are kept but fixed to route through OpenRouter
+ * with an honest null mapping (openrouter_model_id: null) rather than a
+ * raw, unverifiable provider ID — same honest pattern cintexa-models.ts
+ * already uses for Claude Fable 5 and SuperGrok. GPT-6/GPT-7 (Future) are
+ * untouched — already safely inert (UNAVAILABLE, priority 0). The 4
+ * OpenRouter-native entries and the Local entry are untouched — they
+ * already used real, correct IDs.
  */
 
 import type {
@@ -30,51 +55,11 @@ const DEFAULT_SCORES: ModelCapabilityScores = {
 
 /** Seed registry with known families. Status starts as CONFIGURATION_REQUIRED. */
 const SEED_MODELS: Omit<ModelDefinition, "id" | "createdAt" | "updatedAt">[] = [
-  // OpenAI — GPT-5.6 family (as of mid-2026 public info)
+  // OpenAI — stylized/unverified names, honestly routed through OpenRouter
+  // with no real mapping (openrouter_model_id: null) rather than guessed.
+  // The real, verified GPT-5.6 Sol/Terra entries live in cintexa-models.ts.
   {
-    provider: "openai",
-    modelId: "gpt-5.6-sol",
-    displayName: "GPT-5.6 Sol",
-    status: "CONFIGURATION_REQUIRED",
-    availability: false,
-    contextWindow: 1_050_000,
-    maxOutput: 128_000,
-    scores: { ...DEFAULT_SCORES, reasoning: 92, coding: 90, agentic: 88, cost: 30 },
-    multimodalSupport: true,
-    functionCalling: true,
-    structuredOutput: true,
-    webAccess: true,
-    codeExecution: true,
-    fileAccess: true,
-    computerUse: true,
-    priority: 100,
-    fallbackPriority: 10,
-    healthScore: 0,
-    aliases: ["gpt-5.6", "GPT-5.6", "sol"],
-  },
-  {
-    provider: "openai",
-    modelId: "gpt-5.6-terra",
-    displayName: "GPT-5.6 Terra",
-    status: "CONFIGURATION_REQUIRED",
-    availability: false,
-    contextWindow: 1_050_000,
-    maxOutput: 128_000,
-    scores: { ...DEFAULT_SCORES, reasoning: 85, coding: 82, cost: 55 },
-    multimodalSupport: true,
-    functionCalling: true,
-    structuredOutput: true,
-    webAccess: true,
-    codeExecution: true,
-    fileAccess: true,
-    computerUse: false,
-    priority: 80,
-    fallbackPriority: 20,
-    healthScore: 0,
-    aliases: ["terra"],
-  },
-  {
-    provider: "openai",
+    provider: "openrouter",
     modelId: "gpt-5.6-luna",
     displayName: "GPT-5.6 Luna",
     status: "CONFIGURATION_REQUIRED",
@@ -93,9 +78,10 @@ const SEED_MODELS: Omit<ModelDefinition, "id" | "createdAt" | "updatedAt">[] = [
     fallbackPriority: 30,
     healthScore: 0,
     aliases: ["luna"],
+    metadata: { underlyingProvider: "openai", gateway: "openrouter", openrouter_model_id: null, internal_model_id: "gpt-5.6-luna" },
   },
   {
-    provider: "openai",
+    provider: "openrouter",
     modelId: "gpt-5.3-codex",
     displayName: "GPT-5.3 Codex",
     status: "CONFIGURATION_REQUIRED",
@@ -114,6 +100,7 @@ const SEED_MODELS: Omit<ModelDefinition, "id" | "createdAt" | "updatedAt">[] = [
     fallbackPriority: 15,
     healthScore: 0,
     aliases: ["codex", "gpt-5.3-codex"],
+    metadata: { underlyingProvider: "openai", gateway: "openrouter", openrouter_model_id: null, internal_model_id: "gpt-5.3-codex" },
   },
   // Future / alias entries — UNAVAILABLE until real API exposure
   {
@@ -157,156 +144,6 @@ const SEED_MODELS: Omit<ModelDefinition, "id" | "createdAt" | "updatedAt">[] = [
     fallbackPriority: 0,
     healthScore: 0,
     aliases: ["GPT-7", "gpt-7"],
-  },
-  // Anthropic
-  {
-    provider: "anthropic",
-    modelId: "claude-opus-5",
-    displayName: "Claude Opus 5",
-    status: "CONFIGURATION_REQUIRED",
-    availability: false,
-    contextWindow: 1_000_000,
-    maxOutput: 128_000,
-    scores: { ...DEFAULT_SCORES, reasoning: 94, coding: 88, writing: 92, agentic: 90 },
-    multimodalSupport: true,
-    functionCalling: true,
-    structuredOutput: true,
-    webAccess: false,
-    codeExecution: false,
-    fileAccess: true,
-    computerUse: true,
-    priority: 98,
-    fallbackPriority: 12,
-    healthScore: 0,
-    aliases: ["opus-5", "Opus 5", "claude-opus"],
-  },
-  {
-    provider: "anthropic",
-    modelId: "claude-sonnet-5",
-    displayName: "Claude Sonnet 5",
-    status: "CONFIGURATION_REQUIRED",
-    availability: false,
-    contextWindow: 1_000_000,
-    maxOutput: 64_000,
-    scores: { ...DEFAULT_SCORES, reasoning: 86, coding: 84, cost: 60, latency: 70 },
-    multimodalSupport: true,
-    functionCalling: true,
-    structuredOutput: true,
-    webAccess: false,
-    codeExecution: false,
-    fileAccess: true,
-    computerUse: false,
-    priority: 75,
-    fallbackPriority: 25,
-    healthScore: 0,
-    aliases: ["sonnet-5", "Sonnet 5"],
-  },
-  {
-    provider: "anthropic",
-    modelId: "claude-fable-5",
-    displayName: "Claude Fable 5",
-    status: "CONFIGURATION_REQUIRED",
-    availability: false,
-    contextWindow: 1_000_000,
-    maxOutput: 128_000,
-    scores: { ...DEFAULT_SCORES, reasoning: 93, coding: 87, writing: 94 },
-    multimodalSupport: true,
-    functionCalling: true,
-    structuredOutput: true,
-    webAccess: false,
-    codeExecution: false,
-    fileAccess: true,
-    computerUse: true,
-    priority: 97,
-    fallbackPriority: 11,
-    healthScore: 0,
-    aliases: ["fable-5", "Fable 5"],
-  },
-  // xAI Grok
-  {
-    provider: "xai",
-    modelId: "grok-4.6",
-    displayName: "Grok 4.6",
-    status: "CONFIGURATION_REQUIRED",
-    availability: false,
-    contextWindow: 500_000,
-    maxOutput: 128_000,
-    scores: { ...DEFAULT_SCORES, reasoning: 88, coding: 86, research: 85, latency: 75 },
-    multimodalSupport: true,
-    functionCalling: true,
-    structuredOutput: true,
-    webAccess: true,
-    codeExecution: false,
-    fileAccess: false,
-    computerUse: false,
-    priority: 90,
-    fallbackPriority: 18,
-    healthScore: 0,
-    aliases: ["grok-4.6", "Grok 4.6"],
-  },
-  {
-    provider: "xai",
-    modelId: "grok-4.5",
-    displayName: "Grok 4.5",
-    status: "CONFIGURATION_REQUIRED",
-    availability: false,
-    contextWindow: 500_000,
-    maxOutput: 128_000,
-    scores: { ...DEFAULT_SCORES, reasoning: 84, coding: 82 },
-    multimodalSupport: true,
-    functionCalling: true,
-    structuredOutput: true,
-    webAccess: true,
-    codeExecution: false,
-    fileAccess: false,
-    computerUse: false,
-    priority: 70,
-    fallbackPriority: 28,
-    healthScore: 0,
-    aliases: ["grok-4.5", "Grok 4.5"],
-  },
-  // Google Gemini
-  {
-    provider: "google",
-    modelId: "gemini-3.1-pro",
-    displayName: "Gemini 3.1 Pro",
-    status: "CONFIGURATION_REQUIRED",
-    availability: false,
-    contextWindow: 1_000_000,
-    maxOutput: 64_000,
-    scores: { ...DEFAULT_SCORES, reasoning: 87, coding: 80, vision: 90, research: 88 },
-    multimodalSupport: true,
-    functionCalling: true,
-    structuredOutput: true,
-    webAccess: true,
-    codeExecution: true,
-    fileAccess: true,
-    computerUse: false,
-    priority: 88,
-    fallbackPriority: 22,
-    healthScore: 0,
-    aliases: ["gemini-3.1-pro", "Gemini 3.1 Pro"],
-  },
-  {
-    provider: "google",
-    modelId: "gemini-3.6-flash",
-    displayName: "Gemini 3.6 Flash",
-    status: "CONFIGURATION_REQUIRED",
-    availability: false,
-    contextWindow: 1_000_000,
-    maxOutput: 32_000,
-    scores: { ...DEFAULT_SCORES, latency: 95, cost: 90, reasoning: 78 },
-    multimodalSupport: true,
-    functionCalling: true,
-    structuredOutput: true,
-    webAccess: true,
-    codeExecution: true,
-    fileAccess: true,
-    computerUse: false,
-    priority: 55,
-    fallbackPriority: 40,
-    healthScore: 0,
-    aliases: ["gemini-3.6-flash", "Gemini 3.6 Flash"],
   },
 
   // OpenRouter — routes to many upstream models via one key
