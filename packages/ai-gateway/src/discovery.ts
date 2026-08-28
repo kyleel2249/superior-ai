@@ -7,6 +7,7 @@ import { getAdapter } from "./providers";
 import { getCredentials } from "./credentials";
 import { modelRegistry } from "./registry/model-registry";
 import { logger } from "@superior-ai/core";
+import { setLifecycle } from "./canary";
 
 export interface DiscoveryResult {
   provider: ProviderId;
@@ -45,7 +46,7 @@ export async function discoverModels(provider: ProviderId): Promise<DiscoveryRes
     for (const modelId of discovered.slice(0, 50)) {
       const existing = modelRegistry.list({ provider }).find((m) => m.modelId === modelId);
       if (!existing) {
-        modelRegistry.register({
+        const registered = modelRegistry.register({
           provider,
           modelId,
           displayName: modelId,
@@ -81,6 +82,7 @@ export async function discoverModels(provider: ProviderId): Promise<DiscoveryRes
           healthScore: 70,
           aliases: [],
         });
+        setLifecycle(registered.id, "DISCOVERED");
         registeredNew++;
       } else if (existing.status !== "UNAVAILABLE") {
         modelRegistry.updateStatus(existing.id, "AVAILABLE", Math.max(existing.healthScore, 70));

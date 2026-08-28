@@ -7,7 +7,16 @@ import {
   benchmarkModel,
   checkAllFromEnv,
   getHealthSnapshot,
+  runBenchmarkSuite,
+  getBenchmarkHistory,
+  getLatestBenchmark,
+  compareModels,
+  GOLDEN_TASKS,
+  getLifecycle,
+  runSandboxChecks,
+  promoteFromSandbox,
 } from "@superior-ai/ai-gateway";
+import type { BenchmarkCategory } from "@superior-ai/ai-gateway";
 import type { ProviderId } from "@superior-ai/core";
 
 export async function GET(req: NextRequest) {
@@ -32,6 +41,12 @@ export async function GET(req: NextRequest) {
     models = models.filter((m) => m.availability && m.status === "AVAILABLE");
   }
 
+  if (req.nextUrl.searchParams.get("goldenTasks") === "1") {
+    return NextResponse.json({
+      tasks: GOLDEN_TASKS.map((t) => ({ id: t.id, category: t.category, checkDescription: t.checkDescription })),
+    });
+  }
+
   return NextResponse.json({
     models: models.map((m) => ({
       id: m.id,
@@ -50,6 +65,8 @@ export async function GET(req: NextRequest) {
       structuredOutput: m.structuredOutput,
       aliases: m.aliases,
       scores: m.scores,
+      lifecycle: getLifecycle(m.id),
+      latestBenchmark: getLatestBenchmark(m.id) ?? null,
     })),
     credentials: listCredentialStatus(),
     health: getHealthSnapshot(),
@@ -96,8 +113,42 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(result);
     }
 
+    if (action === "benchmark_suite") {
+      const registryId = String(body.registryId ?? "");
+      const provider = String(body.provider) as ProviderId;
+      const modelId = String(body.modelId ?? body.model);
+      if (!registryId || !provider || !modelId) {
+        return NextResponse.json({ error: "registryId, provider and modelId required" }, { status: 400 });
+      }
+      const categories = Array.isArray(body.categories) ? (body.categories as BenchmarkCategory[]) : undefined;
+      const run = await runBenchmarkSuite(registryId, provider, modelId, categories);
+      return NextResponse.json(run);
+    }
+
+    if (action === "benchmark_history") {
+      const registryId = String(body.registryId ?? "");
+      return NextResponse.json({ history: getBenchmarkHistory(registryId) });
+    }
+
+    if (action === "benchmark_compare") {
+      const a = String(body.registryIdA ?? "");
+      const b = String(body.registryIdB ?? "");
+      if (!a || !b) return NextResponse.json({ error: "registryIdA and registryIdB required" }, { status: 400 });
+      return NextResponse.json(compareModels(a, b));
+    }
+
+    if (action === "sandbox_check") {
+      const registryId = String(body.registryId ?? "");
+      return NextResponse.json(runSandboxChecks(registryId));
+    }
+
+    if (action === "sandbox_promote") {
+      const registryId = String(body.registryId ?? "");
+      return NextResponse.json(promoteFromSandbox(registryId));
+    }
+
     return NextResponse.json(
-      { error: "action must be discover | health | benchmark | resolve" },
+      { error: "action must be discover | health | benchmark | resolve | benchmark_suite | benchmark_history | benchmark_compare | sandbox_check | sandbox_promote" },
       { status: 400 }
     );
   } catch (err) {

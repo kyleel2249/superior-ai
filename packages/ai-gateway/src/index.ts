@@ -23,3 +23,4 @@ export * from "./canary";
 export * from "./verification/continuous";
 export * from "./portfolio-optimizer";
 export * from "./routing-simulator";
+export * from "./benchmark-lab";
