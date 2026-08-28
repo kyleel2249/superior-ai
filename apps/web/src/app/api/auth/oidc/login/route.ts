@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { getAuthMode } from "@superior-ai/auth";
+import { randomBytes } from "crypto";
+import { getAuthMode, OAUTH_STATE_COOKIE, oauthStateCookieOptions } from "@superior-ai/auth";
 
 export async function GET() {
   const issuer = process.env.AUTH_OIDC_ISSUER;
@@ -18,12 +19,16 @@ export async function GET() {
     );
   }
 
+  const state = randomBytes(24).toString("base64url");
+
   const authUrl = new URL(`${issuer.replace(/\/$/, "")}/authorize`);
   authUrl.searchParams.set("client_id", clientId);
   authUrl.searchParams.set("response_type", "code");
   authUrl.searchParams.set("scope", "openid profile email");
   authUrl.searchParams.set("redirect_uri", redirectUri);
-  authUrl.searchParams.set("state", `st_${Date.now()}`);
+  authUrl.searchParams.set("state", state);
 
-  return NextResponse.redirect(authUrl.toString());
+  const res = NextResponse.redirect(authUrl.toString());
+  res.cookies.set(OAUTH_STATE_COOKIE, state, oauthStateCookieOptions());
+  return res;
 }

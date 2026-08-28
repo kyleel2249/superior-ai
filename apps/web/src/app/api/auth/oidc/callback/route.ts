@@ -4,13 +4,26 @@ import {
   validateIdToken,
   SESSION_COOKIE,
   sessionCookieOptions,
+  OAUTH_STATE_COOKIE,
 } from "@superior-ai/auth";
 import { audit } from "@superior-ai/audit";
 
 export async function GET(req: NextRequest) {
   const code = req.nextUrl.searchParams.get("code");
+  const returnedState = req.nextUrl.searchParams.get("state");
+  const expectedState = req.cookies.get(OAUTH_STATE_COOKIE)?.value;
+
   if (!code) {
     return NextResponse.json({ error: "missing code" }, { status: 400 });
+  }
+
+  if (!expectedState || !returnedState || returnedState !== expectedState) {
+    audit({
+      action: "auth.login",
+      outcome: "failure",
+      meta: { error: "OAuth state mismatch — possible CSRF attempt or expired login attempt", method: "oidc" },
+    });
+    return NextResponse.json({ error: "invalid or expired state — restart the login flow" }, { status: 401 });
   }
 
   const issuer = process.env.AUTH_OIDC_ISSUER;
@@ -90,6 +103,7 @@ export async function GET(req: NextRequest) {
 
     const res = NextResponse.redirect(new URL("/chat", req.url));
     res.cookies.set(SESSION_COOKIE, session.token, sessionCookieOptions());
+    res.cookies.set(OAUTH_STATE_COOKIE, "", { ...sessionCookieOptions(0), maxAge: 0 });
     return res;
   } catch (err) {
     return NextResponse.json(

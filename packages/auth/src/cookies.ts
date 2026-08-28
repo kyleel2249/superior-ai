@@ -3,8 +3,20 @@
  */
 
 export const SESSION_COOKIE = "superior_session";
+export const OAUTH_STATE_COOKIE = "superior_oauth_state";
 
 export function sessionCookieOptions(maxAgeSec = 60 * 60 * 24 * 7) {
+  return {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax" as const,
+    path: "/",
+    maxAge: maxAgeSec,
+  };
+}
+
+/** Short-lived, matches how long an OAuth authorize->callback round trip should realistically take. */
+export function oauthStateCookieOptions(maxAgeSec = 600) {
   return {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",

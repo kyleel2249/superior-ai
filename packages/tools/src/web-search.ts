@@ -52,6 +52,8 @@ export type SearchEngineId =
   | "mojeek"
   | "wolframalpha"
   | "tavily"
+  | "exa"
+  | "searxng"
   | "none";
 
 export interface SearchResponse {
@@ -67,7 +69,7 @@ export interface SearchResponse {
 export interface EngineDescriptor {
   id: SearchEngineId;
   name: string;
-  category: "global" | "privacy" | "regional" | "alternative" | "computational" | "meta";
+  category: "global" | "privacy" | "regional" | "alternative" | "computational" | "meta" | "keyless";
   requiresKeys: string[];
   configured: boolean;
   notes: string;
@@ -193,6 +195,22 @@ export function listSearchEngines(): EngineDescriptor[] {
       configured: Boolean(env("TAVILY_API_KEY")),
       notes: "Research-oriented search API used by agents.",
     },
+    {
+      id: "exa",
+      name: "Exa",
+      category: "meta",
+      requiresKeys: ["EXA_API_KEY"],
+      configured: Boolean(env("EXA_API_KEY")),
+      notes: "AI-native neural search, returns page content alongside results.",
+    },
+    {
+      id: "searxng",
+      name: "SearXNG",
+      category: "keyless",
+      requiresKeys: ["SEARXNG_BASE_URL"],
+      configured: Boolean(env("SEARXNG_BASE_URL")),
+      notes: "Self-hosted/community meta-search. Keyless, but requires a configured instance URL — no public instance is hardcoded.",
+    },
   ];
 }
 
@@ -286,6 +304,50 @@ async function searchTavily(query: string, apiKey: string): Promise<SearchRespon
     })
   );
   return { query, results, engine: "tavily", status: "OK" };
+}
+
+async function searchExa(query: string, apiKey: string): Promise<SearchResponse> {
+  const res = await fetch("https://api.exa.ai/search", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "x-api-key": apiKey },
+    body: JSON.stringify({
+      query,
+      numResults: 10,
+      contents: { text: { maxCharacters: 400 } },
+    }),
+  });
+  if (!res.ok) throw new Error(`Exa HTTP ${res.status}`);
+  const data = await res.json();
+  const results: SearchHit[] = (data.results ?? []).map(
+    (r: { title?: string; url?: string; text?: string }) => ({
+      title: r.title ?? "",
+      url: r.url ?? "",
+      snippet: (r.text ?? "").slice(0, 400),
+      engine: "exa",
+    })
+  );
+  return { query, results, engine: "exa", status: "OK" };
+}
+
+/**
+ * SearXNG — self-hosted/community meta-search, keyless like DuckDuckGo but
+ * requires a configured instance URL (public instances vary in
+ * reliability and are the operator's choice, not hardcoded here).
+ */
+async function searchSearxng(query: string, baseUrl: string): Promise<SearchResponse> {
+  const url = `${baseUrl.replace(/\/$/, "")}/search?q=${encodeURIComponent(query)}&format=json`;
+  const res = await fetch(url, { headers: { Accept: "application/json" } });
+  if (!res.ok) throw new Error(`SearXNG HTTP ${res.status}`);
+  const data = await res.json();
+  const results: SearchHit[] = (data.results ?? []).slice(0, 10).map(
+    (r: { title?: string; url?: string; content?: string }) => ({
+      title: r.title ?? "",
+      url: r.url ?? "",
+      snippet: (r.content ?? "").slice(0, 400),
+      engine: "searxng",
+    })
+  );
+  return { query, results, engine: "searxng", status: "OK" };
 }
 
 async function searchBrave(query: string, apiKey: string): Promise<SearchResponse> {
@@ -612,6 +674,16 @@ export async function searchWithEngine(
       if (!k) return unavailable(q, "tavily", "Set TAVILY_API_KEY");
       return searchTavily(q, k);
     }
+    case "exa": {
+      const k = env("EXA_API_KEY");
+      if (!k) return unavailable(q, "exa", "Set EXA_API_KEY");
+      return searchExa(q, k);
+    }
+    case "searxng": {
+      const base = env("SEARXNG_BASE_URL");
+      if (!base) return unavailable(q, "searxng", "Set SEARXNG_BASE_URL to a SearXNG instance you control or trust");
+      return searchSearxng(q, base);
+    }
     case "duckduckgo":
     case "duckduckgo_html": {
       try {
@@ -660,9 +732,11 @@ export async function liveSearch(
         "bing",
         "brave",
         "tavily",
+        "exa",
         "mojeek",
         "yandex",
         "naver",
+        "searxng",
         "duckduckgo",
       ];
 
