@@ -10,7 +10,12 @@ type Tab =
   | "council"
   | "quality"
   | "credits"
-  | "routing";
+  | "routing"
+  | "disagreement"
+  | "governance"
+  | "auction"
+  | "benchmark"
+  | "discovery";
 
 export default function AiControlCenterPage() {
   const [tab, setTab] = useState<Tab>("overview");
@@ -50,6 +55,46 @@ export default function AiControlCenterPage() {
     }
   }
 
+  /** Same pattern as run(), targeting /api/advanced — where the disagreement engine, governance board, and auction live. */
+  async function runAdvanced(action: string, body: Record<string, unknown> = {}) {
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/advanced", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action, ...body }),
+      });
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error || "Request failed");
+      setData(json);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : String(e));
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  /** Same pattern, targeting /api/models — where the benchmark lab and model discovery/lifecycle live. */
+  async function runModels(action: string, body: Record<string, unknown> = {}) {
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/models", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action, ...body }),
+      });
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error || "Request failed");
+      setData(json);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : String(e));
+    } finally {
+      setLoading(false);
+    }
+  }
+
   async function loadModels() {
     setLoading(true);
     try {
@@ -67,6 +112,28 @@ export default function AiControlCenterPage() {
     setTab("credits");
   }
 
+  async function loadAgents() {
+    setLoading(true);
+    try {
+      const res = await fetch("/api/advanced?view=agents");
+      setData(await res.json());
+      setTab("auction");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function loadGoldenTasks() {
+    setLoading(true);
+    try {
+      const res = await fetch("/api/models?goldenTasks=1");
+      setData(await res.json());
+      setTab("benchmark");
+    } finally {
+      setLoading(false);
+    }
+  }
+
   const tabs: { id: Tab; label: string }[] = [
     { id: "overview", label: "Overview" },
     { id: "models", label: "Models" },
@@ -75,6 +142,11 @@ export default function AiControlCenterPage() {
     { id: "quality", label: "Quality" },
     { id: "credits", label: "Credits" },
     { id: "routing", label: "Routing" },
+    { id: "disagreement", label: "Disagreement" },
+    { id: "governance", label: "Governance" },
+    { id: "auction", label: "Auction" },
+    { id: "benchmark", label: "Benchmark Lab" },
+    { id: "discovery", label: "Discovery" },
   ];
 
   return (
@@ -106,6 +178,8 @@ export default function AiControlCenterPage() {
                 if (t.id === "models") loadModels();
                 if (t.id === "credits") loadCredits();
                 if (t.id === "overview") loadOverview();
+                if (t.id === "auction") loadAgents();
+                if (t.id === "benchmark") loadGoldenTasks();
               }}
               className={`text-xs px-3 py-1.5 rounded-full border ${
                 tab === t.id
@@ -176,6 +250,115 @@ export default function AiControlCenterPage() {
             />
           )}
         </section>
+
+        {tab === "disagreement" && (
+          <section className="card-glow card-glow--fuchsia p-5 space-y-3 animate-fade-up">
+            <h2 className="text-sm font-medium text-zinc-300">Disagreement Engine</h2>
+            <p className="text-xs text-zinc-500">
+              Runs a demo pair of conflicting claims through the real engine — structural comparison, not another LLM guess.
+            </p>
+            <button
+              type="button"
+              disabled={loading}
+              onClick={() =>
+                runAdvanced("disagreement_resolve", {
+                  claims: [
+                    { agentId: "researcher", agentName: "Researcher", subject: "market size", assertion: "TAM is approximately $2B", confidence: 75, evidenceRefs: ["src1", "src2"] },
+                    { agentId: "strategist", agentName: "Strategist", subject: "market size", assertion: "TAM is approximately $500M", confidence: 70, evidenceRefs: [] },
+                  ],
+                })
+              }
+              className="rounded-md bg-fuchsia-700 px-3 py-1.5 text-xs font-medium hover:bg-fuchsia-600 disabled:opacity-50"
+            >
+              Run demo disagreement
+            </button>
+          </section>
+        )}
+
+        {tab === "governance" && (
+          <section className="card-glow card-glow--amber p-5 space-y-3 animate-fade-up">
+            <h2 className="text-sm font-medium text-zinc-300">Governance Board</h2>
+            <p className="text-xs text-zinc-500">
+              Six-seat review (security/compliance/risk/finance/technology/AI-governance) built on the real risk scorer.
+            </p>
+            <button
+              type="button"
+              disabled={loading}
+              onClick={() =>
+                runAdvanced("governance_review", {
+                  proposal: {
+                    id: `p_${Date.now()}`,
+                    title: task,
+                    description: task,
+                    proposedBy: "control_center",
+                    modelChange: true,
+                    risk: { action: "control_center_proposal", financialImpact: 15000, dataSensitivity: "confidential" },
+                  },
+                })
+              }
+              className="rounded-md bg-amber-700 px-3 py-1.5 text-xs font-medium hover:bg-amber-600 disabled:opacity-50"
+            >
+              Review current task as proposal
+            </button>
+          </section>
+        )}
+
+        {tab === "auction" && (
+          <section className="card-glow card-glow--cyan p-5 space-y-3 animate-fade-up">
+            <h2 className="text-sm font-medium text-zinc-300">Agent Auction</h2>
+            <p className="text-xs text-zinc-500">
+              Real bids from the council roster (loaded above) — tool/permission match, load, and tracked success rate.
+            </p>
+            <button
+              type="button"
+              disabled={loading}
+              onClick={() =>
+                runAdvanced("auction_run", {
+                  task: { id: `t_${Date.now()}`, title: task, requiredTools: ["code_runner", "git"], requiredPermissions: ["code"], complexity: 3, priority: "P1" },
+                })
+              }
+              className="rounded-md bg-cyan-700 px-3 py-1.5 text-xs font-medium hover:bg-cyan-600 disabled:opacity-50"
+            >
+              Auction current task (coding profile)
+            </button>
+          </section>
+        )}
+
+        {tab === "benchmark" && (
+          <section className="card-glow card-glow--emerald p-5 space-y-3 animate-fade-up">
+            <h2 className="text-sm font-medium text-zinc-300">Benchmark Lab</h2>
+            <p className="text-xs text-zinc-500">
+              Golden tasks (loaded above) run against a real model via its actual adapter. Requires a configured provider — fails honestly (CONFIGURATION_REQUIRED) otherwise, never a fake pass.
+            </p>
+            <button
+              type="button"
+              disabled={loading}
+              onClick={() => runModels("benchmark_suite", { registryId: "openai:gpt-5.6-sol", provider: "openai", modelId: "gpt-5.6-sol", categories: ["reasoning", "coding"] })}
+              className="rounded-md bg-emerald-700 px-3 py-1.5 text-xs font-medium hover:bg-emerald-600 disabled:opacity-50"
+            >
+              Run suite (reasoning + coding)
+            </button>
+          </section>
+        )}
+
+        {tab === "discovery" && (
+          <section className="card-glow p-5 space-y-3 animate-fade-up">
+            <h2 className="text-sm font-medium text-zinc-300">Model Discovery + Lifecycle</h2>
+            <p className="text-xs text-zinc-500">
+              Newly discovered models start DISCOVERED — they need to pass real sandbox checks before promotion to canary rollout.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <button
+                type="button"
+                disabled={loading}
+                onClick={() => runModels("discover", {})}
+                className="rounded-md bg-indigo-600 px-3 py-1.5 text-xs font-medium hover:bg-indigo-500 disabled:opacity-50"
+              >
+                Discover all configured providers
+              </button>
+            </div>
+          </section>
+        )}
 
         <section className="card-glow card-glow--cyan p-5 animate-fade-up" style={{animationDelay: "80ms"}}>
           <h2 className="text-sm font-medium text-zinc-300 mb-3">Result</h2>
