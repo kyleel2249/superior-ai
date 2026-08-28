@@ -9,6 +9,7 @@ import {
   planCouncil,
   planDisagreement,
   councilWithCascade,
+  executeCouncil,
   evaluateQuality,
   qualityGate,
 } from "@superior-ai/ai-gateway";
@@ -102,6 +103,10 @@ export async function POST(req: NextRequest) {
     }
     if (action === "council_cascade") {
       return NextResponse.json(councilWithCascade(String(body.objective ?? body.text ?? "")));
+    }
+    if (action === "council_execute") {
+      const result = await executeCouncil(String(body.objective ?? body.text ?? ""));
+      return NextResponse.json(result);
     }
     if (action === "quality") {
       const report = evaluateQuality({
