@@ -52,8 +52,8 @@ import {
   listGoals,
   alignTaskToGoals,
 } from "@superior-ai/intelligence";
-import { analyzeInstructions, mergeTrustedPrompt, scoreActionRisk, setAutonomyBoundary, isActionAllowed, planRemediation, approveRemediation, applyRemediation } from "@superior-ai/security";
-import { listSkills, composeSkills, generateRoleFromBrief, saveCheckpoint, listTaskCheckpoints, buildReplaySpec, planRedTeam, listAgentTemplates, cloneAgentTemplate } from "@superior-ai/agents";
+import { analyzeInstructions, mergeTrustedPrompt, scoreActionRisk, setAutonomyBoundary, isActionAllowed, planRemediation, approveRemediation, applyRemediation, reviewProposal } from "@superior-ai/security";
+import { listSkills, composeSkills, generateRoleFromBrief, saveCheckpoint, listTaskCheckpoints, buildReplaySpec, planRedTeam, listAgentTemplates, cloneAgentTemplate, runDisagreementEngine, runAuction, recordTaskOutcome, setAgentLoad, COUNCIL_AGENTS } from "@superior-ai/agents";
 import {
   runSandboxChecks,
   promoteFromSandbox,
@@ -91,6 +91,11 @@ export async function GET(req: NextRequest) {
   if (view === "alerts") return NextResponse.json({ alerts: listAlerts() });
   if (view === "queue") return NextResponse.json({ queue: listQueue(), sla: listSlaPolicies() });
   if (view === "incidents") return NextResponse.json({ incidents: listIncidents() });
+  if (view === "agents") {
+    return NextResponse.json({
+      agents: COUNCIL_AGENTS.map((a) => ({ id: a.id, displayName: a.displayName, role: a.role, tools: a.tools, permissions: a.permissions })),
+    });
+  }
   if (view === "skills") return NextResponse.json({ skills: listSkills() });
   if (view === "marketplace") {
     const category = req.nextUrl.searchParams.get("category") ?? undefined;
@@ -377,6 +382,35 @@ export async function POST(req: NextRequest) {
         allEngines: body.allEngines !== false,
       });
       return NextResponse.json(brief);
+    }
+
+    if (action === "disagreement_resolve") {
+      const claims = Array.isArray(body.claims) ? body.claims : [];
+      return NextResponse.json(runDisagreementEngine(claims));
+    }
+
+    if (action === "governance_review") {
+      return NextResponse.json(reviewProposal(body.proposal ?? body));
+    }
+
+    if (action === "auction_run") {
+      const task = body.task;
+      if (!task) return NextResponse.json({ error: "task required" }, { status: 400 });
+      const candidateIds: string[] | undefined = body.candidateIds;
+      const candidates = candidateIds
+        ? COUNCIL_AGENTS.filter((a) => candidateIds.includes(a.id))
+        : COUNCIL_AGENTS;
+      return NextResponse.json(runAuction(task, candidates));
+    }
+
+    if (action === "auction_load_set") {
+      setAgentLoad(String(body.agentId), Number(body.activeTaskCount ?? 0));
+      return NextResponse.json({ ok: true });
+    }
+
+    if (action === "auction_outcome") {
+      recordTaskOutcome(String(body.agentId), Boolean(body.success));
+      return NextResponse.json({ ok: true });
     }
 
     return NextResponse.json({ error: "unknown action" }, { status: 400 });

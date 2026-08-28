@@ -6,3 +6,4 @@ export * from "./api-guard";
 export * from "./instruction-trust";
 export * from "./autonomy";
 export * from "./auto-remediation";
+export * from "./governance";
