@@ -30,8 +30,8 @@ const mode = fs.readFileSync(path.join(root, "packages/agents/src/departments/co
 if (mode.includes("runAsCompany") && mode.includes("listCompanyDepartments")) ok("mode:run");
 else fail("mode", "missing");
 
-const home = fs.readFileSync(path.join(root, "apps/web/src/app/page.tsx"), "utf8");
-if (home.includes('href="/command"')) ok("nav:command");
+const nav = fs.readFileSync(path.join(root, "apps/web/src/components/AppShell.tsx"), "utf8");
+if (nav.includes('href: "/command"')) ok("nav:command");
 else fail("nav", "missing");
 
 console.log(`\n${passed} passed, ${failed} failed`);

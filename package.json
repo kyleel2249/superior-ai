@@ -12,6 +12,8 @@
     "build": "turbo run build",
     "lint": "turbo run lint",
     "test": "turbo run test",
+    "test:phases": "for f in scripts/*.test.mjs; do node \"$f\" || exit 1; done",
+    "test:behavioral": "node scripts/behavioral-regression.mjs",
     "db:generate": "npm run generate --workspace=@superior-ai/db",
     "db:migrate": "npm run migrate --workspace=@superior-ai/db",
     "db:studio": "npm run studio --workspace=@superior-ai/db",

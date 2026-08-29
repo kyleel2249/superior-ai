@@ -45,6 +45,13 @@ jobs:
         run: npm install --ignore-scripts || npm install
       - name: Smoke
         run: node scripts/smoke.mjs
+      - name: Phase regression checks
+        run: |
+          for f in scripts/*.test.mjs; do
+            echo "::group::$f"
+            node "$f" || exit 1
+            echo "::endgroup::"
+          done
       - name: pgvector + prisma
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq postgresql-client
@@ -52,3 +59,13 @@ jobs:
           npx prisma generate --schema=packages/db/prisma/schema.prisma || true
           npx prisma db push --schema=packages/db/prisma/schema.prisma --skip-generate || true
           echo "prisma migrate/push attempted"
+      - name: Build
+        run: npm run build
+      - name: Behavioral regression suite
+        run: |
+          (cd apps/web && npm run start -- -p 3000 &)
+          for i in $(seq 1 30); do
+            curl -sf http://localhost:3000/api/health > /dev/null && break
+            sleep 1
+          done
+          BASE_URL=http://localhost:3000 node scripts/behavioral-regression.mjs

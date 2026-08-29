@@ -28,7 +28,7 @@ const checks = [
   ["packages/intelligence/src/scenario.ts", ["runScenario", "stress_test", "runScenarioSet"]],
   ["packages/ai-gateway/src/canary.ts", ["runSandboxChecks", "startCanary", "advanceCanary", "autoRollback"]],
   ["packages/ai-gateway/src/verification/continuous.ts", ["startVerificationLoop", "verifyCheckpoint", "final_result"]],
-  ["packages/agents/src/packs/marketplace.ts", ["listMarketplace", "installFromMarketplace", "ratePack"]],
+  ["packages/agents/src/packs/marketplace.ts", ["listMarketplace", "installFromMarketplace", "rateMarketplacePack"]],
   ["apps/web/src/app/api/advanced/route.ts", ["twin_simulate", "scenario_set", "canary_start", "verify_start", "marketplace_install"]],
 ];
 for (const [file, needles] of checks) {

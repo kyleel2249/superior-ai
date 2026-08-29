@@ -14,6 +14,7 @@ const NAV = [
   { href: "/studio", label: "Studio" },
   { href: "/admin/control", label: "Control" },
   { href: "/workspace", label: "Workspace" },
+  { href: "/settings/preferences", label: "Settings" },
 ];
 
 export function AppShell({ children }: { children: React.ReactNode }) {
