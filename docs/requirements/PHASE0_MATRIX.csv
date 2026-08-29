@@ -30,16 +30,16 @@ R0028,1,Foundation & Architecture,CORE,Core Domains,Knowledge,,,yes,,,,None (fou
 R0029,1,Foundation & Architecture,CORE,Core Domains,Workflows,,,yes,,,,None (foundational),,smoke-tested,See phase acceptance gate in master spec,PARTIAL
 R0030,1,Foundation & Architecture,CORE,Core Domains,Events,,,yes,,,,None (foundational),,smoke-tested,See phase acceptance gate in master spec,PARTIAL
 R0031,1,Foundation & Architecture,CORE,Core Domains,System Health,,,yes,,,,None (foundational),,smoke-tested,See phase acceptance gate in master spec,PARTIAL
-R0032,2,"Identity, Workspace & Local-First",UX,Local-First Experience,No-mandatory-signin launch flow,,yes,yes,,,,Phase 1,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0033,2,"Identity, Workspace & Local-First",UX,Local-First Experience,Local profiles (Personal/Business/Dev/Marketing/Research/Creative),,yes,yes,,,,Phase 1,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0034,2,"Identity, Workspace & Local-First",CORE,Workspace Management,Project Management,,yes,yes,,,,Phase 1,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0035,2,"Identity, Workspace & Local-First",CORE,Workspace Management,Workspace Management,,yes,yes,,,,Phase 1,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0036,2,"Identity, Workspace & Local-First",CORE,Workspace Management,Preferences,,yes,yes,,,,Phase 1,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0037,2,"Identity, Workspace & Local-First",CORE,Workspace Management,Settings,,yes,yes,,,,Phase 1,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0038,2,"Identity, Workspace & Local-First",CORE,Workspace Management,Theme,,yes,yes,,,,Phase 1,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0039,2,"Identity, Workspace & Local-First",CORE,Workspace Management,Language,,yes,yes,,,,Phase 1,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0040,2,"Identity, Workspace & Local-First",CORE,Workspace Management,Command Palette,,yes,yes,,,,Phase 1,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0041,2,"Identity, Workspace & Local-First",CORE,Workspace Management,Keyboard Shortcuts,,yes,yes,,,,Phase 1,,not tested,See phase acceptance gate in master spec,NOT STARTED
+R0032,2,"Identity, Workspace & Local-First",UX,Local-First Experience,No-mandatory-signin launch flow,,yes,yes,,,,Phase 1,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0033,2,"Identity, Workspace & Local-First",UX,Local-First Experience,Local profiles (Personal/Business/Dev/Marketing/Research/Creative),,yes,yes,,,,Phase 1,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0034,2,"Identity, Workspace & Local-First",CORE,Workspace Management,Project Management,,yes,yes,,,,Phase 1,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0035,2,"Identity, Workspace & Local-First",CORE,Workspace Management,Workspace Management,,yes,yes,,,,Phase 1,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0036,2,"Identity, Workspace & Local-First",CORE,Workspace Management,Preferences,,yes,yes,,,,Phase 1,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0037,2,"Identity, Workspace & Local-First",CORE,Workspace Management,Settings,,yes,yes,,,,Phase 1,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0038,2,"Identity, Workspace & Local-First",CORE,Workspace Management,Theme,,yes,yes,,,,Phase 1,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0039,2,"Identity, Workspace & Local-First",CORE,Workspace Management,Language,,yes,yes,,,,Phase 1,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0040,2,"Identity, Workspace & Local-First",CORE,Workspace Management,Command Palette,,yes,yes,,,,Phase 1,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0041,2,"Identity, Workspace & Local-First",CORE,Workspace Management,Keyboard Shortcuts,,yes,yes,,,,Phase 1,,not tested,See phase acceptance gate in master spec,PARTIAL
 R0042,3,Model & Provider Infrastructure,AI,Provider/Model Registries,Provider Registry,yes,,yes,,yes,,Phase 2,OpenAI/Anthropic/xAI/Google/OpenRouter API keys,smoke-tested,See phase acceptance gate in master spec,DONE
 R0043,3,Model & Provider Infrastructure,AI,Provider/Model Registries,Model Registry,yes,,yes,,yes,,Phase 2,OpenAI/Anthropic/xAI/Google/OpenRouter API keys,smoke-tested,See phase acceptance gate in master spec,DONE
 R0044,3,Model & Provider Infrastructure,AI,Provider/Model Registries,Capability Registry,yes,,yes,,yes,,Phase 2,OpenAI/Anthropic/xAI/Google/OpenRouter API keys,smoke-tested,See phase acceptance gate in master spec,DONE
@@ -56,14 +56,14 @@ R0054,3,Model & Provider Infrastructure,INTEGRATION,Provider Adapters,Google ada
 R0055,3,Model & Provider Infrastructure,INTEGRATION,Provider Adapters,OpenRouter adapter,,,yes,,yes,,Phase 2,OpenAI/Anthropic/xAI/Google/OpenRouter API keys,smoke-tested,See phase acceptance gate in master spec,DONE
 R0056,3,Model & Provider Infrastructure,INTEGRATION,Provider Adapters,Azure-compatible adapter,,,yes,,yes,,Phase 2,OpenAI/Anthropic/xAI/Google/OpenRouter API keys,smoke-tested,See phase acceptance gate in master spec,DONE
 R0057,3,Model & Provider Infrastructure,INTEGRATION,Provider Adapters,Local/self-hosted adapter,,,yes,,yes,,Phase 2,OpenAI/Anthropic/xAI/Google/OpenRouter API keys,smoke-tested,See phase acceptance gate in master spec,DONE
-R0058,4,Model Router & Multi-Model Council,AI,Router/Council,Task Classifier,yes,,yes,,yes,,Phase 3,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0059,4,Model Router & Multi-Model Council,AI,Router/Council,Model Router,yes,,yes,,yes,,Phase 3,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0060,4,Model Router & Multi-Model Council,AI,Router/Council,Model Ensemble,yes,,yes,,yes,,Phase 3,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0061,4,Model Router & Multi-Model Council,AI,Router/Council,Critic Agent,yes,,yes,,yes,,Phase 3,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0062,4,Model Router & Multi-Model Council,AI,Router/Council,Verification Agent,yes,,yes,,yes,,Phase 3,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0063,4,Model Router & Multi-Model Council,AI,Router/Council,Synthesis Agent,yes,,yes,,yes,,Phase 3,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0064,4,Model Router & Multi-Model Council,AI,Router/Council,Supreme Mode,yes,,yes,,yes,,Phase 3,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0065,4,Model Router & Multi-Model Council,AI,Router/Council,Autonomous Mode,yes,,yes,,yes,,Phase 3,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0058,4,Model Router & Multi-Model Council,AI,Router/Council,Task Classifier,yes,,yes,,yes,,Phase 3,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0059,4,Model Router & Multi-Model Council,AI,Router/Council,Model Router,yes,,yes,,yes,,Phase 3,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0060,4,Model Router & Multi-Model Council,AI,Router/Council,Model Ensemble,yes,,yes,,yes,,Phase 3,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0061,4,Model Router & Multi-Model Council,AI,Router/Council,Critic Agent,yes,,yes,,yes,,Phase 3,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0062,4,Model Router & Multi-Model Council,AI,Router/Council,Verification Agent,yes,,yes,,yes,,Phase 3,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0063,4,Model Router & Multi-Model Council,AI,Router/Council,Synthesis Agent,yes,,yes,,yes,,Phase 3,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0064,4,Model Router & Multi-Model Council,AI,Router/Council,Supreme Mode,yes,,yes,,yes,,Phase 3,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0065,4,Model Router & Multi-Model Council,AI,Router/Council,Autonomous Mode,yes,,yes,,yes,,Phase 3,,not tested,See phase acceptance gate in master spec,PARTIAL
 R0066,5,Memory & Knowledge System,MEMORY,Memory Types,User Memory,,,yes,yes,,,Phase 4,,smoke-tested,See phase acceptance gate in master spec,PARTIAL
 R0067,5,Memory & Knowledge System,MEMORY,Memory Types,Conversation Memory,,,yes,yes,,,Phase 4,,smoke-tested,See phase acceptance gate in master spec,PARTIAL
 R0068,5,Memory & Knowledge System,MEMORY,Memory Types,Project Memory,,,yes,yes,,,Phase 4,,smoke-tested,See phase acceptance gate in master spec,PARTIAL
@@ -88,29 +88,29 @@ R0086,5,Memory & Knowledge System,MEMORY,Retrieval Infra,Memory Recency,,,yes,ye
 R0087,5,Memory & Knowledge System,MEMORY,Retrieval Infra,Memory Conflict Detection,,,yes,yes,,,Phase 4,,smoke-tested,See phase acceptance gate in master spec,PARTIAL
 R0088,5,Memory & Knowledge System,MEMORY,Retrieval Infra,Memory Correction,,,yes,yes,,,Phase 4,,smoke-tested,See phase acceptance gate in master spec,PARTIAL
 R0089,5,Memory & Knowledge System,MEMORY,Retrieval Infra,Memory Deletion,,,yes,yes,,,Phase 4,,smoke-tested,See phase acceptance gate in master spec,PARTIAL
-R0090,6,"File, Document & Multimodal Intelligence",CORE,File Format Support,PDF,,,yes,,,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,NOT STARTED
-R0091,6,"File, Document & Multimodal Intelligence",CORE,File Format Support,DOCX,,,yes,,,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,NOT STARTED
-R0092,6,"File, Document & Multimodal Intelligence",CORE,File Format Support,XLSX,,,yes,,,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,NOT STARTED
-R0093,6,"File, Document & Multimodal Intelligence",CORE,File Format Support,CSV,,,yes,,,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,NOT STARTED
-R0094,6,"File, Document & Multimodal Intelligence",CORE,File Format Support,PPTX,,,yes,,,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,NOT STARTED
-R0095,6,"File, Document & Multimodal Intelligence",CORE,File Format Support,TXT,,,yes,,,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,NOT STARTED
-R0096,6,"File, Document & Multimodal Intelligence",CORE,File Format Support,Images,,,yes,,,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,NOT STARTED
-R0097,6,"File, Document & Multimodal Intelligence",CORE,File Format Support,Audio,,,yes,,,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,NOT STARTED
-R0098,6,"File, Document & Multimodal Intelligence",CORE,File Format Support,Video,,,yes,,,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,NOT STARTED
-R0099,6,"File, Document & Multimodal Intelligence",CORE,File Format Support,Screenshots,,,yes,,,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,NOT STARTED
-R0100,6,"File, Document & Multimodal Intelligence",CORE,File Format Support,Web Links,,,yes,,,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,NOT STARTED
-R0101,6,"File, Document & Multimodal Intelligence",CORE,File Format Support,Repositories,,,yes,,,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,NOT STARTED
-R0102,6,"File, Document & Multimodal Intelligence",AI,Extraction Pipeline,Document Parser,yes,,yes,,yes,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,NOT STARTED
-R0103,6,"File, Document & Multimodal Intelligence",AI,Extraction Pipeline,OCR,yes,,yes,,yes,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,NOT STARTED
-R0104,6,"File, Document & Multimodal Intelligence",AI,Extraction Pipeline,Image Understanding,yes,,yes,,yes,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,NOT STARTED
-R0105,6,"File, Document & Multimodal Intelligence",AI,Extraction Pipeline,Table Extraction,yes,,yes,,yes,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,NOT STARTED
-R0106,6,"File, Document & Multimodal Intelligence",AI,Extraction Pipeline,Audio Transcription,yes,,yes,,yes,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,NOT STARTED
-R0107,6,"File, Document & Multimodal Intelligence",AI,Extraction Pipeline,Video Transcription,yes,,yes,,yes,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,NOT STARTED
-R0108,6,"File, Document & Multimodal Intelligence",AI,Extraction Pipeline,Speaker Segmentation,yes,,yes,,yes,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,NOT STARTED
-R0109,6,"File, Document & Multimodal Intelligence",AI,Extraction Pipeline,Text Detection,yes,,yes,,yes,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,NOT STARTED
-R0110,6,"File, Document & Multimodal Intelligence",AI,Extraction Pipeline,Chart Understanding,yes,,yes,,yes,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,NOT STARTED
-R0111,6,"File, Document & Multimodal Intelligence",AI,Extraction Pipeline,Document Comparison,yes,,yes,,yes,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,NOT STARTED
-R0112,6,"File, Document & Multimodal Intelligence",AI,Extraction Pipeline,Multi-document Analysis,yes,,yes,,yes,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,NOT STARTED
+R0090,6,"File, Document & Multimodal Intelligence",CORE,File Format Support,PDF,,,yes,,,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,PARTIAL
+R0091,6,"File, Document & Multimodal Intelligence",CORE,File Format Support,DOCX,,,yes,,,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,PARTIAL
+R0092,6,"File, Document & Multimodal Intelligence",CORE,File Format Support,XLSX,,,yes,,,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,PARTIAL
+R0093,6,"File, Document & Multimodal Intelligence",CORE,File Format Support,CSV,,,yes,,,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,PARTIAL
+R0094,6,"File, Document & Multimodal Intelligence",CORE,File Format Support,PPTX,,,yes,,,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,PARTIAL
+R0095,6,"File, Document & Multimodal Intelligence",CORE,File Format Support,TXT,,,yes,,,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,PARTIAL
+R0096,6,"File, Document & Multimodal Intelligence",CORE,File Format Support,Images,,,yes,,,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,PARTIAL
+R0097,6,"File, Document & Multimodal Intelligence",CORE,File Format Support,Audio,,,yes,,,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,PARTIAL
+R0098,6,"File, Document & Multimodal Intelligence",CORE,File Format Support,Video,,,yes,,,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,PARTIAL
+R0099,6,"File, Document & Multimodal Intelligence",CORE,File Format Support,Screenshots,,,yes,,,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,PARTIAL
+R0100,6,"File, Document & Multimodal Intelligence",CORE,File Format Support,Web Links,,,yes,,,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,PARTIAL
+R0101,6,"File, Document & Multimodal Intelligence",CORE,File Format Support,Repositories,,,yes,,,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,PARTIAL
+R0102,6,"File, Document & Multimodal Intelligence",AI,Extraction Pipeline,Document Parser,yes,,yes,,yes,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,PARTIAL
+R0103,6,"File, Document & Multimodal Intelligence",AI,Extraction Pipeline,OCR,yes,,yes,,yes,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,PARTIAL
+R0104,6,"File, Document & Multimodal Intelligence",AI,Extraction Pipeline,Image Understanding,yes,,yes,,yes,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,PARTIAL
+R0105,6,"File, Document & Multimodal Intelligence",AI,Extraction Pipeline,Table Extraction,yes,,yes,,yes,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,PARTIAL
+R0106,6,"File, Document & Multimodal Intelligence",AI,Extraction Pipeline,Audio Transcription,yes,,yes,,yes,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,PARTIAL
+R0107,6,"File, Document & Multimodal Intelligence",AI,Extraction Pipeline,Video Transcription,yes,,yes,,yes,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,PARTIAL
+R0108,6,"File, Document & Multimodal Intelligence",AI,Extraction Pipeline,Speaker Segmentation,yes,,yes,,yes,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,PARTIAL
+R0109,6,"File, Document & Multimodal Intelligence",AI,Extraction Pipeline,Text Detection,yes,,yes,,yes,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,PARTIAL
+R0110,6,"File, Document & Multimodal Intelligence",AI,Extraction Pipeline,Chart Understanding,yes,,yes,,yes,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,PARTIAL
+R0111,6,"File, Document & Multimodal Intelligence",AI,Extraction Pipeline,Document Comparison,yes,,yes,,yes,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,PARTIAL
+R0112,6,"File, Document & Multimodal Intelligence",AI,Extraction Pipeline,Multi-document Analysis,yes,,yes,,yes,,Phase 5,OCR/transcription provider (none chosen),not tested,See phase acceptance gate in master spec,PARTIAL
 R0113,7,"Internet Search, Browser & Deep Research",RESEARCH,Search Infra,Web Search,,,yes,,,yes,Phase 6,Brave/Bing/Google CSE/Wolfram API keys (DuckDuckGo needs none),smoke-tested,See phase acceptance gate in master spec,DONE
 R0114,7,"Internet Search, Browser & Deep Research",RESEARCH,Search Infra,News Search,,,yes,,,yes,Phase 6,Brave/Bing/Google CSE/Wolfram API keys (DuckDuckGo needs none),smoke-tested,See phase acceptance gate in master spec,DONE
 R0115,7,"Internet Search, Browser & Deep Research",RESEARCH,Search Infra,Image Search,,,yes,,,yes,Phase 6,Brave/Bing/Google CSE/Wolfram API keys (DuckDuckGo needs none),smoke-tested,See phase acceptance gate in master spec,DONE
@@ -141,51 +141,51 @@ R0139,8,Core Agent Framework,AGENT,Agent Infra,Agent Message Bus,yes,,yes,,,,Pha
 R0140,8,Core Agent Framework,AGENT,Agent Infra,Agent Permissions,yes,,yes,,,,Phase 7,,smoke-tested,See phase acceptance gate in master spec,PARTIAL
 R0141,8,Core Agent Framework,AGENT,Agent Infra,Agent Lifecycle,yes,,yes,,,,Phase 7,,smoke-tested,See phase acceptance gate in master spec,PARTIAL
 R0142,8,Core Agent Framework,AGENT,Agent Infra,Agent State,yes,,yes,,,,Phase 7,,smoke-tested,See phase acceptance gate in master spec,PARTIAL
-R0143,9,Expert Departments & AI Company,BUSINESS,Departments,Executive,,,yes,yes,,,Phase 8,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0144,9,Expert Departments & AI Company,BUSINESS,Departments,Strategy,,,yes,yes,,,Phase 8,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0145,9,Expert Departments & AI Company,BUSINESS,Departments,Marketing,,,yes,yes,,,Phase 8,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0146,9,Expert Departments & AI Company,BUSINESS,Departments,Sales,,,yes,yes,,,Phase 8,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0147,9,Expert Departments & AI Company,BUSINESS,Departments,Creative,,,yes,yes,,,Phase 8,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0148,9,Expert Departments & AI Company,BUSINESS,Departments,Technology,,,yes,yes,,,Phase 8,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0149,9,Expert Departments & AI Company,BUSINESS,Departments,Finance,,,yes,yes,,,Phase 8,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0150,9,Expert Departments & AI Company,BUSINESS,Departments,Operations,,,yes,yes,,,Phase 8,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0151,9,Expert Departments & AI Company,BUSINESS,Departments,Product,,,yes,yes,,,Phase 8,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0152,9,Expert Departments & AI Company,BUSINESS,Departments,Customer Experience,,,yes,yes,,,Phase 8,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0153,9,Expert Departments & AI Company,BUSINESS,Departments,HR,,,yes,yes,,,Phase 8,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0154,9,Expert Departments & AI Company,BUSINESS,Departments,Security,,,yes,yes,,,Phase 8,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0155,9,Expert Departments & AI Company,BUSINESS,Departments,Analytics,,,yes,yes,,,Phase 8,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0156,10,Software Factory,SOFTWARE,SDLC Pipeline,Requirements,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0157,10,Software Factory,SOFTWARE,SDLC Pipeline,Architecture,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0158,10,Software Factory,SOFTWARE,SDLC Pipeline,Database Design,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0159,10,Software Factory,SOFTWARE,SDLC Pipeline,UI/UX,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0160,10,Software Factory,SOFTWARE,SDLC Pipeline,Frontend,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0161,10,Software Factory,SOFTWARE,SDLC Pipeline,Backend,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0162,10,Software Factory,SOFTWARE,SDLC Pipeline,API,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0163,10,Software Factory,SOFTWARE,SDLC Pipeline,Authentication,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0164,10,Software Factory,SOFTWARE,SDLC Pipeline,Authorization,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0165,10,Software Factory,SOFTWARE,SDLC Pipeline,Code Generation,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0166,10,Software Factory,SOFTWARE,SDLC Pipeline,Code Editing,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0167,10,Software Factory,SOFTWARE,SDLC Pipeline,Terminal,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0168,10,Software Factory,SOFTWARE,SDLC Pipeline,Code Execution,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0169,10,Software Factory,SOFTWARE,SDLC Pipeline,Testing,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0170,10,Software Factory,SOFTWARE,SDLC Pipeline,Linting,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0171,10,Software Factory,SOFTWARE,SDLC Pipeline,Typechecking,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0172,10,Software Factory,SOFTWARE,SDLC Pipeline,Security Review,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0173,10,Software Factory,SOFTWARE,SDLC Pipeline,Performance Review,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0174,10,Software Factory,SOFTWARE,SDLC Pipeline,Deployment,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0175,10,Software Factory,SOFTWARE,SDLC Pipeline,Rollback,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0176,10,Software Factory,INTEGRATION,VCS Integration,GitHub,,,yes,,yes,,Phase 9,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0177,10,Software Factory,INTEGRATION,VCS Integration,GitLab,,,yes,,yes,,Phase 9,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0178,10,Software Factory,INTEGRATION,VCS Integration,Bitbucket,,,yes,,yes,,Phase 9,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0179,11,"Code Review, Gap Detection & Optimization",SOFTWARE,Review Agents,Code Auditor,,,yes,,,yes,Phase 10,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0180,11,"Code Review, Gap Detection & Optimization",SOFTWARE,Review Agents,Architecture Reviewer,,,yes,,,yes,Phase 10,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0181,11,"Code Review, Gap Detection & Optimization",SOFTWARE,Review Agents,Bug Detector,,,yes,,,yes,Phase 10,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0182,11,"Code Review, Gap Detection & Optimization",SOFTWARE,Review Agents,Security Scanner,,,yes,,,yes,Phase 10,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0183,11,"Code Review, Gap Detection & Optimization",SOFTWARE,Review Agents,Performance Analyzer,,,yes,,,yes,Phase 10,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0184,11,"Code Review, Gap Detection & Optimization",SOFTWARE,Review Agents,Accessibility Analyzer,,,yes,,,yes,Phase 10,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0185,11,"Code Review, Gap Detection & Optimization",SOFTWARE,Review Agents,SEO Analyzer,,,yes,,,yes,Phase 10,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0186,11,"Code Review, Gap Detection & Optimization",SOFTWARE,Review Agents,Refactoring Agent,yes,,yes,,,yes,Phase 10,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0187,11,"Code Review, Gap Detection & Optimization",SOFTWARE,Review Agents,Optimization Agent,yes,,yes,,,yes,Phase 10,,not tested,See phase acceptance gate in master spec,NOT STARTED
+R0143,9,Expert Departments & AI Company,BUSINESS,Departments,Executive,,,yes,yes,,,Phase 8,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0144,9,Expert Departments & AI Company,BUSINESS,Departments,Strategy,,,yes,yes,,,Phase 8,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0145,9,Expert Departments & AI Company,BUSINESS,Departments,Marketing,,,yes,yes,,,Phase 8,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0146,9,Expert Departments & AI Company,BUSINESS,Departments,Sales,,,yes,yes,,,Phase 8,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0147,9,Expert Departments & AI Company,BUSINESS,Departments,Creative,,,yes,yes,,,Phase 8,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0148,9,Expert Departments & AI Company,BUSINESS,Departments,Technology,,,yes,yes,,,Phase 8,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0149,9,Expert Departments & AI Company,BUSINESS,Departments,Finance,,,yes,yes,,,Phase 8,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0150,9,Expert Departments & AI Company,BUSINESS,Departments,Operations,,,yes,yes,,,Phase 8,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0151,9,Expert Departments & AI Company,BUSINESS,Departments,Product,,,yes,yes,,,Phase 8,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0152,9,Expert Departments & AI Company,BUSINESS,Departments,Customer Experience,,,yes,yes,,,Phase 8,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0153,9,Expert Departments & AI Company,BUSINESS,Departments,HR,,,yes,yes,,,Phase 8,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0154,9,Expert Departments & AI Company,BUSINESS,Departments,Security,,,yes,yes,,,Phase 8,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0155,9,Expert Departments & AI Company,BUSINESS,Departments,Analytics,,,yes,yes,,,Phase 8,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0156,10,Software Factory,SOFTWARE,SDLC Pipeline,Requirements,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0157,10,Software Factory,SOFTWARE,SDLC Pipeline,Architecture,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0158,10,Software Factory,SOFTWARE,SDLC Pipeline,Database Design,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0159,10,Software Factory,SOFTWARE,SDLC Pipeline,UI/UX,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0160,10,Software Factory,SOFTWARE,SDLC Pipeline,Frontend,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0161,10,Software Factory,SOFTWARE,SDLC Pipeline,Backend,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0162,10,Software Factory,SOFTWARE,SDLC Pipeline,API,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0163,10,Software Factory,SOFTWARE,SDLC Pipeline,Authentication,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0164,10,Software Factory,SOFTWARE,SDLC Pipeline,Authorization,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0165,10,Software Factory,SOFTWARE,SDLC Pipeline,Code Generation,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0166,10,Software Factory,SOFTWARE,SDLC Pipeline,Code Editing,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0167,10,Software Factory,SOFTWARE,SDLC Pipeline,Terminal,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0168,10,Software Factory,SOFTWARE,SDLC Pipeline,Code Execution,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0169,10,Software Factory,SOFTWARE,SDLC Pipeline,Testing,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0170,10,Software Factory,SOFTWARE,SDLC Pipeline,Linting,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0171,10,Software Factory,SOFTWARE,SDLC Pipeline,Typechecking,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0172,10,Software Factory,SOFTWARE,SDLC Pipeline,Security Review,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0173,10,Software Factory,SOFTWARE,SDLC Pipeline,Performance Review,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0174,10,Software Factory,SOFTWARE,SDLC Pipeline,Deployment,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0175,10,Software Factory,SOFTWARE,SDLC Pipeline,Rollback,,,yes,,,yes,Phase 9,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0176,10,Software Factory,INTEGRATION,VCS Integration,GitHub,,,yes,,yes,,Phase 9,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0177,10,Software Factory,INTEGRATION,VCS Integration,GitLab,,,yes,,yes,,Phase 9,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0178,10,Software Factory,INTEGRATION,VCS Integration,Bitbucket,,,yes,,yes,,Phase 9,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0179,11,"Code Review, Gap Detection & Optimization",SOFTWARE,Review Agents,Code Auditor,,,yes,,,yes,Phase 10,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0180,11,"Code Review, Gap Detection & Optimization",SOFTWARE,Review Agents,Architecture Reviewer,,,yes,,,yes,Phase 10,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0181,11,"Code Review, Gap Detection & Optimization",SOFTWARE,Review Agents,Bug Detector,,,yes,,,yes,Phase 10,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0182,11,"Code Review, Gap Detection & Optimization",SOFTWARE,Review Agents,Security Scanner,,,yes,,,yes,Phase 10,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0183,11,"Code Review, Gap Detection & Optimization",SOFTWARE,Review Agents,Performance Analyzer,,,yes,,,yes,Phase 10,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0184,11,"Code Review, Gap Detection & Optimization",SOFTWARE,Review Agents,Accessibility Analyzer,,,yes,,,yes,Phase 10,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0185,11,"Code Review, Gap Detection & Optimization",SOFTWARE,Review Agents,SEO Analyzer,,,yes,,,yes,Phase 10,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0186,11,"Code Review, Gap Detection & Optimization",SOFTWARE,Review Agents,Refactoring Agent,yes,,yes,,,yes,Phase 10,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0187,11,"Code Review, Gap Detection & Optimization",SOFTWARE,Review Agents,Optimization Agent,yes,,yes,,,yes,Phase 10,,not tested,See phase acceptance gate in master spec,MINIMAL
 R0188,12,Image & Brand Studio,IMAGE,Image Editing,Image Generation,,,yes,,,,Phase 11,OpenAI DALL-E API key,not tested,See phase acceptance gate in master spec,MINIMAL
 R0189,12,Image & Brand Studio,IMAGE,Image Editing,Image Editing,,,yes,,,,Phase 11,OpenAI DALL-E API key,not tested,See phase acceptance gate in master spec,MINIMAL
 R0190,12,Image & Brand Studio,IMAGE,Image Editing,Object Removal,,,yes,,,,Phase 11,OpenAI DALL-E API key,not tested,See phase acceptance gate in master spec,MINIMAL
@@ -211,47 +211,47 @@ R0209,12,Image & Brand Studio,DESIGN,Brand System,Typography,,,yes,,,,Phase 11,O
 R0210,12,Image & Brand Studio,DESIGN,Brand System,Brand Guide,,,yes,,,,Phase 11,OpenAI DALL-E API key,not tested,See phase acceptance gate in master spec,MINIMAL
 R0211,12,Image & Brand Studio,DESIGN,Brand System,Social Assets,,,yes,,,,Phase 11,OpenAI DALL-E API key,not tested,See phase acceptance gate in master spec,MINIMAL
 R0212,12,Image & Brand Studio,DESIGN,Brand System,Ad Assets,,,yes,,,,Phase 11,OpenAI DALL-E API key,not tested,See phase acceptance gate in master spec,MINIMAL
-R0213,13,Vector & Professional Design Studio,DESIGN,Vector Tools,Bezier,,,yes,,,,Phase 12,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0214,13,Vector & Professional Design Studio,DESIGN,Vector Tools,Pen,,,yes,,,,Phase 12,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0215,13,Vector & Professional Design Studio,DESIGN,Vector Tools,Nodes,,,yes,,,,Phase 12,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0216,13,Vector & Professional Design Studio,DESIGN,Vector Tools,Curves,,,yes,,,,Phase 12,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0217,13,Vector & Professional Design Studio,DESIGN,Vector Tools,Boolean Operations,,,yes,,,,Phase 12,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0218,13,Vector & Professional Design Studio,DESIGN,Vector Tools,Shape Builder,,,yes,,,,Phase 12,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0219,13,Vector & Professional Design Studio,DESIGN,Vector Tools,Vector Brushes,,,yes,,,,Phase 12,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0220,13,Vector & Professional Design Studio,DESIGN,Vector Tools,Gradients,,,yes,,,,Phase 12,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0221,13,Vector & Professional Design Studio,DESIGN,Vector Tools,Patterns,,,yes,,,,Phase 12,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0222,13,Vector & Professional Design Studio,DESIGN,Vector Tools,Text on Path,,,yes,,,,Phase 12,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0223,13,Vector & Professional Design Studio,DESIGN,Vector Tools,SVG,,,yes,,,,Phase 12,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0224,13,Vector & Professional Design Studio,DESIGN,Vector Tools,Symbols,,,yes,,,,Phase 12,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0225,13,Vector & Professional Design Studio,DESIGN,Vector Tools,Reusable design systems,,,yes,,,,Phase 12,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0226,14,Video & Cinematic Studio,VIDEO,Video Editing,Video Generation,,,yes,,,,Phase 13,"No video-gen provider selected (Runway/Pika/Sora candidates, none wired)",not tested,See phase acceptance gate in master spec,NOT STARTED
-R0227,14,Video & Cinematic Studio,VIDEO,Video Editing,Video Editing,,,yes,,,,Phase 13,"No video-gen provider selected (Runway/Pika/Sora candidates, none wired)",not tested,See phase acceptance gate in master spec,NOT STARTED
-R0228,14,Video & Cinematic Studio,VIDEO,Video Editing,Timeline,,,yes,,,,Phase 13,"No video-gen provider selected (Runway/Pika/Sora candidates, none wired)",not tested,See phase acceptance gate in master spec,NOT STARTED
-R0229,14,Video & Cinematic Studio,VIDEO,Video Editing,Multi-Track,,,yes,,,,Phase 13,"No video-gen provider selected (Runway/Pika/Sora candidates, none wired)",not tested,See phase acceptance gate in master spec,NOT STARTED
-R0230,14,Video & Cinematic Studio,VIDEO,Video Editing,Transitions,,,yes,,,,Phase 13,"No video-gen provider selected (Runway/Pika/Sora candidates, none wired)",not tested,See phase acceptance gate in master spec,NOT STARTED
-R0231,14,Video & Cinematic Studio,VIDEO,Video Editing,Motion Graphics,,,yes,,,,Phase 13,"No video-gen provider selected (Runway/Pika/Sora candidates, none wired)",not tested,See phase acceptance gate in master spec,NOT STARTED
-R0232,14,Video & Cinematic Studio,VIDEO,Video Editing,Keyframes,,,yes,,,,Phase 13,"No video-gen provider selected (Runway/Pika/Sora candidates, none wired)",not tested,See phase acceptance gate in master spec,NOT STARTED
-R0233,14,Video & Cinematic Studio,VIDEO,Video Editing,Captions,,,yes,,,,Phase 13,"No video-gen provider selected (Runway/Pika/Sora candidates, none wired)",not tested,See phase acceptance gate in master spec,NOT STARTED
-R0234,14,Video & Cinematic Studio,VIDEO,Video Editing,Subtitles,,,yes,,,,Phase 13,"No video-gen provider selected (Runway/Pika/Sora candidates, none wired)",not tested,See phase acceptance gate in master spec,NOT STARTED
-R0235,14,Video & Cinematic Studio,VIDEO,Video Editing,Audio,,,yes,,,,Phase 13,"No video-gen provider selected (Runway/Pika/Sora candidates, none wired)",not tested,See phase acceptance gate in master spec,NOT STARTED
-R0236,14,Video & Cinematic Studio,VIDEO,Video Editing,Voice-over,,,yes,,,,Phase 13,"No video-gen provider selected (Runway/Pika/Sora candidates, none wired)",not tested,See phase acceptance gate in master spec,NOT STARTED
-R0237,14,Video & Cinematic Studio,VIDEO,Video Editing,Color,,,yes,,,,Phase 13,"No video-gen provider selected (Runway/Pika/Sora candidates, none wired)",not tested,See phase acceptance gate in master spec,NOT STARTED
-R0238,14,Video & Cinematic Studio,VIDEO,Video Editing,Tracking,,,yes,,,,Phase 13,"No video-gen provider selected (Runway/Pika/Sora candidates, none wired)",not tested,See phase acceptance gate in master spec,NOT STARTED
-R0239,14,Video & Cinematic Studio,VIDEO,Video Editing,Background Replacement,,,yes,,,,Phase 13,"No video-gen provider selected (Runway/Pika/Sora candidates, none wired)",not tested,See phase acceptance gate in master spec,NOT STARTED
-R0240,14,Video & Cinematic Studio,AGENT,Director Agents,Cinematic Director Agent,yes,,yes,,,,Phase 13,"No video-gen provider selected (Runway/Pika/Sora candidates, none wired)",not tested,See phase acceptance gate in master spec,NOT STARTED
-R0241,14,Video & Cinematic Studio,AGENT,Director Agents,Story Director Agent,yes,,yes,,,,Phase 13,"No video-gen provider selected (Runway/Pika/Sora candidates, none wired)",not tested,See phase acceptance gate in master spec,NOT STARTED
-R0242,14,Video & Cinematic Studio,AGENT,Director Agents,Scene/Character/Location/Wardrobe/Lighting/Voice/Story continuity,yes,,yes,,,,Phase 13,"No video-gen provider selected (Runway/Pika/Sora candidates, none wired)",not tested,See phase acceptance gate in master spec,NOT STARTED
-R0243,15,"UGC, Avatar & Media Cloning",VIDEO,Avatar/UGC,UGC Generator,,,yes,,,,Phase 14,No avatar/voice-clone provider selected; requires likeness/voice authorization flow,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0244,15,"UGC, Avatar & Media Cloning",VIDEO,Avatar/UGC,Creator Personas,,,yes,,,,Phase 14,No avatar/voice-clone provider selected; requires likeness/voice authorization flow,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0245,15,"UGC, Avatar & Media Cloning",VIDEO,Avatar/UGC,Talking Avatars,,,yes,,,,Phase 14,No avatar/voice-clone provider selected; requires likeness/voice authorization flow,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0246,15,"UGC, Avatar & Media Cloning",VIDEO,Avatar/UGC,Virtual Presenters,,,yes,,,,Phase 14,No avatar/voice-clone provider selected; requires likeness/voice authorization flow,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0247,15,"UGC, Avatar & Media Cloning",VIDEO,Avatar/UGC,Voice,,,yes,,,,Phase 14,No avatar/voice-clone provider selected; requires likeness/voice authorization flow,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0248,15,"UGC, Avatar & Media Cloning",VIDEO,Avatar/UGC,Lip Sync,,,yes,,,,Phase 14,No avatar/voice-clone provider selected; requires likeness/voice authorization flow,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0249,15,"UGC, Avatar & Media Cloning",VIDEO,Avatar/UGC,Facial Expressions,,,yes,,,,Phase 14,No avatar/voice-clone provider selected; requires likeness/voice authorization flow,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0250,15,"UGC, Avatar & Media Cloning",VIDEO,Avatar/UGC,Gestures,,,yes,,,,Phase 14,No avatar/voice-clone provider selected; requires likeness/voice authorization flow,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0251,15,"UGC, Avatar & Media Cloning",VIDEO,Avatar/UGC,Authorized image/video transformation,,,yes,,,,Phase 14,No avatar/voice-clone provider selected; requires likeness/voice authorization flow,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0252,15,"UGC, Avatar & Media Cloning",VIDEO,Avatar/UGC,Character & voice consistency,,,yes,,,,Phase 14,No avatar/voice-clone provider selected; requires likeness/voice authorization flow,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0253,15,"UGC, Avatar & Media Cloning",VIDEO,Avatar/UGC,Likeness/voice authorization gate,,,yes,,,,Phase 14,No avatar/voice-clone provider selected; requires likeness/voice authorization flow,not tested,See phase acceptance gate in master spec,NOT STARTED
+R0213,13,Vector & Professional Design Studio,DESIGN,Vector Tools,Bezier,,,yes,,,,Phase 12,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0214,13,Vector & Professional Design Studio,DESIGN,Vector Tools,Pen,,,yes,,,,Phase 12,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0215,13,Vector & Professional Design Studio,DESIGN,Vector Tools,Nodes,,,yes,,,,Phase 12,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0216,13,Vector & Professional Design Studio,DESIGN,Vector Tools,Curves,,,yes,,,,Phase 12,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0217,13,Vector & Professional Design Studio,DESIGN,Vector Tools,Boolean Operations,,,yes,,,,Phase 12,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0218,13,Vector & Professional Design Studio,DESIGN,Vector Tools,Shape Builder,,,yes,,,,Phase 12,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0219,13,Vector & Professional Design Studio,DESIGN,Vector Tools,Vector Brushes,,,yes,,,,Phase 12,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0220,13,Vector & Professional Design Studio,DESIGN,Vector Tools,Gradients,,,yes,,,,Phase 12,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0221,13,Vector & Professional Design Studio,DESIGN,Vector Tools,Patterns,,,yes,,,,Phase 12,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0222,13,Vector & Professional Design Studio,DESIGN,Vector Tools,Text on Path,,,yes,,,,Phase 12,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0223,13,Vector & Professional Design Studio,DESIGN,Vector Tools,SVG,,,yes,,,,Phase 12,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0224,13,Vector & Professional Design Studio,DESIGN,Vector Tools,Symbols,,,yes,,,,Phase 12,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0225,13,Vector & Professional Design Studio,DESIGN,Vector Tools,Reusable design systems,,,yes,,,,Phase 12,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0226,14,Video & Cinematic Studio,VIDEO,Video Editing,Video Generation,,,yes,,,,Phase 13,"No video-gen provider selected (Runway/Pika/Sora candidates, none wired)",not tested,See phase acceptance gate in master spec,MINIMAL
+R0227,14,Video & Cinematic Studio,VIDEO,Video Editing,Video Editing,,,yes,,,,Phase 13,"No video-gen provider selected (Runway/Pika/Sora candidates, none wired)",not tested,See phase acceptance gate in master spec,MINIMAL
+R0228,14,Video & Cinematic Studio,VIDEO,Video Editing,Timeline,,,yes,,,,Phase 13,"No video-gen provider selected (Runway/Pika/Sora candidates, none wired)",not tested,See phase acceptance gate in master spec,MINIMAL
+R0229,14,Video & Cinematic Studio,VIDEO,Video Editing,Multi-Track,,,yes,,,,Phase 13,"No video-gen provider selected (Runway/Pika/Sora candidates, none wired)",not tested,See phase acceptance gate in master spec,MINIMAL
+R0230,14,Video & Cinematic Studio,VIDEO,Video Editing,Transitions,,,yes,,,,Phase 13,"No video-gen provider selected (Runway/Pika/Sora candidates, none wired)",not tested,See phase acceptance gate in master spec,MINIMAL
+R0231,14,Video & Cinematic Studio,VIDEO,Video Editing,Motion Graphics,,,yes,,,,Phase 13,"No video-gen provider selected (Runway/Pika/Sora candidates, none wired)",not tested,See phase acceptance gate in master spec,MINIMAL
+R0232,14,Video & Cinematic Studio,VIDEO,Video Editing,Keyframes,,,yes,,,,Phase 13,"No video-gen provider selected (Runway/Pika/Sora candidates, none wired)",not tested,See phase acceptance gate in master spec,MINIMAL
+R0233,14,Video & Cinematic Studio,VIDEO,Video Editing,Captions,,,yes,,,,Phase 13,"No video-gen provider selected (Runway/Pika/Sora candidates, none wired)",not tested,See phase acceptance gate in master spec,MINIMAL
+R0234,14,Video & Cinematic Studio,VIDEO,Video Editing,Subtitles,,,yes,,,,Phase 13,"No video-gen provider selected (Runway/Pika/Sora candidates, none wired)",not tested,See phase acceptance gate in master spec,MINIMAL
+R0235,14,Video & Cinematic Studio,VIDEO,Video Editing,Audio,,,yes,,,,Phase 13,"No video-gen provider selected (Runway/Pika/Sora candidates, none wired)",not tested,See phase acceptance gate in master spec,MINIMAL
+R0236,14,Video & Cinematic Studio,VIDEO,Video Editing,Voice-over,,,yes,,,,Phase 13,"No video-gen provider selected (Runway/Pika/Sora candidates, none wired)",not tested,See phase acceptance gate in master spec,MINIMAL
+R0237,14,Video & Cinematic Studio,VIDEO,Video Editing,Color,,,yes,,,,Phase 13,"No video-gen provider selected (Runway/Pika/Sora candidates, none wired)",not tested,See phase acceptance gate in master spec,MINIMAL
+R0238,14,Video & Cinematic Studio,VIDEO,Video Editing,Tracking,,,yes,,,,Phase 13,"No video-gen provider selected (Runway/Pika/Sora candidates, none wired)",not tested,See phase acceptance gate in master spec,MINIMAL
+R0239,14,Video & Cinematic Studio,VIDEO,Video Editing,Background Replacement,,,yes,,,,Phase 13,"No video-gen provider selected (Runway/Pika/Sora candidates, none wired)",not tested,See phase acceptance gate in master spec,MINIMAL
+R0240,14,Video & Cinematic Studio,AGENT,Director Agents,Cinematic Director Agent,yes,,yes,,,,Phase 13,"No video-gen provider selected (Runway/Pika/Sora candidates, none wired)",not tested,See phase acceptance gate in master spec,MINIMAL
+R0241,14,Video & Cinematic Studio,AGENT,Director Agents,Story Director Agent,yes,,yes,,,,Phase 13,"No video-gen provider selected (Runway/Pika/Sora candidates, none wired)",not tested,See phase acceptance gate in master spec,MINIMAL
+R0242,14,Video & Cinematic Studio,AGENT,Director Agents,Scene/Character/Location/Wardrobe/Lighting/Voice/Story continuity,yes,,yes,,,,Phase 13,"No video-gen provider selected (Runway/Pika/Sora candidates, none wired)",not tested,See phase acceptance gate in master spec,MINIMAL
+R0243,15,"UGC, Avatar & Media Cloning",VIDEO,Avatar/UGC,UGC Generator,,,yes,,,,Phase 14,No avatar/voice-clone provider selected; requires likeness/voice authorization flow,not tested,See phase acceptance gate in master spec,MINIMAL
+R0244,15,"UGC, Avatar & Media Cloning",VIDEO,Avatar/UGC,Creator Personas,,,yes,,,,Phase 14,No avatar/voice-clone provider selected; requires likeness/voice authorization flow,not tested,See phase acceptance gate in master spec,MINIMAL
+R0245,15,"UGC, Avatar & Media Cloning",VIDEO,Avatar/UGC,Talking Avatars,,,yes,,,,Phase 14,No avatar/voice-clone provider selected; requires likeness/voice authorization flow,not tested,See phase acceptance gate in master spec,MINIMAL
+R0246,15,"UGC, Avatar & Media Cloning",VIDEO,Avatar/UGC,Virtual Presenters,,,yes,,,,Phase 14,No avatar/voice-clone provider selected; requires likeness/voice authorization flow,not tested,See phase acceptance gate in master spec,MINIMAL
+R0247,15,"UGC, Avatar & Media Cloning",VIDEO,Avatar/UGC,Voice,,,yes,,,,Phase 14,No avatar/voice-clone provider selected; requires likeness/voice authorization flow,not tested,See phase acceptance gate in master spec,MINIMAL
+R0248,15,"UGC, Avatar & Media Cloning",VIDEO,Avatar/UGC,Lip Sync,,,yes,,,,Phase 14,No avatar/voice-clone provider selected; requires likeness/voice authorization flow,not tested,See phase acceptance gate in master spec,MINIMAL
+R0249,15,"UGC, Avatar & Media Cloning",VIDEO,Avatar/UGC,Facial Expressions,,,yes,,,,Phase 14,No avatar/voice-clone provider selected; requires likeness/voice authorization flow,not tested,See phase acceptance gate in master spec,MINIMAL
+R0250,15,"UGC, Avatar & Media Cloning",VIDEO,Avatar/UGC,Gestures,,,yes,,,,Phase 14,No avatar/voice-clone provider selected; requires likeness/voice authorization flow,not tested,See phase acceptance gate in master spec,MINIMAL
+R0251,15,"UGC, Avatar & Media Cloning",VIDEO,Avatar/UGC,Authorized image/video transformation,,,yes,,,,Phase 14,No avatar/voice-clone provider selected; requires likeness/voice authorization flow,not tested,See phase acceptance gate in master spec,MINIMAL
+R0252,15,"UGC, Avatar & Media Cloning",VIDEO,Avatar/UGC,Character & voice consistency,,,yes,,,,Phase 14,No avatar/voice-clone provider selected; requires likeness/voice authorization flow,not tested,See phase acceptance gate in master spec,MINIMAL
+R0253,15,"UGC, Avatar & Media Cloning",VIDEO,Avatar/UGC,Likeness/voice authorization gate,,,yes,,,,Phase 14,No avatar/voice-clone provider selected; requires likeness/voice authorization flow,not tested,See phase acceptance gate in master spec,MINIMAL
 R0254,16,Advertising & Story Engine,CREATIVE,Ad Generation,Ad Generator,,,yes,,,,Phase 15,,not tested,See phase acceptance gate in master spec,MINIMAL
 R0255,16,Advertising & Story Engine,CREATIVE,Ad Generation,Ad Skit Generator,,,yes,,,,Phase 15,,not tested,See phase acceptance gate in master spec,MINIMAL
 R0256,16,Advertising & Story Engine,CREATIVE,Ad Generation,Story Engine,,,yes,,,,Phase 15,,not tested,See phase acceptance gate in master spec,MINIMAL
@@ -262,49 +262,49 @@ R0260,16,Advertising & Story Engine,CREATIVE,Ad Generation,Campaign Generator,,,
 R0261,16,Advertising & Story Engine,CREATIVE,Ad Generation,Creative Variant Generator,,,yes,,,,Phase 15,,not tested,See phase acceptance gate in master spec,MINIMAL
 R0262,16,Advertising & Story Engine,CREATIVE,Ad Generation,Duration variants (10-90s),,,yes,,,,Phase 15,,not tested,See phase acceptance gate in master spec,MINIMAL
 R0263,16,Advertising & Story Engine,CREATIVE,Ad Generation,Story archetypes,,,yes,,,,Phase 15,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0264,17,SEO & Content Engine,SEO,SEO Infra,Keyword Research,,,yes,,,,Phase 16,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0265,17,SEO & Content Engine,SEO,SEO Infra,Search Intent,,,yes,,,,Phase 16,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0266,17,SEO & Content Engine,SEO,SEO Infra,Topic Clustering,,,yes,,,,Phase 16,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0267,17,SEO & Content Engine,SEO,SEO Infra,Competitor SEO,,,yes,,,,Phase 16,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0268,17,SEO & Content Engine,SEO,SEO Infra,Content Gaps,,,yes,,,,Phase 16,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0269,17,SEO & Content Engine,SEO,SEO Infra,Technical SEO,,,yes,,,,Phase 16,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0270,17,SEO & Content Engine,SEO,SEO Infra,On-page SEO,,,yes,,,,Phase 16,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0271,17,SEO & Content Engine,SEO,SEO Infra,Internal Linking,,,yes,,,,Phase 16,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0272,17,SEO & Content Engine,SEO,SEO Infra,Metadata,,,yes,,,,Phase 16,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0273,17,SEO & Content Engine,SEO,SEO Infra,Schema,,,yes,,,,Phase 16,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0274,17,SEO & Content Engine,SEO,SEO Infra,Alt Text,,,yes,,,,Phase 16,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0275,17,SEO & Content Engine,SEO,SEO Infra,Video SEO,,,yes,,,,Phase 16,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0276,17,SEO & Content Engine,SEO,SEO Infra,Local SEO,,,yes,,,,Phase 16,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0277,17,SEO & Content Engine,SEO,SEO Infra,International SEO,,,yes,,,,Phase 16,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0278,17,SEO & Content Engine,MARKETING,Writing Engine,Human-quality writing engine,,,yes,,yes,,Phase 16,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0279,17,SEO & Content Engine,MARKETING,Writing Engine,Long-form article structure,,,yes,,yes,,Phase 16,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0280,17,SEO & Content Engine,MARKETING,Writing Engine,Comma-separated keyword handling,,,yes,,yes,,Phase 16,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0281,18,Marketing Intelligence Engine,MARKETING,Marketing Infra,Target Market Engine,,,yes,,yes,,Phase 17,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0282,18,Marketing Intelligence Engine,MARKETING,Marketing Infra,Persona Engine,,,yes,,yes,,Phase 17,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0283,18,Marketing Intelligence Engine,MARKETING,Marketing Infra,Customer Journey,,,yes,,yes,,Phase 17,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0284,18,Marketing Intelligence Engine,MARKETING,Marketing Infra,Marketing Analytics,,,yes,,yes,,Phase 17,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0285,18,Marketing Intelligence Engine,MARKETING,Marketing Infra,Campaign Planning,,,yes,,yes,,Phase 17,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0286,18,Marketing Intelligence Engine,MARKETING,Marketing Infra,Content Strategy,,,yes,,yes,,Phase 17,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0287,18,Marketing Intelligence Engine,MARKETING,Marketing Infra,Creative Strategy,,,yes,,yes,,Phase 17,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0288,18,Marketing Intelligence Engine,MARKETING,Marketing Infra,Social Growth,,,yes,,yes,,Phase 17,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0289,18,Marketing Intelligence Engine,MARKETING,Marketing Infra,Email Marketing,,,yes,,yes,,Phase 17,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0290,18,Marketing Intelligence Engine,MARKETING,Marketing Infra,Influencer Strategy,,,yes,,yes,,Phase 17,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0291,18,Marketing Intelligence Engine,MARKETING,Marketing Infra,Community Growth,,,yes,,yes,,Phase 17,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0292,18,Marketing Intelligence Engine,MARKETING,Marketing Infra,Conversion Optimization,,,yes,,yes,,Phase 17,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0293,19,Competitor & Traffic Intelligence,MARKETING,Competitor Intel,Competitor Discovery,,,yes,,yes,,Phase 18,No traffic-estimation provider (SimilarWeb-class) selected,not tested,See phase acceptance gate in master spec,MINIMAL
-R0294,19,Competitor & Traffic Intelligence,MARKETING,Competitor Intel,Competitor Profiles,,,yes,,yes,,Phase 18,No traffic-estimation provider (SimilarWeb-class) selected,not tested,See phase acceptance gate in master spec,MINIMAL
-R0295,19,Competitor & Traffic Intelligence,MARKETING,Competitor Intel,Traffic Source Analysis,,,yes,,yes,,Phase 18,No traffic-estimation provider (SimilarWeb-class) selected,not tested,See phase acceptance gate in master spec,MINIMAL
-R0296,19,Competitor & Traffic Intelligence,MARKETING,Competitor Intel,SEO Analysis,,,yes,,yes,,Phase 18,No traffic-estimation provider (SimilarWeb-class) selected,not tested,See phase acceptance gate in master spec,MINIMAL
-R0297,19,Competitor & Traffic Intelligence,MARKETING,Competitor Intel,Keyword Analysis,,,yes,,yes,,Phase 18,No traffic-estimation provider (SimilarWeb-class) selected,not tested,See phase acceptance gate in master spec,MINIMAL
-R0298,19,Competitor & Traffic Intelligence,MARKETING,Competitor Intel,Content Analysis,,,yes,,yes,,Phase 18,No traffic-estimation provider (SimilarWeb-class) selected,not tested,See phase acceptance gate in master spec,MINIMAL
-R0299,19,Competitor & Traffic Intelligence,MARKETING,Competitor Intel,Social Analysis,,,yes,,yes,,Phase 18,No traffic-estimation provider (SimilarWeb-class) selected,not tested,See phase acceptance gate in master spec,MINIMAL
-R0300,19,Competitor & Traffic Intelligence,MARKETING,Competitor Intel,Offer Analysis,,,yes,,yes,,Phase 18,No traffic-estimation provider (SimilarWeb-class) selected,not tested,See phase acceptance gate in master spec,MINIMAL
-R0301,19,Competitor & Traffic Intelligence,MARKETING,Competitor Intel,Pricing Analysis,,,yes,,yes,,Phase 18,No traffic-estimation provider (SimilarWeb-class) selected,not tested,See phase acceptance gate in master spec,MINIMAL
-R0302,19,Competitor & Traffic Intelligence,MARKETING,Competitor Intel,Referral Analysis,,,yes,,yes,,Phase 18,No traffic-estimation provider (SimilarWeb-class) selected,not tested,See phase acceptance gate in master spec,MINIMAL
-R0303,19,Competitor & Traffic Intelligence,MARKETING,Competitor Intel,Customer Sentiment,,,yes,,yes,,Phase 18,No traffic-estimation provider (SimilarWeb-class) selected,not tested,See phase acceptance gate in master spec,MINIMAL
-R0304,19,Competitor & Traffic Intelligence,MARKETING,Competitor Intel,Customer Discovery,,,yes,,yes,,Phase 18,No traffic-estimation provider (SimilarWeb-class) selected,not tested,See phase acceptance gate in master spec,MINIMAL
-R0305,19,Competitor & Traffic Intelligence,MARKETING,Competitor Intel,Competitor Monitoring,,,yes,,yes,,Phase 18,No traffic-estimation provider (SimilarWeb-class) selected,not tested,See phase acceptance gate in master spec,MINIMAL
-R0306,19,Competitor & Traffic Intelligence,MARKETING,Competitor Intel,Observed/Estimated/Inferred labeling,,,yes,,yes,,Phase 18,No traffic-estimation provider (SimilarWeb-class) selected,not tested,See phase acceptance gate in master spec,MINIMAL
+R0264,17,SEO & Content Engine,SEO,SEO Infra,Keyword Research,,,yes,,,,Phase 16,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0265,17,SEO & Content Engine,SEO,SEO Infra,Search Intent,,,yes,,,,Phase 16,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0266,17,SEO & Content Engine,SEO,SEO Infra,Topic Clustering,,,yes,,,,Phase 16,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0267,17,SEO & Content Engine,SEO,SEO Infra,Competitor SEO,,,yes,,,,Phase 16,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0268,17,SEO & Content Engine,SEO,SEO Infra,Content Gaps,,,yes,,,,Phase 16,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0269,17,SEO & Content Engine,SEO,SEO Infra,Technical SEO,,,yes,,,,Phase 16,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0270,17,SEO & Content Engine,SEO,SEO Infra,On-page SEO,,,yes,,,,Phase 16,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0271,17,SEO & Content Engine,SEO,SEO Infra,Internal Linking,,,yes,,,,Phase 16,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0272,17,SEO & Content Engine,SEO,SEO Infra,Metadata,,,yes,,,,Phase 16,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0273,17,SEO & Content Engine,SEO,SEO Infra,Schema,,,yes,,,,Phase 16,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0274,17,SEO & Content Engine,SEO,SEO Infra,Alt Text,,,yes,,,,Phase 16,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0275,17,SEO & Content Engine,SEO,SEO Infra,Video SEO,,,yes,,,,Phase 16,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0276,17,SEO & Content Engine,SEO,SEO Infra,Local SEO,,,yes,,,,Phase 16,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0277,17,SEO & Content Engine,SEO,SEO Infra,International SEO,,,yes,,,,Phase 16,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0278,17,SEO & Content Engine,MARKETING,Writing Engine,Human-quality writing engine,,,yes,,yes,,Phase 16,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0279,17,SEO & Content Engine,MARKETING,Writing Engine,Long-form article structure,,,yes,,yes,,Phase 16,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0280,17,SEO & Content Engine,MARKETING,Writing Engine,Comma-separated keyword handling,,,yes,,yes,,Phase 16,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0281,18,Marketing Intelligence Engine,MARKETING,Marketing Infra,Target Market Engine,,,yes,,yes,,Phase 17,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0282,18,Marketing Intelligence Engine,MARKETING,Marketing Infra,Persona Engine,,,yes,,yes,,Phase 17,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0283,18,Marketing Intelligence Engine,MARKETING,Marketing Infra,Customer Journey,,,yes,,yes,,Phase 17,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0284,18,Marketing Intelligence Engine,MARKETING,Marketing Infra,Marketing Analytics,,,yes,,yes,,Phase 17,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0285,18,Marketing Intelligence Engine,MARKETING,Marketing Infra,Campaign Planning,,,yes,,yes,,Phase 17,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0286,18,Marketing Intelligence Engine,MARKETING,Marketing Infra,Content Strategy,,,yes,,yes,,Phase 17,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0287,18,Marketing Intelligence Engine,MARKETING,Marketing Infra,Creative Strategy,,,yes,,yes,,Phase 17,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0288,18,Marketing Intelligence Engine,MARKETING,Marketing Infra,Social Growth,,,yes,,yes,,Phase 17,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0289,18,Marketing Intelligence Engine,MARKETING,Marketing Infra,Email Marketing,,,yes,,yes,,Phase 17,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0290,18,Marketing Intelligence Engine,MARKETING,Marketing Infra,Influencer Strategy,,,yes,,yes,,Phase 17,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0291,18,Marketing Intelligence Engine,MARKETING,Marketing Infra,Community Growth,,,yes,,yes,,Phase 17,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0292,18,Marketing Intelligence Engine,MARKETING,Marketing Infra,Conversion Optimization,,,yes,,yes,,Phase 17,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0293,19,Competitor & Traffic Intelligence,MARKETING,Competitor Intel,Competitor Discovery,,,yes,,yes,,Phase 18,No traffic-estimation provider (SimilarWeb-class) selected,not tested,See phase acceptance gate in master spec,PARTIAL
+R0294,19,Competitor & Traffic Intelligence,MARKETING,Competitor Intel,Competitor Profiles,,,yes,,yes,,Phase 18,No traffic-estimation provider (SimilarWeb-class) selected,not tested,See phase acceptance gate in master spec,PARTIAL
+R0295,19,Competitor & Traffic Intelligence,MARKETING,Competitor Intel,Traffic Source Analysis,,,yes,,yes,,Phase 18,No traffic-estimation provider (SimilarWeb-class) selected,not tested,See phase acceptance gate in master spec,PARTIAL
+R0296,19,Competitor & Traffic Intelligence,MARKETING,Competitor Intel,SEO Analysis,,,yes,,yes,,Phase 18,No traffic-estimation provider (SimilarWeb-class) selected,not tested,See phase acceptance gate in master spec,PARTIAL
+R0297,19,Competitor & Traffic Intelligence,MARKETING,Competitor Intel,Keyword Analysis,,,yes,,yes,,Phase 18,No traffic-estimation provider (SimilarWeb-class) selected,not tested,See phase acceptance gate in master spec,PARTIAL
+R0298,19,Competitor & Traffic Intelligence,MARKETING,Competitor Intel,Content Analysis,,,yes,,yes,,Phase 18,No traffic-estimation provider (SimilarWeb-class) selected,not tested,See phase acceptance gate in master spec,PARTIAL
+R0299,19,Competitor & Traffic Intelligence,MARKETING,Competitor Intel,Social Analysis,,,yes,,yes,,Phase 18,No traffic-estimation provider (SimilarWeb-class) selected,not tested,See phase acceptance gate in master spec,PARTIAL
+R0300,19,Competitor & Traffic Intelligence,MARKETING,Competitor Intel,Offer Analysis,,,yes,,yes,,Phase 18,No traffic-estimation provider (SimilarWeb-class) selected,not tested,See phase acceptance gate in master spec,PARTIAL
+R0301,19,Competitor & Traffic Intelligence,MARKETING,Competitor Intel,Pricing Analysis,,,yes,,yes,,Phase 18,No traffic-estimation provider (SimilarWeb-class) selected,not tested,See phase acceptance gate in master spec,PARTIAL
+R0302,19,Competitor & Traffic Intelligence,MARKETING,Competitor Intel,Referral Analysis,,,yes,,yes,,Phase 18,No traffic-estimation provider (SimilarWeb-class) selected,not tested,See phase acceptance gate in master spec,PARTIAL
+R0303,19,Competitor & Traffic Intelligence,MARKETING,Competitor Intel,Customer Sentiment,,,yes,,yes,,Phase 18,No traffic-estimation provider (SimilarWeb-class) selected,not tested,See phase acceptance gate in master spec,PARTIAL
+R0304,19,Competitor & Traffic Intelligence,MARKETING,Competitor Intel,Customer Discovery,,,yes,,yes,,Phase 18,No traffic-estimation provider (SimilarWeb-class) selected,not tested,See phase acceptance gate in master spec,PARTIAL
+R0305,19,Competitor & Traffic Intelligence,MARKETING,Competitor Intel,Competitor Monitoring,,,yes,,yes,,Phase 18,No traffic-estimation provider (SimilarWeb-class) selected,not tested,See phase acceptance gate in master spec,PARTIAL
+R0306,19,Competitor & Traffic Intelligence,MARKETING,Competitor Intel,Observed/Estimated/Inferred labeling,,,yes,,yes,,Phase 18,No traffic-estimation provider (SimilarWeb-class) selected,not tested,See phase acceptance gate in master spec,PARTIAL
 R0307,20,Sales & Revenue Engine,SALES,Sales Infra,Lead Generation,,,yes,,yes,,Phase 19,HubSpot/Salesforce API credentials (per-org),not tested,See phase acceptance gate in master spec,MINIMAL
 R0308,20,Sales & Revenue Engine,SALES,Sales Infra,Lead Research,,,yes,,yes,,Phase 19,HubSpot/Salesforce API credentials (per-org),not tested,See phase acceptance gate in master spec,MINIMAL
 R0309,20,Sales & Revenue Engine,SALES,Sales Infra,Lead Scoring,,,yes,,yes,,Phase 19,HubSpot/Salesforce API credentials (per-org),not tested,See phase acceptance gate in master spec,MINIMAL
@@ -326,97 +326,97 @@ R0324,20,Sales & Revenue Engine,AUTOMATION,Sales Autopilot,Recommend mode,,,yes,
 R0325,20,Sales & Revenue Engine,AUTOMATION,Sales Autopilot,Semi-Autonomous mode,,,yes,,,,Phase 19,HubSpot/Salesforce API credentials (per-org),not tested,See phase acceptance gate in master spec,MINIMAL
 R0326,20,Sales & Revenue Engine,AUTOMATION,Sales Autopilot,Autonomous mode,,,yes,,,,Phase 19,HubSpot/Salesforce API credentials (per-org),not tested,See phase acceptance gate in master spec,MINIMAL
 R0327,20,Sales & Revenue Engine,AUTOMATION,Sales Autopilot,External comms approval gate,,,yes,,,,Phase 19,HubSpot/Salesforce API credentials (per-org),not tested,See phase acceptance gate in master spec,MINIMAL
-R0328,21,Customer Experience & Support,CUSTOMER,Support Org,Customer Support,,,yes,,,,Phase 20,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0329,21,Customer Experience & Support,CUSTOMER,Support Org,Technical Support,,,yes,,,,Phase 20,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0330,21,Customer Experience & Support,CUSTOMER,Support Org,Product Support,,,yes,,,,Phase 20,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0331,21,Customer Experience & Support,CUSTOMER,Support Org,Customer Success,,,yes,,,,Phase 20,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0332,21,Customer Experience & Support,CUSTOMER,Support Org,Retention,,,yes,,,,Phase 20,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0333,21,Customer Experience & Support,CUSTOMER,Support Org,Complaint Resolution,,,yes,,,,Phase 20,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0334,21,Customer Experience & Support,CUSTOMER,Support Org,Escalation,,,yes,,,,Phase 20,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0335,21,Customer Experience & Support,CUSTOMER,Support Org,QA,,,yes,,,,Phase 20,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0336,21,Customer Experience & Support,CUSTOMER,Support Org,Supervisor,,,yes,,,,Phase 20,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0337,21,Customer Experience & Support,CUSTOMER,Support Org,Knowledge Base,,,yes,,,,Phase 20,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0338,21,Customer Experience & Support,CUSTOMER,Support Agent Behavior,Context memory,,,yes,,,,Phase 20,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0339,21,Customer Experience & Support,CUSTOMER,Support Agent Behavior,Emotion detection,,,yes,,,,Phase 20,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0340,21,Customer Experience & Support,CUSTOMER,Support Agent Behavior,Empathetic response,,,yes,,,,Phase 20,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0341,21,Customer Experience & Support,CUSTOMER,Support Agent Behavior,Adaptive response,,,yes,,,,Phase 20,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0342,21,Customer Experience & Support,CUSTOMER,Support Agent Behavior,Problem solving,,,yes,,,,Phase 20,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0343,21,Customer Experience & Support,CUSTOMER,Support Agent Behavior,Escalation,,,yes,,,,Phase 20,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0344,21,Customer Experience & Support,CUSTOMER,Support Agent Behavior,Learning,,,yes,,,,Phase 20,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0345,22,Product Innovation & Diversification,BUSINESS,Innovation Pipeline,Idea Generator,,,yes,yes,,,Phase 21,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0346,22,Product Innovation & Diversification,BUSINESS,Innovation Pipeline,Market Gap Finder,,,yes,yes,,,Phase 21,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0347,22,Product Innovation & Diversification,BUSINESS,Innovation Pipeline,Product Validator,,,yes,yes,,,Phase 21,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0348,22,Product Innovation & Diversification,BUSINESS,Innovation Pipeline,Service Generator,,,yes,yes,,,Phase 21,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0349,22,Product Innovation & Diversification,BUSINESS,Innovation Pipeline,Pricing Strategist,,,yes,yes,,,Phase 21,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0350,22,Product Innovation & Diversification,BUSINESS,Innovation Pipeline,MVP Builder,,,yes,yes,,,Phase 21,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0351,22,Product Innovation & Diversification,BUSINESS,Innovation Pipeline,Product Roadmap,,,yes,yes,,,Phase 21,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0352,22,Product Innovation & Diversification,BUSINESS,Innovation Pipeline,Diversification Engine,,,yes,yes,,,Phase 21,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0353,22,Product Innovation & Diversification,BUSINESS,Innovation Pipeline,Idea->Problem->Market->Product->MVP->Brand->Marketing->Sales pipeline,,,yes,yes,,,Phase 21,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0354,23,"Finance, Investment & Operations",FINANCE,Financial Analysis,Financial Analysis,,,yes,,,,Phase 22,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0355,23,"Finance, Investment & Operations",FINANCE,Financial Analysis,Financial Forecasting,,,yes,,,,Phase 22,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0356,23,"Finance, Investment & Operations",FINANCE,Financial Analysis,Investment Analysis,,,yes,,,,Phase 22,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0357,23,"Finance, Investment & Operations",FINANCE,Financial Analysis,Scenario Analysis (Bull/Base/Bear),,,yes,,,,Phase 22,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0358,23,"Finance, Investment & Operations",FINANCE,Financial Analysis,Risk Analysis,,,yes,,,,Phase 22,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0359,23,"Finance, Investment & Operations",FINANCE,Financial Analysis,Partnership Analysis,,,yes,,,,Phase 22,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0360,23,"Finance, Investment & Operations",OPERATIONS,Ops Optimization,Operations Optimization,,,yes,,,,Phase 22,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0361,23,"Finance, Investment & Operations",OPERATIONS,Ops Optimization,Cost Optimization,,,yes,,,,Phase 22,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0362,23,"Finance, Investment & Operations",OPERATIONS,Ops Optimization,Supply Chain,,,yes,,,,Phase 22,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0363,23,"Finance, Investment & Operations",OPERATIONS,Ops Optimization,Inventory,,,yes,,,,Phase 22,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0364,23,"Finance, Investment & Operations",OPERATIONS,Ops Optimization,Procurement,,,yes,,,,Phase 22,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0365,24,Automation & Workflow Engine,AUTOMATION,Workflow Builder,Visual Workflow Builder,,,yes,,,,Phase 23,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0366,24,Automation & Workflow Engine,AUTOMATION,Workflow Builder,Triggers,,,yes,,,,Phase 23,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0367,24,Automation & Workflow Engine,AUTOMATION,Workflow Builder,Conditions,,,yes,,,,Phase 23,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0368,24,Automation & Workflow Engine,AUTOMATION,Workflow Builder,Agents,yes,,yes,,,,Phase 23,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0369,24,Automation & Workflow Engine,AUTOMATION,Workflow Builder,Tools,,,yes,,,,Phase 23,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0370,24,Automation & Workflow Engine,AUTOMATION,Workflow Builder,Approvals,,,yes,,,,Phase 23,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0371,24,Automation & Workflow Engine,AUTOMATION,Workflow Builder,Actions,,,yes,,,,Phase 23,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0372,24,Automation & Workflow Engine,AUTOMATION,Workflow Builder,Scheduled Workflows,,,yes,,,,Phase 23,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0373,24,Automation & Workflow Engine,AUTOMATION,Workflow Builder,Webhooks,,,yes,,,,Phase 23,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0374,24,Automation & Workflow Engine,AUTOMATION,Workflow Builder,Event-Driven Workflows,,,yes,,,,Phase 23,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0375,24,Automation & Workflow Engine,AUTOMATION,Workflow Builder,Continuous Workflows,,,yes,,,,Phase 23,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0376,25,Social Media & Autopublishing,INTEGRATION,Social Platform APIs,Facebook,,,yes,,yes,,Phase 24,Meta/X/LinkedIn/TikTok OAuth apps not registered — no live posting yet,not tested,See phase acceptance gate in master spec,MINIMAL
-R0377,25,Social Media & Autopublishing,INTEGRATION,Social Platform APIs,Instagram,,,yes,,yes,,Phase 24,Meta/X/LinkedIn/TikTok OAuth apps not registered — no live posting yet,not tested,See phase acceptance gate in master spec,MINIMAL
-R0378,25,Social Media & Autopublishing,INTEGRATION,Social Platform APIs,TikTok,,,yes,,yes,,Phase 24,Meta/X/LinkedIn/TikTok OAuth apps not registered — no live posting yet,not tested,See phase acceptance gate in master spec,MINIMAL
-R0379,25,Social Media & Autopublishing,INTEGRATION,Social Platform APIs,YouTube,,,yes,,yes,,Phase 24,Meta/X/LinkedIn/TikTok OAuth apps not registered — no live posting yet,not tested,See phase acceptance gate in master spec,MINIMAL
-R0380,25,Social Media & Autopublishing,INTEGRATION,Social Platform APIs,LinkedIn,,,yes,,yes,,Phase 24,Meta/X/LinkedIn/TikTok OAuth apps not registered — no live posting yet,not tested,See phase acceptance gate in master spec,MINIMAL
-R0381,25,Social Media & Autopublishing,INTEGRATION,Social Platform APIs,X,,,yes,,yes,,Phase 24,Meta/X/LinkedIn/TikTok OAuth apps not registered — no live posting yet,not tested,See phase acceptance gate in master spec,MINIMAL
-R0382,25,Social Media & Autopublishing,INTEGRATION,Social Platform APIs,Pinterest,,,yes,,yes,,Phase 24,Meta/X/LinkedIn/TikTok OAuth apps not registered — no live posting yet,not tested,See phase acceptance gate in master spec,MINIMAL
-R0383,25,Social Media & Autopublishing,INTEGRATION,Social Platform APIs,Reddit,,,yes,,yes,,Phase 24,Meta/X/LinkedIn/TikTok OAuth apps not registered — no live posting yet,not tested,See phase acceptance gate in master spec,MINIMAL
-R0384,25,Social Media & Autopublishing,MARKETING,Publishing Infra,Create,,,yes,,yes,,Phase 24,Meta/X/LinkedIn/TikTok OAuth apps not registered — no live posting yet,not tested,See phase acceptance gate in master spec,MINIMAL
-R0385,25,Social Media & Autopublishing,MARKETING,Publishing Infra,Schedule,,,yes,,yes,,Phase 24,Meta/X/LinkedIn/TikTok OAuth apps not registered — no live posting yet,not tested,See phase acceptance gate in master spec,MINIMAL
-R0386,25,Social Media & Autopublishing,MARKETING,Publishing Infra,Publish,,,yes,,yes,,Phase 24,Meta/X/LinkedIn/TikTok OAuth apps not registered — no live posting yet,not tested,See phase acceptance gate in master spec,MINIMAL
-R0387,25,Social Media & Autopublishing,MARKETING,Publishing Infra,Cross-post,,,yes,,yes,,Phase 24,Meta/X/LinkedIn/TikTok OAuth apps not registered — no live posting yet,not tested,See phase acceptance gate in master spec,MINIMAL
-R0388,25,Social Media & Autopublishing,MARKETING,Publishing Infra,Adapt,,,yes,,yes,,Phase 24,Meta/X/LinkedIn/TikTok OAuth apps not registered — no live posting yet,not tested,See phase acceptance gate in master spec,MINIMAL
-R0389,25,Social Media & Autopublishing,MARKETING,Publishing Infra,Analyze,,,yes,,yes,,Phase 24,Meta/X/LinkedIn/TikTok OAuth apps not registered — no live posting yet,not tested,See phase acceptance gate in master spec,MINIMAL
-R0390,25,Social Media & Autopublishing,MARKETING,Publishing Infra,Optimize,,,yes,,yes,,Phase 24,Meta/X/LinkedIn/TikTok OAuth apps not registered — no live posting yet,not tested,See phase acceptance gate in master spec,MINIMAL
-R0391,25,Social Media & Autopublishing,MARKETING,Publishing Infra,Official-API-only constraint,,,yes,,yes,,Phase 24,Meta/X/LinkedIn/TikTok OAuth apps not registered — no live posting yet,not tested,See phase acceptance gate in master spec,MINIMAL
-R0392,26,Analytics & Attribution,BUSINESS,Analytics Infra,Traffic Analytics,,,yes,yes,,,Phase 25,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0393,26,Analytics & Attribution,BUSINESS,Analytics Infra,Lead Analytics,,,yes,yes,,,Phase 25,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0394,26,Analytics & Attribution,BUSINESS,Analytics Infra,Sales Analytics,,,yes,yes,,,Phase 25,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0395,26,Analytics & Attribution,BUSINESS,Analytics Infra,Customer Analytics,,,yes,yes,,,Phase 25,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0396,26,Analytics & Attribution,BUSINESS,Analytics Infra,Campaign Analytics,,,yes,yes,,,Phase 25,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0397,26,Analytics & Attribution,BUSINESS,Analytics Infra,SEO Analytics,,,yes,yes,,,Phase 25,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0398,26,Analytics & Attribution,BUSINESS,Analytics Infra,Creative Analytics,,,yes,yes,,,Phase 25,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0399,26,Analytics & Attribution,BUSINESS,Analytics Infra,Revenue Analytics,,,yes,yes,,,Phase 25,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0400,26,Analytics & Attribution,BUSINESS,Analytics Infra,Attribution,,,yes,yes,,,Phase 25,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0401,26,Analytics & Attribution,BUSINESS,Analytics Infra,Experiment Tracking,,,yes,yes,,,Phase 25,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0402,26,Analytics & Attribution,BUSINESS,Attribution Models,First Click,,,yes,yes,,,Phase 25,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0403,26,Analytics & Attribution,BUSINESS,Attribution Models,Last Click,,,yes,yes,,,Phase 25,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0404,26,Analytics & Attribution,BUSINESS,Attribution Models,Linear,,,yes,yes,,,Phase 25,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0405,26,Analytics & Attribution,BUSINESS,Attribution Models,Position Based,,,yes,yes,,,Phase 25,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0406,26,Analytics & Attribution,BUSINESS,Attribution Models,Time Decay,,,yes,yes,,,Phase 25,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0407,26,Analytics & Attribution,BUSINESS,Attribution Models,Custom,,,yes,yes,,,Phase 25,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0408,27,Daily Intelligence & Inspiration,UX,Daily Content,Daily Quotes,,yes,yes,,,,Phase 26,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0409,27,Daily Intelligence & Inspiration,UX,Daily Content,Daily Stories,,yes,yes,,,,Phase 26,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0410,27,Daily Intelligence & Inspiration,UX,Daily Content,Moral Lessons,,yes,yes,,,,Phase 26,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0411,27,Daily Intelligence & Inspiration,UX,Daily Content,Business Insights,,yes,yes,,,,Phase 26,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0412,27,Daily Intelligence & Inspiration,UX,Daily Content,Relationship Insights,,yes,yes,,,,Phase 26,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0413,27,Daily Intelligence & Inspiration,UX,Daily Content,Career Advice,,yes,yes,,,,Phase 26,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0414,27,Daily Intelligence & Inspiration,UX,Daily Content,Workplace Lessons,,yes,yes,,,,Phase 26,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0415,27,Daily Intelligence & Inspiration,UX,Daily Content,Friendship Stories,,yes,yes,,,,Phase 26,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0416,27,Daily Intelligence & Inspiration,UX,Daily Content,Romance Stories,,yes,yes,,,,Phase 26,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0417,27,Daily Intelligence & Inspiration,UX,Daily Content,Leadership Lessons,,yes,yes,,,,Phase 26,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0418,27,Daily Intelligence & Inspiration,UX,Daily Content,Fact/fiction labeling,,yes,yes,,,,Phase 26,,not tested,See phase acceptance gate in master spec,NOT STARTED
+R0328,21,Customer Experience & Support,CUSTOMER,Support Org,Customer Support,,,yes,,,,Phase 20,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0329,21,Customer Experience & Support,CUSTOMER,Support Org,Technical Support,,,yes,,,,Phase 20,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0330,21,Customer Experience & Support,CUSTOMER,Support Org,Product Support,,,yes,,,,Phase 20,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0331,21,Customer Experience & Support,CUSTOMER,Support Org,Customer Success,,,yes,,,,Phase 20,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0332,21,Customer Experience & Support,CUSTOMER,Support Org,Retention,,,yes,,,,Phase 20,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0333,21,Customer Experience & Support,CUSTOMER,Support Org,Complaint Resolution,,,yes,,,,Phase 20,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0334,21,Customer Experience & Support,CUSTOMER,Support Org,Escalation,,,yes,,,,Phase 20,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0335,21,Customer Experience & Support,CUSTOMER,Support Org,QA,,,yes,,,,Phase 20,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0336,21,Customer Experience & Support,CUSTOMER,Support Org,Supervisor,,,yes,,,,Phase 20,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0337,21,Customer Experience & Support,CUSTOMER,Support Org,Knowledge Base,,,yes,,,,Phase 20,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0338,21,Customer Experience & Support,CUSTOMER,Support Agent Behavior,Context memory,,,yes,,,,Phase 20,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0339,21,Customer Experience & Support,CUSTOMER,Support Agent Behavior,Emotion detection,,,yes,,,,Phase 20,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0340,21,Customer Experience & Support,CUSTOMER,Support Agent Behavior,Empathetic response,,,yes,,,,Phase 20,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0341,21,Customer Experience & Support,CUSTOMER,Support Agent Behavior,Adaptive response,,,yes,,,,Phase 20,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0342,21,Customer Experience & Support,CUSTOMER,Support Agent Behavior,Problem solving,,,yes,,,,Phase 20,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0343,21,Customer Experience & Support,CUSTOMER,Support Agent Behavior,Escalation,,,yes,,,,Phase 20,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0344,21,Customer Experience & Support,CUSTOMER,Support Agent Behavior,Learning,,,yes,,,,Phase 20,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0345,22,Product Innovation & Diversification,BUSINESS,Innovation Pipeline,Idea Generator,,,yes,yes,,,Phase 21,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0346,22,Product Innovation & Diversification,BUSINESS,Innovation Pipeline,Market Gap Finder,,,yes,yes,,,Phase 21,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0347,22,Product Innovation & Diversification,BUSINESS,Innovation Pipeline,Product Validator,,,yes,yes,,,Phase 21,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0348,22,Product Innovation & Diversification,BUSINESS,Innovation Pipeline,Service Generator,,,yes,yes,,,Phase 21,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0349,22,Product Innovation & Diversification,BUSINESS,Innovation Pipeline,Pricing Strategist,,,yes,yes,,,Phase 21,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0350,22,Product Innovation & Diversification,BUSINESS,Innovation Pipeline,MVP Builder,,,yes,yes,,,Phase 21,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0351,22,Product Innovation & Diversification,BUSINESS,Innovation Pipeline,Product Roadmap,,,yes,yes,,,Phase 21,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0352,22,Product Innovation & Diversification,BUSINESS,Innovation Pipeline,Diversification Engine,,,yes,yes,,,Phase 21,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0353,22,Product Innovation & Diversification,BUSINESS,Innovation Pipeline,Idea->Problem->Market->Product->MVP->Brand->Marketing->Sales pipeline,,,yes,yes,,,Phase 21,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0354,23,"Finance, Investment & Operations",FINANCE,Financial Analysis,Financial Analysis,,,yes,,,,Phase 22,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0355,23,"Finance, Investment & Operations",FINANCE,Financial Analysis,Financial Forecasting,,,yes,,,,Phase 22,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0356,23,"Finance, Investment & Operations",FINANCE,Financial Analysis,Investment Analysis,,,yes,,,,Phase 22,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0357,23,"Finance, Investment & Operations",FINANCE,Financial Analysis,Scenario Analysis (Bull/Base/Bear),,,yes,,,,Phase 22,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0358,23,"Finance, Investment & Operations",FINANCE,Financial Analysis,Risk Analysis,,,yes,,,,Phase 22,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0359,23,"Finance, Investment & Operations",FINANCE,Financial Analysis,Partnership Analysis,,,yes,,,,Phase 22,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0360,23,"Finance, Investment & Operations",OPERATIONS,Ops Optimization,Operations Optimization,,,yes,,,,Phase 22,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0361,23,"Finance, Investment & Operations",OPERATIONS,Ops Optimization,Cost Optimization,,,yes,,,,Phase 22,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0362,23,"Finance, Investment & Operations",OPERATIONS,Ops Optimization,Supply Chain,,,yes,,,,Phase 22,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0363,23,"Finance, Investment & Operations",OPERATIONS,Ops Optimization,Inventory,,,yes,,,,Phase 22,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0364,23,"Finance, Investment & Operations",OPERATIONS,Ops Optimization,Procurement,,,yes,,,,Phase 22,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0365,24,Automation & Workflow Engine,AUTOMATION,Workflow Builder,Visual Workflow Builder,,,yes,,,,Phase 23,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0366,24,Automation & Workflow Engine,AUTOMATION,Workflow Builder,Triggers,,,yes,,,,Phase 23,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0367,24,Automation & Workflow Engine,AUTOMATION,Workflow Builder,Conditions,,,yes,,,,Phase 23,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0368,24,Automation & Workflow Engine,AUTOMATION,Workflow Builder,Agents,yes,,yes,,,,Phase 23,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0369,24,Automation & Workflow Engine,AUTOMATION,Workflow Builder,Tools,,,yes,,,,Phase 23,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0370,24,Automation & Workflow Engine,AUTOMATION,Workflow Builder,Approvals,,,yes,,,,Phase 23,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0371,24,Automation & Workflow Engine,AUTOMATION,Workflow Builder,Actions,,,yes,,,,Phase 23,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0372,24,Automation & Workflow Engine,AUTOMATION,Workflow Builder,Scheduled Workflows,,,yes,,,,Phase 23,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0373,24,Automation & Workflow Engine,AUTOMATION,Workflow Builder,Webhooks,,,yes,,,,Phase 23,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0374,24,Automation & Workflow Engine,AUTOMATION,Workflow Builder,Event-Driven Workflows,,,yes,,,,Phase 23,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0375,24,Automation & Workflow Engine,AUTOMATION,Workflow Builder,Continuous Workflows,,,yes,,,,Phase 23,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0376,25,Social Media & Autopublishing,INTEGRATION,Social Platform APIs,Facebook,,,yes,,yes,,Phase 24,Meta/X/LinkedIn/TikTok OAuth apps not registered — no live posting yet,not tested,See phase acceptance gate in master spec,PARTIAL
+R0377,25,Social Media & Autopublishing,INTEGRATION,Social Platform APIs,Instagram,,,yes,,yes,,Phase 24,Meta/X/LinkedIn/TikTok OAuth apps not registered — no live posting yet,not tested,See phase acceptance gate in master spec,PARTIAL
+R0378,25,Social Media & Autopublishing,INTEGRATION,Social Platform APIs,TikTok,,,yes,,yes,,Phase 24,Meta/X/LinkedIn/TikTok OAuth apps not registered — no live posting yet,not tested,See phase acceptance gate in master spec,PARTIAL
+R0379,25,Social Media & Autopublishing,INTEGRATION,Social Platform APIs,YouTube,,,yes,,yes,,Phase 24,Meta/X/LinkedIn/TikTok OAuth apps not registered — no live posting yet,not tested,See phase acceptance gate in master spec,PARTIAL
+R0380,25,Social Media & Autopublishing,INTEGRATION,Social Platform APIs,LinkedIn,,,yes,,yes,,Phase 24,Meta/X/LinkedIn/TikTok OAuth apps not registered — no live posting yet,not tested,See phase acceptance gate in master spec,PARTIAL
+R0381,25,Social Media & Autopublishing,INTEGRATION,Social Platform APIs,X,,,yes,,yes,,Phase 24,Meta/X/LinkedIn/TikTok OAuth apps not registered — no live posting yet,not tested,See phase acceptance gate in master spec,PARTIAL
+R0382,25,Social Media & Autopublishing,INTEGRATION,Social Platform APIs,Pinterest,,,yes,,yes,,Phase 24,Meta/X/LinkedIn/TikTok OAuth apps not registered — no live posting yet,not tested,See phase acceptance gate in master spec,PARTIAL
+R0383,25,Social Media & Autopublishing,INTEGRATION,Social Platform APIs,Reddit,,,yes,,yes,,Phase 24,Meta/X/LinkedIn/TikTok OAuth apps not registered — no live posting yet,not tested,See phase acceptance gate in master spec,PARTIAL
+R0384,25,Social Media & Autopublishing,MARKETING,Publishing Infra,Create,,,yes,,yes,,Phase 24,Meta/X/LinkedIn/TikTok OAuth apps not registered — no live posting yet,not tested,See phase acceptance gate in master spec,PARTIAL
+R0385,25,Social Media & Autopublishing,MARKETING,Publishing Infra,Schedule,,,yes,,yes,,Phase 24,Meta/X/LinkedIn/TikTok OAuth apps not registered — no live posting yet,not tested,See phase acceptance gate in master spec,PARTIAL
+R0386,25,Social Media & Autopublishing,MARKETING,Publishing Infra,Publish,,,yes,,yes,,Phase 24,Meta/X/LinkedIn/TikTok OAuth apps not registered — no live posting yet,not tested,See phase acceptance gate in master spec,PARTIAL
+R0387,25,Social Media & Autopublishing,MARKETING,Publishing Infra,Cross-post,,,yes,,yes,,Phase 24,Meta/X/LinkedIn/TikTok OAuth apps not registered — no live posting yet,not tested,See phase acceptance gate in master spec,PARTIAL
+R0388,25,Social Media & Autopublishing,MARKETING,Publishing Infra,Adapt,,,yes,,yes,,Phase 24,Meta/X/LinkedIn/TikTok OAuth apps not registered — no live posting yet,not tested,See phase acceptance gate in master spec,PARTIAL
+R0389,25,Social Media & Autopublishing,MARKETING,Publishing Infra,Analyze,,,yes,,yes,,Phase 24,Meta/X/LinkedIn/TikTok OAuth apps not registered — no live posting yet,not tested,See phase acceptance gate in master spec,PARTIAL
+R0390,25,Social Media & Autopublishing,MARKETING,Publishing Infra,Optimize,,,yes,,yes,,Phase 24,Meta/X/LinkedIn/TikTok OAuth apps not registered — no live posting yet,not tested,See phase acceptance gate in master spec,PARTIAL
+R0391,25,Social Media & Autopublishing,MARKETING,Publishing Infra,Official-API-only constraint,,,yes,,yes,,Phase 24,Meta/X/LinkedIn/TikTok OAuth apps not registered — no live posting yet,not tested,See phase acceptance gate in master spec,PARTIAL
+R0392,26,Analytics & Attribution,BUSINESS,Analytics Infra,Traffic Analytics,,,yes,yes,,,Phase 25,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0393,26,Analytics & Attribution,BUSINESS,Analytics Infra,Lead Analytics,,,yes,yes,,,Phase 25,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0394,26,Analytics & Attribution,BUSINESS,Analytics Infra,Sales Analytics,,,yes,yes,,,Phase 25,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0395,26,Analytics & Attribution,BUSINESS,Analytics Infra,Customer Analytics,,,yes,yes,,,Phase 25,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0396,26,Analytics & Attribution,BUSINESS,Analytics Infra,Campaign Analytics,,,yes,yes,,,Phase 25,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0397,26,Analytics & Attribution,BUSINESS,Analytics Infra,SEO Analytics,,,yes,yes,,,Phase 25,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0398,26,Analytics & Attribution,BUSINESS,Analytics Infra,Creative Analytics,,,yes,yes,,,Phase 25,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0399,26,Analytics & Attribution,BUSINESS,Analytics Infra,Revenue Analytics,,,yes,yes,,,Phase 25,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0400,26,Analytics & Attribution,BUSINESS,Analytics Infra,Attribution,,,yes,yes,,,Phase 25,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0401,26,Analytics & Attribution,BUSINESS,Analytics Infra,Experiment Tracking,,,yes,yes,,,Phase 25,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0402,26,Analytics & Attribution,BUSINESS,Attribution Models,First Click,,,yes,yes,,,Phase 25,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0403,26,Analytics & Attribution,BUSINESS,Attribution Models,Last Click,,,yes,yes,,,Phase 25,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0404,26,Analytics & Attribution,BUSINESS,Attribution Models,Linear,,,yes,yes,,,Phase 25,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0405,26,Analytics & Attribution,BUSINESS,Attribution Models,Position Based,,,yes,yes,,,Phase 25,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0406,26,Analytics & Attribution,BUSINESS,Attribution Models,Time Decay,,,yes,yes,,,Phase 25,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0407,26,Analytics & Attribution,BUSINESS,Attribution Models,Custom,,,yes,yes,,,Phase 25,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0408,27,Daily Intelligence & Inspiration,UX,Daily Content,Daily Quotes,,yes,yes,,,,Phase 26,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0409,27,Daily Intelligence & Inspiration,UX,Daily Content,Daily Stories,,yes,yes,,,,Phase 26,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0410,27,Daily Intelligence & Inspiration,UX,Daily Content,Moral Lessons,,yes,yes,,,,Phase 26,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0411,27,Daily Intelligence & Inspiration,UX,Daily Content,Business Insights,,yes,yes,,,,Phase 26,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0412,27,Daily Intelligence & Inspiration,UX,Daily Content,Relationship Insights,,yes,yes,,,,Phase 26,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0413,27,Daily Intelligence & Inspiration,UX,Daily Content,Career Advice,,yes,yes,,,,Phase 26,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0414,27,Daily Intelligence & Inspiration,UX,Daily Content,Workplace Lessons,,yes,yes,,,,Phase 26,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0415,27,Daily Intelligence & Inspiration,UX,Daily Content,Friendship Stories,,yes,yes,,,,Phase 26,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0416,27,Daily Intelligence & Inspiration,UX,Daily Content,Romance Stories,,yes,yes,,,,Phase 26,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0417,27,Daily Intelligence & Inspiration,UX,Daily Content,Leadership Lessons,,yes,yes,,,,Phase 26,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0418,27,Daily Intelligence & Inspiration,UX,Daily Content,Fact/fiction labeling,,yes,yes,,,,Phase 26,,not tested,See phase acceptance gate in master spec,PARTIAL
 R0419,28,AI Company Command Center,BUSINESS,CEO Dashboard,Business KPIs,,yes,yes,yes,,,Phase 27,,smoke-tested,See phase acceptance gate in master spec,PARTIAL
 R0420,28,AI Company Command Center,BUSINESS,CEO Dashboard,Marketing KPIs,,yes,yes,yes,,,Phase 27,,smoke-tested,See phase acceptance gate in master spec,PARTIAL
 R0421,28,AI Company Command Center,BUSINESS,CEO Dashboard,Sales KPIs,,yes,yes,yes,,,Phase 27,,smoke-tested,See phase acceptance gate in master spec,PARTIAL
@@ -443,46 +443,46 @@ R0441,29,"Security, Permissions & Sandbox",SECURITY,Security Infra,Audit Logs,,,
 R0442,29,"Security, Permissions & Sandbox",SECURITY,Security Infra,Data Isolation,,,yes,,,yes,Phase 28,,smoke-tested,See phase acceptance gate in master spec,PARTIAL
 R0443,29,"Security, Permissions & Sandbox",SECURITY,Security Infra,Encryption,,,yes,,,yes,Phase 28,,smoke-tested,See phase acceptance gate in master spec,PARTIAL
 R0444,29,"Security, Permissions & Sandbox",SECURITY,Security Infra,Permission Gates,,,yes,,,yes,Phase 28,,smoke-tested,See phase acceptance gate in master spec,PARTIAL
-R0445,30,Self-Testing & Self-Healing,OPERATIONS,Self-Healing Infra,Health Monitor,,,yes,,,,Phase 29,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0446,30,Self-Testing & Self-Healing,OPERATIONS,Self-Healing Infra,Failure Detector,,,yes,,,,Phase 29,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0447,30,Self-Testing & Self-Healing,OPERATIONS,Self-Healing Infra,Diagnostic Agent,yes,,yes,,,,Phase 29,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0448,30,Self-Testing & Self-Healing,OPERATIONS,Self-Healing Infra,Recovery Agent,yes,,yes,,,,Phase 29,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0449,30,Self-Testing & Self-Healing,OPERATIONS,Self-Healing Infra,Retry Engine,,,yes,,,,Phase 29,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0450,30,Self-Testing & Self-Healing,OPERATIONS,Self-Healing Infra,Provider Recovery,,,yes,,,,Phase 29,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0451,30,Self-Testing & Self-Healing,OPERATIONS,Self-Healing Infra,Task Recovery,,,yes,,,,Phase 29,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0452,30,Self-Testing & Self-Healing,OPERATIONS,Self-Healing Infra,Service Recovery,,,yes,,,,Phase 29,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0453,30,Self-Testing & Self-Healing,OPERATIONS,Self-Healing Infra,Detect->Diagnose->Isolate->Repair->Verify loop,,,yes,,,,Phase 29,,not tested,See phase acceptance gate in master spec,MINIMAL
-R0454,31,Performance & Scalability,INFRASTRUCTURE,Scalability,Frontend perf,,,yes,yes,,,Phase 30,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0455,31,Performance & Scalability,INFRASTRUCTURE,Scalability,Backend perf,,,yes,yes,,,Phase 30,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0456,31,Performance & Scalability,INFRASTRUCTURE,Scalability,Database perf,,,yes,yes,,,Phase 30,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0457,31,Performance & Scalability,INFRASTRUCTURE,Scalability,Query optimization,,,yes,yes,,,Phase 30,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0458,31,Performance & Scalability,INFRASTRUCTURE,Scalability,Caching,,,yes,yes,,,Phase 30,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0459,31,Performance & Scalability,INFRASTRUCTURE,Scalability,Queues,,,yes,yes,,,Phase 30,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0460,31,Performance & Scalability,INFRASTRUCTURE,Scalability,AI Routing perf,,,yes,yes,,,Phase 30,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0461,31,Performance & Scalability,INFRASTRUCTURE,Scalability,Streaming,,,yes,yes,,,Phase 30,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0462,31,Performance & Scalability,INFRASTRUCTURE,Scalability,Memory perf,,,yes,yes,,,Phase 30,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0463,31,Performance & Scalability,INFRASTRUCTURE,Scalability,File Processing perf,,,yes,yes,,,Phase 30,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0464,31,Performance & Scalability,INFRASTRUCTURE,Scalability,Media Processing perf,,,yes,yes,,,Phase 30,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0465,31,Performance & Scalability,INFRASTRUCTURE,Scalability,Horizontal Scaling,,,yes,yes,,,Phase 30,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0466,31,Performance & Scalability,INFRASTRUCTURE,Scalability,Worker Scaling,,,yes,yes,,,Phase 30,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0467,31,Performance & Scalability,INFRASTRUCTURE,Scalability,Parallel Agents,yes,,yes,yes,,,Phase 30,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0468,31,Performance & Scalability,INFRASTRUCTURE,Scalability,Async Jobs,,,yes,yes,,,Phase 30,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0469,31,Performance & Scalability,INFRASTRUCTURE,Scalability,Long-Running Tasks,,,yes,yes,,,Phase 30,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0470,32,Complete End-to-End Testing,CORE,E2E Test Scenarios,Build a SaaS application,,,yes,,,,Phase 31,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0471,32,Complete End-to-End Testing,CORE,E2E Test Scenarios,Analyze a competitor,,,yes,,,,Phase 31,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0472,32,Complete End-to-End Testing,CORE,E2E Test Scenarios,Research a market,,,yes,,,,Phase 31,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0473,32,Complete End-to-End Testing,CORE,E2E Test Scenarios,Create a geometric brand,,,yes,,,,Phase 31,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0474,32,Complete End-to-End Testing,CORE,E2E Test Scenarios,8K ad image workflow,,,yes,,,,Phase 31,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0475,32,Complete End-to-End Testing,CORE,E2E Test Scenarios,Cinematic advertisement,,,yes,,,,Phase 31,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0476,32,Complete End-to-End Testing,CORE,E2E Test Scenarios,Create UGC,,,yes,,,,Phase 31,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0477,32,Complete End-to-End Testing,CORE,E2E Test Scenarios,Analyze+transcribe video,,,yes,,,,Phase 31,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0478,32,Complete End-to-End Testing,CORE,E2E Test Scenarios,Analyze text in image,,,yes,,,,Phase 31,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0479,32,Complete End-to-End Testing,CORE,E2E Test Scenarios,SEO content with sources,,,yes,,,,Phase 31,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0480,32,Complete End-to-End Testing,CORE,E2E Test Scenarios,Find acquisition channels,,,yes,,,,Phase 31,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0481,32,Complete End-to-End Testing,CORE,E2E Test Scenarios,Generate sales leads,,,yes,,,,Phase 31,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0482,32,Complete End-to-End Testing,CORE,E2E Test Scenarios,Support unhappy customer,,,yes,,,,Phase 31,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0483,32,Complete End-to-End Testing,CORE,E2E Test Scenarios,Review/fix broken codebase,,,yes,,,,Phase 31,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0484,32,Complete End-to-End Testing,CORE,E2E Test Scenarios,Create and run automation,,,yes,,,,Phase 31,,not tested,See phase acceptance gate in master spec,NOT STARTED
+R0445,30,Self-Testing & Self-Healing,OPERATIONS,Self-Healing Infra,Health Monitor,,,yes,,,,Phase 29,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0446,30,Self-Testing & Self-Healing,OPERATIONS,Self-Healing Infra,Failure Detector,,,yes,,,,Phase 29,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0447,30,Self-Testing & Self-Healing,OPERATIONS,Self-Healing Infra,Diagnostic Agent,yes,,yes,,,,Phase 29,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0448,30,Self-Testing & Self-Healing,OPERATIONS,Self-Healing Infra,Recovery Agent,yes,,yes,,,,Phase 29,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0449,30,Self-Testing & Self-Healing,OPERATIONS,Self-Healing Infra,Retry Engine,,,yes,,,,Phase 29,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0450,30,Self-Testing & Self-Healing,OPERATIONS,Self-Healing Infra,Provider Recovery,,,yes,,,,Phase 29,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0451,30,Self-Testing & Self-Healing,OPERATIONS,Self-Healing Infra,Task Recovery,,,yes,,,,Phase 29,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0452,30,Self-Testing & Self-Healing,OPERATIONS,Self-Healing Infra,Service Recovery,,,yes,,,,Phase 29,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0453,30,Self-Testing & Self-Healing,OPERATIONS,Self-Healing Infra,Detect->Diagnose->Isolate->Repair->Verify loop,,,yes,,,,Phase 29,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0454,31,Performance & Scalability,INFRASTRUCTURE,Scalability,Frontend perf,,,yes,yes,,,Phase 30,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0455,31,Performance & Scalability,INFRASTRUCTURE,Scalability,Backend perf,,,yes,yes,,,Phase 30,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0456,31,Performance & Scalability,INFRASTRUCTURE,Scalability,Database perf,,,yes,yes,,,Phase 30,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0457,31,Performance & Scalability,INFRASTRUCTURE,Scalability,Query optimization,,,yes,yes,,,Phase 30,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0458,31,Performance & Scalability,INFRASTRUCTURE,Scalability,Caching,,,yes,yes,,,Phase 30,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0459,31,Performance & Scalability,INFRASTRUCTURE,Scalability,Queues,,,yes,yes,,,Phase 30,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0460,31,Performance & Scalability,INFRASTRUCTURE,Scalability,AI Routing perf,,,yes,yes,,,Phase 30,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0461,31,Performance & Scalability,INFRASTRUCTURE,Scalability,Streaming,,,yes,yes,,,Phase 30,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0462,31,Performance & Scalability,INFRASTRUCTURE,Scalability,Memory perf,,,yes,yes,,,Phase 30,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0463,31,Performance & Scalability,INFRASTRUCTURE,Scalability,File Processing perf,,,yes,yes,,,Phase 30,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0464,31,Performance & Scalability,INFRASTRUCTURE,Scalability,Media Processing perf,,,yes,yes,,,Phase 30,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0465,31,Performance & Scalability,INFRASTRUCTURE,Scalability,Horizontal Scaling,,,yes,yes,,,Phase 30,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0466,31,Performance & Scalability,INFRASTRUCTURE,Scalability,Worker Scaling,,,yes,yes,,,Phase 30,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0467,31,Performance & Scalability,INFRASTRUCTURE,Scalability,Parallel Agents,yes,,yes,yes,,,Phase 30,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0468,31,Performance & Scalability,INFRASTRUCTURE,Scalability,Async Jobs,,,yes,yes,,,Phase 30,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0469,31,Performance & Scalability,INFRASTRUCTURE,Scalability,Long-Running Tasks,,,yes,yes,,,Phase 30,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0470,32,Complete End-to-End Testing,CORE,E2E Test Scenarios,Build a SaaS application,,,yes,,,,Phase 31,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0471,32,Complete End-to-End Testing,CORE,E2E Test Scenarios,Analyze a competitor,,,yes,,,,Phase 31,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0472,32,Complete End-to-End Testing,CORE,E2E Test Scenarios,Research a market,,,yes,,,,Phase 31,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0473,32,Complete End-to-End Testing,CORE,E2E Test Scenarios,Create a geometric brand,,,yes,,,,Phase 31,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0474,32,Complete End-to-End Testing,CORE,E2E Test Scenarios,8K ad image workflow,,,yes,,,,Phase 31,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0475,32,Complete End-to-End Testing,CORE,E2E Test Scenarios,Cinematic advertisement,,,yes,,,,Phase 31,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0476,32,Complete End-to-End Testing,CORE,E2E Test Scenarios,Create UGC,,,yes,,,,Phase 31,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0477,32,Complete End-to-End Testing,CORE,E2E Test Scenarios,Analyze+transcribe video,,,yes,,,,Phase 31,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0478,32,Complete End-to-End Testing,CORE,E2E Test Scenarios,Analyze text in image,,,yes,,,,Phase 31,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0479,32,Complete End-to-End Testing,CORE,E2E Test Scenarios,SEO content with sources,,,yes,,,,Phase 31,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0480,32,Complete End-to-End Testing,CORE,E2E Test Scenarios,Find acquisition channels,,,yes,,,,Phase 31,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0481,32,Complete End-to-End Testing,CORE,E2E Test Scenarios,Generate sales leads,,,yes,,,,Phase 31,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0482,32,Complete End-to-End Testing,CORE,E2E Test Scenarios,Support unhappy customer,,,yes,,,,Phase 31,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0483,32,Complete End-to-End Testing,CORE,E2E Test Scenarios,Review/fix broken codebase,,,yes,,,,Phase 31,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0484,32,Complete End-to-End Testing,CORE,E2E Test Scenarios,Create and run automation,,,yes,,,,Phase 31,,not tested,See phase acceptance gate in master spec,PARTIAL
 R0485,33,Full Regression Test,CORE,Regression Suite,Full Build,,,yes,,,,Phase 32,,not tested,See phase acceptance gate in master spec,NOT STARTED
 R0486,33,Full Regression Test,CORE,Regression Suite,Unit Tests,,,yes,,,,Phase 32,,not tested,See phase acceptance gate in master spec,NOT STARTED
 R0487,33,Full Regression Test,CORE,Regression Suite,Integration Tests,,,yes,,,,Phase 32,,not tested,See phase acceptance gate in master spec,NOT STARTED
@@ -496,52 +496,52 @@ R0494,33,Full Regression Test,CORE,Regression Suite,Provider Failover Tests,,,ye
 R0495,33,Full Regression Test,CORE,Regression Suite,Memory Tests,,,yes,,,,Phase 32,,not tested,See phase acceptance gate in master spec,NOT STARTED
 R0496,33,Full Regression Test,CORE,Regression Suite,File Tests,,,yes,,,,Phase 32,,not tested,See phase acceptance gate in master spec,NOT STARTED
 R0497,33,Full Regression Test,CORE,Regression Suite,Media Tests,,,yes,,,,Phase 32,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0498,34,Requirement Compliance Audit,CORE,Compliance Audit,Total Requirements count,,,yes,,,,Phase 33,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0499,34,Requirement Compliance Audit,CORE,Compliance Audit,Implemented count,,,yes,,,,Phase 33,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0500,34,Requirement Compliance Audit,CORE,Compliance Audit,Tested count,,,yes,,,,Phase 33,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0501,34,Requirement Compliance Audit,CORE,Compliance Audit,Verified count,,,yes,,,,Phase 33,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0502,34,Requirement Compliance Audit,CORE,Compliance Audit,Partially Implemented count,,,yes,,,,Phase 33,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0503,34,Requirement Compliance Audit,CORE,Compliance Audit,Missing count,,,yes,,,,Phase 33,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0504,34,Requirement Compliance Audit,CORE,Compliance Audit,Blocked-by-external-dependency count,,,yes,,,,Phase 33,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0505,35,UX & Cleanup Pass,UX,Cleanup,Remove dead buttons/links,,yes,yes,,,,Phase 34,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0506,35,UX & Cleanup Pass,UX,Cleanup,Remove placeholder pages,,yes,yes,,,,Phase 34,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0507,35,UX & Cleanup Pass,UX,Cleanup,Remove mock data,,yes,yes,,,,Phase 34,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0508,35,UX & Cleanup Pass,UX,Cleanup,Fix broken states,,yes,yes,,,,Phase 34,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0509,35,UX & Cleanup Pass,UX,Cleanup,Fix inconsistent terminology,,yes,yes,,,,Phase 34,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0510,35,UX & Cleanup Pass,UX,Cleanup,Remove duplicate features,,yes,yes,,,,Phase 34,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0511,35,UX & Cleanup Pass,UX,Cleanup,Remove unused components,,yes,yes,,,,Phase 34,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0512,35,UX & Cleanup Pass,UX,Cleanup,Fix console errors,,yes,yes,,,,Phase 34,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0513,35,UX & Cleanup Pass,UX,Cleanup,Fix unhandled errors,,yes,yes,,,,Phase 34,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0514,35,UX & Cleanup Pass,UX,Cleanup,Fix mobile layout,,yes,yes,,,,Phase 34,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0515,35,UX & Cleanup Pass,UX,Cleanup,Verify nav/loading/error/empty/success states,,yes,yes,,,,Phase 34,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0516,35,UX & Cleanup Pass,UX,Cleanup,Accessibility,,yes,yes,,,,Phase 34,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0517,35,UX & Cleanup Pass,UX,Cleanup,Keyboard nav,,yes,yes,,,,Phase 34,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0518,35,UX & Cleanup Pass,UX,Cleanup,Responsive breakpoints,,yes,yes,,,,Phase 34,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0519,36,Documentation,CORE,Docs,Architecture doc,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0520,36,Documentation,CORE,Docs,Database doc,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0521,36,Documentation,CORE,Docs,AI Gateway doc,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0522,36,Documentation,CORE,Docs,Model Registry doc,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0523,36,Documentation,CORE,Docs,Provider Setup doc,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0524,36,Documentation,CORE,Docs,Agents doc,yes,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0525,36,Documentation,CORE,Docs,Tools doc,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0526,36,Documentation,CORE,Docs,Memory doc,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0527,36,Documentation,CORE,Docs,Research doc,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0528,36,Documentation,CORE,Docs,Creative doc,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0529,36,Documentation,CORE,Docs,Video doc,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0530,36,Documentation,CORE,Docs,Marketing doc,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0531,36,Documentation,CORE,Docs,Sales doc,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0532,36,Documentation,CORE,Docs,Customer Support doc,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0533,36,Documentation,CORE,Docs,Automation doc,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0534,36,Documentation,CORE,Docs,Deployment doc,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0535,36,Documentation,CORE,Docs,Testing doc,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0536,36,Documentation,CORE,Docs,Troubleshooting doc,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0537,36,Documentation,CORE,Docs,Extension System doc,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0538,36,Documentation,CORE,Docs,Developer Guide,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0539,36,Documentation,CORE,Docs,Administrator Guide,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0540,36,Documentation,CORE,Docs,User Guide,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0541,36,Documentation,CORE,Docs,API Documentation,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0542,36,Documentation,CORE,Docs,Agent Documentation,yes,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,NOT STARTED
-R0543,36,Documentation,CORE,Docs,Plugin Documentation,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,NOT STARTED
+R0498,34,Requirement Compliance Audit,CORE,Compliance Audit,Total Requirements count,,,yes,,,,Phase 33,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0499,34,Requirement Compliance Audit,CORE,Compliance Audit,Implemented count,,,yes,,,,Phase 33,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0500,34,Requirement Compliance Audit,CORE,Compliance Audit,Tested count,,,yes,,,,Phase 33,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0501,34,Requirement Compliance Audit,CORE,Compliance Audit,Verified count,,,yes,,,,Phase 33,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0502,34,Requirement Compliance Audit,CORE,Compliance Audit,Partially Implemented count,,,yes,,,,Phase 33,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0503,34,Requirement Compliance Audit,CORE,Compliance Audit,Missing count,,,yes,,,,Phase 33,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0504,34,Requirement Compliance Audit,CORE,Compliance Audit,Blocked-by-external-dependency count,,,yes,,,,Phase 33,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0505,35,UX & Cleanup Pass,UX,Cleanup,Remove dead buttons/links,,yes,yes,,,,Phase 34,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0506,35,UX & Cleanup Pass,UX,Cleanup,Remove placeholder pages,,yes,yes,,,,Phase 34,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0507,35,UX & Cleanup Pass,UX,Cleanup,Remove mock data,,yes,yes,,,,Phase 34,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0508,35,UX & Cleanup Pass,UX,Cleanup,Fix broken states,,yes,yes,,,,Phase 34,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0509,35,UX & Cleanup Pass,UX,Cleanup,Fix inconsistent terminology,,yes,yes,,,,Phase 34,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0510,35,UX & Cleanup Pass,UX,Cleanup,Remove duplicate features,,yes,yes,,,,Phase 34,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0511,35,UX & Cleanup Pass,UX,Cleanup,Remove unused components,,yes,yes,,,,Phase 34,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0512,35,UX & Cleanup Pass,UX,Cleanup,Fix console errors,,yes,yes,,,,Phase 34,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0513,35,UX & Cleanup Pass,UX,Cleanup,Fix unhandled errors,,yes,yes,,,,Phase 34,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0514,35,UX & Cleanup Pass,UX,Cleanup,Fix mobile layout,,yes,yes,,,,Phase 34,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0515,35,UX & Cleanup Pass,UX,Cleanup,Verify nav/loading/error/empty/success states,,yes,yes,,,,Phase 34,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0516,35,UX & Cleanup Pass,UX,Cleanup,Accessibility,,yes,yes,,,,Phase 34,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0517,35,UX & Cleanup Pass,UX,Cleanup,Keyboard nav,,yes,yes,,,,Phase 34,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0518,35,UX & Cleanup Pass,UX,Cleanup,Responsive breakpoints,,yes,yes,,,,Phase 34,,not tested,See phase acceptance gate in master spec,PARTIAL
+R0519,36,Documentation,CORE,Docs,Architecture doc,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0520,36,Documentation,CORE,Docs,Database doc,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0521,36,Documentation,CORE,Docs,AI Gateway doc,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0522,36,Documentation,CORE,Docs,Model Registry doc,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0523,36,Documentation,CORE,Docs,Provider Setup doc,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0524,36,Documentation,CORE,Docs,Agents doc,yes,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0525,36,Documentation,CORE,Docs,Tools doc,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0526,36,Documentation,CORE,Docs,Memory doc,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0527,36,Documentation,CORE,Docs,Research doc,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0528,36,Documentation,CORE,Docs,Creative doc,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0529,36,Documentation,CORE,Docs,Video doc,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0530,36,Documentation,CORE,Docs,Marketing doc,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0531,36,Documentation,CORE,Docs,Sales doc,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0532,36,Documentation,CORE,Docs,Customer Support doc,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0533,36,Documentation,CORE,Docs,Automation doc,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0534,36,Documentation,CORE,Docs,Deployment doc,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0535,36,Documentation,CORE,Docs,Testing doc,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0536,36,Documentation,CORE,Docs,Troubleshooting doc,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0537,36,Documentation,CORE,Docs,Extension System doc,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0538,36,Documentation,CORE,Docs,Developer Guide,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0539,36,Documentation,CORE,Docs,Administrator Guide,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0540,36,Documentation,CORE,Docs,User Guide,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0541,36,Documentation,CORE,Docs,API Documentation,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0542,36,Documentation,CORE,Docs,Agent Documentation,yes,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,MINIMAL
+R0543,36,Documentation,CORE,Docs,Plugin Documentation,,,yes,,,,Phase 35,,not tested,See phase acceptance gate in master spec,MINIMAL
 R0544,37,Final Release Audit,CORE,Release Gates,No build errors,,,yes,,,,Phase 36,,not tested,See phase acceptance gate in master spec,NOT STARTED
 R0545,37,Final Release Audit,CORE,Release Gates,No type errors,,,yes,,,,Phase 36,,not tested,See phase acceptance gate in master spec,NOT STARTED
 R0546,37,Final Release Audit,CORE,Release Gates,No critical security issues,,,yes,,,,Phase 36,,not tested,See phase acceptance gate in master spec,NOT STARTED
