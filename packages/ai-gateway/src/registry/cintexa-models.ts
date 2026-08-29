@@ -2,7 +2,23 @@
  * CINTEXA NEXUS / SUPERIOR AI — extended model portfolio seed.
  * Gateway default: OpenRouter. Underlying provider stored in metadata.
  * Status starts CONFIGURATION_REQUIRED until health validates.
- * Future/unverified names remain UNAVAILABLE with automatic resolve fallback.
+ *
+ * Model ID mappings below were verified via live web search against
+ * OpenRouter's own model pages (plus independent third-party sources
+ * that mirror OpenRouter's catalog) — not guessed, not left as an
+ * earlier session's placeholder. Several names in this file (GPT-5.6
+ * Sol/Terra, Claude Opus 5/Sonnet 5/Fable 5, Grok 4.5/4.6) were
+ * previously assumed to be fictional/future-looking, since they
+ * postdate most training data cutoffs — that assumption was reasonable
+ * at the time but wrong: they are real, currently-shipping models, and
+ * are now mapped to their real, confirmed OpenRouter slugs rather than
+ * an older stand-in model or a null/unmapped placeholder.
+ *
+ * Any name in this file NOT covered by that verification pass (Gemini
+ * 3.5/3.6/3.7 variants, Sonar 2, GLM-5.2, Kimi K3, Nemotron 3 Ultra)
+ * still carries whatever mapping an earlier session assigned — genuinely
+ * unverified, not confirmed correct or incorrect. Verify before trusting
+ * those specifically.
  */
 
 import type { ModelDefinition, ModelCapabilityScores, ProviderId, ModelStatus } from "@superior-ai/core";
@@ -80,26 +96,26 @@ export const CINTEXA_SEED_MODELS: Seed[] = [
   seed("google", "gemini-3.7-flash", "Gemini 3.7 Flash", "google/gemini-2.5-flash-preview", S({ latency: 85, cost: 70, coding: 82, agentic: 80, reasoning: 78 }), {
     priority: 75, aliases: ["gemini-3.7", "gemini-flash-advanced"], multimodalSupport: true, computerUse: true,
   }),
-  seed("google", "gemini-3.1-pro", "Gemini 3.1 Pro", "google/gemini-2.5-pro-preview", S({ reasoning: 90, coding: 88, agentic: 85, cost: 35 }), {
+  seed("google", "gemini-3.1-pro", "Gemini 3.1 Pro", "google/gemini-3.1-pro-preview", S({ reasoning: 90, coding: 88, agentic: 85, cost: 35 }), {
     priority: 95, aliases: ["gemini-pro", "gemini-3.1-pro-preview"], multimodalSupport: true, computerUse: true,
   }),
 
   // OpenAI
-  seed("openai", "gpt-5.6-terra", "GPT-5.6 Terra", "openai/gpt-4o", S({ reasoning: 85, coding: 82, cost: 55, agentic: 80 }), {
+  seed("openai", "gpt-5.6-terra", "GPT-5.6 Terra", "openai/gpt-5.6-terra", S({ reasoning: 85, coding: 82, cost: 55, agentic: 80 }), {
     priority: 80, aliases: ["terra", "gpt-5.6-terra"], multimodalSupport: true, codeExecution: true, webAccess: true,
   }),
-  seed("openai", "gpt-5.6-sol", "GPT-5.6 Sol", "openai/gpt-4o", S({ reasoning: 92, coding: 90, agentic: 88, cost: 30 }), {
+  seed("openai", "gpt-5.6-sol", "GPT-5.6 Sol", "openai/gpt-5.6-sol", S({ reasoning: 92, coding: 90, agentic: 88, cost: 30 }), {
     priority: 100, aliases: ["sol", "gpt-5.6-sol", "gpt-5.6"], multimodalSupport: true, codeExecution: true, computerUse: true, webAccess: true,
   }),
 
   // xAI
-  seed("xai", "grok-4.5", "Grok 4.5", "x-ai/grok-2", S({ coding: 80, reasoning: 78, latency: 70, cost: 50 }), {
+  seed("xai", "grok-4.5", "Grok 4.5", "x-ai/grok-4.5", S({ coding: 80, reasoning: 78, latency: 70, cost: 50 }), {
     priority: 70, aliases: ["grok-4.5", "grok4.5"],
   }),
-  seed("xai", "grok-4.5-fast", "Grok 4.5 Fast", "x-ai/grok-2", S({ latency: 92, cost: 70, coding: 72 }), {
+  seed("xai", "grok-4.5-fast", "Grok 4.5 Fast", "x-ai/grok-4.5", S({ latency: 92, cost: 70, coding: 72 }), {
     priority: 55, aliases: ["grok-fast"], metadata: { mode: "fast" },
   }),
-  seed("xai", "grok-4.6", "Grok 4.6", "x-ai/grok-3", S({ reasoning: 88, coding: 90, agentic: 88, cost: 32 }), {
+  seed("xai", "grok-4.6", "Grok 4.6", "x-ai/grok-4.6", S({ reasoning: 88, coding: 90, agentic: 88, cost: 32 }), {
     priority: 92, aliases: ["grok-4.6", "grok4.6"], codeExecution: true,
   }),
   // Product tiers — not foundation models
@@ -119,13 +135,13 @@ export const CINTEXA_SEED_MODELS: Seed[] = [
   }),
 
   // Anthropic
-  seed("anthropic", "claude-sonnet-5", "Claude Sonnet 5", "anthropic/claude-sonnet-4", S({ coding: 88, reasoning: 85, writing: 90, cost: 45 }), {
+  seed("anthropic", "claude-sonnet-5", "Claude Sonnet 5", "anthropic/claude-sonnet-5", S({ coding: 88, reasoning: 85, writing: 90, cost: 45 }), {
     priority: 82, aliases: ["sonnet-5", "claude-sonnet-5"],
   }),
-  seed("anthropic", "claude-opus-5", "Claude Opus 5", "anthropic/claude-opus-4", S({ reasoning: 93, coding: 92, agentic: 90, cost: 25 }), {
+  seed("anthropic", "claude-opus-5", "Claude Opus 5", "anthropic/claude-opus-5", S({ reasoning: 93, coding: 92, agentic: 90, cost: 25 }), {
     priority: 98, aliases: ["opus-5", "claude-opus-5"],
   }),
-  seed("anthropic", "claude-fable-5", "Claude Fable 5", null, S({ reasoning: 95, coding: 94 }), {
+  seed("anthropic", "claude-fable-5", "Claude Fable 5", "anthropic/claude-fable-5", S({ reasoning: 95, coding: 94 }), {
     status: "UNAVAILABLE", priority: 99, aliases: ["fable-5", "claude-fable"],
     metadata: { availability: "dynamic", note: "Register when provider exposes ID" },
   }),
