@@ -16,6 +16,7 @@
 import { getAdapter } from "../providers";
 import { getCredentials } from "../credentials";
 import { planCouncil, type CouncilPlan, type CouncilSeat } from "./council";
+import { analyzeInstructions, mergeTrustedPrompt } from "@superior-ai/security";
 
 export interface SeatExecutionResult {
   role: string;
@@ -24,6 +25,7 @@ export interface SeatExecutionResult {
   output: string | null;
   latencyMs: number;
   error: string | null;
+  injectionSignals: string[];
 }
 
 export interface CouncilExecutionResult {
@@ -33,16 +35,17 @@ export interface CouncilExecutionResult {
   note: string;
 }
 
-function seatPrompt(seat: CouncilSeat, objective: string): string {
-  return `You are the ${seat.role} on an AI advisory council. Your purpose: ${seat.purpose}.
+function seatPrompt(seat: CouncilSeat, objective: string): { prompt: string; injectionSignals: string[] } {
+  const system = `You are the ${seat.role} on an AI advisory council. Your purpose: ${seat.purpose}. Respond with your independent analysis from this specific role's perspective. Be concise (under 200 words). State your confidence (0-100) at the end as "Confidence: N".`;
 
-Objective under review: ${objective}
-
-Respond with your independent analysis from this specific role's perspective. Be concise (under 200 words). State your confidence (0-100) at the end as "Confidence: N".`;
+  const analysis = analyzeInstructions({ system, user: objective });
+  return { prompt: mergeTrustedPrompt(analysis), injectionSignals: analysis.injectionSignals };
 }
 
 async function executeSeat(seat: CouncilSeat, objective: string): Promise<SeatExecutionResult> {
   const start = Date.now();
+  const { prompt, injectionSignals } = seatPrompt(seat, objective);
+
   if (!seat.model) {
     return {
       role: seat.role,
@@ -51,6 +54,7 @@ async function executeSeat(seat: CouncilSeat, objective: string): Promise<SeatEx
       output: null,
       latencyMs: 0,
       error: "No model assigned to this seat (registry may be empty or unavailable)",
+      injectionSignals,
     };
   }
 
@@ -64,6 +68,7 @@ async function executeSeat(seat: CouncilSeat, objective: string): Promise<SeatEx
       output: null,
       latencyMs: 0,
       error: "CONFIGURATION_REQUIRED",
+      injectionSignals,
     };
   }
 
@@ -72,7 +77,7 @@ async function executeSeat(seat: CouncilSeat, objective: string): Promise<SeatEx
     adapter.setCredentials(creds);
     const res = await adapter.chat({
       model: seat.model.modelId,
-      messages: [{ role: "user", content: seatPrompt(seat, objective) }],
+      messages: [{ role: "user", content: prompt }],
       max_tokens: 400,
       temperature: 0.4,
     });
@@ -83,6 +88,7 @@ async function executeSeat(seat: CouncilSeat, objective: string): Promise<SeatEx
       output: res.content ?? "",
       latencyMs: Date.now() - start,
       error: null,
+      injectionSignals,
     };
   } catch (err) {
     return {
@@ -92,6 +98,7 @@ async function executeSeat(seat: CouncilSeat, objective: string): Promise<SeatEx
       output: null,
       latencyMs: Date.now() - start,
       error: err instanceof Error ? err.message : String(err),
+      injectionSignals,
     };
   }
 }
