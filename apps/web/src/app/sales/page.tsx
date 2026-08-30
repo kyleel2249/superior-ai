@@ -39,7 +39,7 @@ export default function SalesCommandPage() {
           </button>
           {loading && (
             <div className="ai-ring ai-ring--active">
-              <div className="w-6 h-6 rounded-full bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-[10px] font-bold">
+              <div className="w-6 h-6 rounded-full bg-indigo-600 flex items-center justify-center text-[10px] font-bold">
                 S
               </div>
             </div>

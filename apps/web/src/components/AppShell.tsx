@@ -29,7 +29,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               href="/"
               className="flex items-center gap-2 shrink-0 group"
             >
-              <span className="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500 via-fuchsia-500 to-cyan-400 flex items-center justify-center text-xs font-bold shadow-lg shadow-indigo-500/40 animate-pulse-glow group-hover:scale-105 transition-transform">
+              <span className="w-8 h-8 rounded-xl bg-indigo-600 flex items-center justify-center text-xs font-bold shadow-lg shadow-indigo-500/40 animate-pulse-glow group-hover:scale-105 transition-transform">
                 S
               </span>
               <span className="font-semibold tracking-tight text-sm text-gradient hidden xs:inline sm:inline">
@@ -45,7 +45,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                     href={n.href}
                     className={`px-2.5 py-1.5 rounded-lg transition-all duration-200 ${
                       active
-                        ? "bg-gradient-to-r from-indigo-600/80 to-fuchsia-600/80 text-white shadow-md shadow-indigo-500/20"
+                        ? "bg-indigo-600/80 text-white shadow-md shadow-indigo-500/20"
                         : "text-zinc-400 hover:text-white hover:bg-white/5"
                     }`}
                   >
