@@ -235,13 +235,17 @@ export async function POST(req: NextRequest) {
     }
 
     if (available.length === 0) {
+      const openrouterConfigured = Boolean(process.env.OPENROUTER_API_KEY);
+      const statusLine = openrouterConfigured
+        ? "No providers AVAILABLE despite OPENROUTER_API_KEY being set — the key may be invalid, or the health check failed. Check Admin → Providers for the specific error."
+        : "No providers AVAILABLE. Set OPENROUTER_API_KEY in .env (or Admin → Providers) — see the Routing note above for why.";
       const plan = [
         structured || null,
         structured ? "" : null,
         `**Routing:** ${routing.reason}`,
         `**Council (${council.length}):** ${council.map((c) => c.displayName).join(", ")}`,
         ``,
-        `**Status:** No providers AVAILABLE. Configure keys in Admin → Providers or .env.`,
+        `**Status:** ${statusLine}`,
         `Objective received. When a provider validates, the same request executes via the selected models and departments.`,
       ]
         .filter(Boolean)

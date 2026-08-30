@@ -70,10 +70,26 @@ export function route(request: RoutingRequest): RoutingDecision {
     if (!any) {
       throw new Error("No models registered. Configure at least one provider in Admin → AI Providers.");
     }
+
+    const allModels = modelRegistry.list();
+    const openrouterCount = allModels.filter((m) => m.provider === "openrouter").length;
+    const openrouterConfigured = Boolean(process.env.OPENROUTER_API_KEY);
+    const anyDirectKeySet = Boolean(
+      process.env.OPENAI_API_KEY || process.env.ANTHROPIC_API_KEY || process.env.XAI_API_KEY || process.env.GOOGLE_AI_API_KEY
+    );
+
+    let reason = "No AVAILABLE models. Using best registered model. Activate providers via admin console.";
+    if (!openrouterConfigured && openrouterCount > 0) {
+      reason =
+        anyDirectKeySet
+          ? `No AVAILABLE models. You have a direct provider key set (OPENAI_API_KEY/ANTHROPIC_API_KEY/etc), but ${openrouterCount} of ${allModels.length} registered models route through OpenRouter and need OPENROUTER_API_KEY specifically — direct provider keys don't activate those. Set OPENROUTER_API_KEY (get one at openrouter.ai/keys) to activate the main model catalog.`
+          : `No AVAILABLE models. ${openrouterCount} of ${allModels.length} registered models require OPENROUTER_API_KEY (get one at openrouter.ai/keys) — that's the one key needed for most of this app's model catalog.`;
+    }
+
     return {
       primary: any,
       fallback: [],
-      reason: "No AVAILABLE models. Using best registered model. Activate providers via admin console.",
+      reason,
     };
   }
 
