@@ -14,6 +14,7 @@ const NAV = [
   { href: "/studio", label: "Studio" },
   { href: "/admin/control", label: "Control" },
   { href: "/workspace", label: "Workspace" },
+  { href: "/docs", label: "API Docs" },
   { href: "/settings/preferences", label: "Settings" },
 ];
 

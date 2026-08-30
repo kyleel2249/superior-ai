@@ -23,6 +23,7 @@
     "@superior-ai/marketing": "*",
     "@superior-ai/memory": "*",
     "@superior-ai/tools": "*",
+    "@superior-ai/api-docs": "*",
     "@superior-ai/db": "*",
     "@superior-ai/crm": "*",
     "@superior-ai/queue": "*",
