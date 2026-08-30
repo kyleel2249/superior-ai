@@ -147,6 +147,13 @@ const SEED_MODELS: Omit<ModelDefinition, "id" | "createdAt" | "updatedAt">[] = [
   },
 
   // OpenRouter — routes to many upstream models via one key
+  // NOTE: gpt-4o-mini's broader GPT-4o family is being retired across
+  // multiple platforms through 2026 (Azure Foundry retirement confirmed
+  // March 31 2026; OpenAI's own retirement signals are less uniformly
+  // confirmed as of this check). Left unchanged rather than guess a
+  // replacement without the same live-verification confidence used for
+  // the two entries above (claude-sonnet-4.6, gemini-3.6-flash) — worth
+  // re-checking specifically before relying on this one.
   {
     provider: "openrouter",
     modelId: "openai/gpt-4o-mini",
@@ -170,7 +177,7 @@ const SEED_MODELS: Omit<ModelDefinition, "id" | "createdAt" | "updatedAt">[] = [
   },
   {
     provider: "openrouter",
-    modelId: "anthropic/claude-sonnet-4",
+    modelId: "anthropic/claude-sonnet-4.6",
     displayName: "OpenRouter · Claude Sonnet",
     status: "CONFIGURATION_REQUIRED",
     availability: false,
@@ -191,7 +198,7 @@ const SEED_MODELS: Omit<ModelDefinition, "id" | "createdAt" | "updatedAt">[] = [
   },
   {
     provider: "openrouter",
-    modelId: "google/gemini-2.5-flash",
+    modelId: "google/gemini-3.6-flash",
     displayName: "OpenRouter · Gemini Flash",
     status: "CONFIGURATION_REQUIRED",
     availability: false,
