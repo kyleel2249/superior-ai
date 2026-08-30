@@ -6,19 +6,22 @@
  * Model ID mappings below were verified via live web search against
  * OpenRouter's own model pages (plus independent third-party sources
  * that mirror OpenRouter's catalog) — not guessed, not left as an
- * earlier session's placeholder. Several names in this file (GPT-5.6
- * Sol/Terra, Claude Opus 5/Sonnet 5/Fable 5, Grok 4.5/4.6) were
- * previously assumed to be fictional/future-looking, since they
- * postdate most training data cutoffs — that assumption was reasonable
- * at the time but wrong: they are real, currently-shipping models, and
- * are now mapped to their real, confirmed OpenRouter slugs rather than
- * an older stand-in model or a null/unmapped placeholder.
+ * earlier session's placeholder. This covers all 15 named models from
+ * the original spec: GPT-5.6 Sol/Terra, Claude Opus 5/Sonnet 5/Fable 5,
+ * Grok 4.5/4.6, Gemini 3.1 Pro/3.5 Flash-Lite/3.6 Flash/3.7 Flash,
+ * GLM-5.2, Kimi K3, Nemotron 3 Ultra, and Sonar. Several of these names
+ * were previously assumed fictional/future-looking, since they postdate
+ * most training data cutoffs — that assumption was reasonable at the
+ * time but wrong: they are real, currently-shipping models, and are now
+ * mapped to their real, confirmed OpenRouter slugs rather than an older
+ * stand-in model or a null/unmapped placeholder.
  *
- * Any name in this file NOT covered by that verification pass (Gemini
- * 3.5/3.6/3.7 variants, Sonar 2, GLM-5.2, Kimi K3, Nemotron 3 Ultra)
- * still carries whatever mapping an earlier session assigned — genuinely
- * unverified, not confirmed correct or incorrect. Verify before trusting
- * those specifically.
+ * One exception, stated honestly rather than guessed: the spec names
+ * "Sonar 2" specifically, but no distinct "Sonar 2" model was found —
+ * only Perplexity's Sonar, Sonar Pro, Sonar Reasoning, and Sonar Deep
+ * Research. Mapped to the real, current base Sonar (perplexity/sonar)
+ * as the closest reasonable match rather than inventing a "sonar-2"
+ * slug that doesn't appear to exist.
  */
 
 import type { ModelDefinition, ModelCapabilityScores, ProviderId, ModelStatus } from "@superior-ai/core";
@@ -87,13 +90,13 @@ function seed(
 /** Portfolio from CINTEXA / SUPERIOR master prompt — honest availability */
 export const CINTEXA_SEED_MODELS: Seed[] = [
   // Google family via OpenRouter when published
-  seed("google", "gemini-3.5-flash-lite", "Gemini 3.5 Flash-Lite", "google/gemini-2.0-flash-lite", S({ latency: 95, cost: 95, coding: 55, agentic: 50 }), {
+  seed("google", "gemini-3.5-flash-lite", "Gemini 3.5 Flash-Lite", "google/gemini-3.5-flash-lite", S({ latency: 95, cost: 95, coding: 55, agentic: 50 }), {
     priority: 40, aliases: ["flash-lite", "gemini-flash-lite"], multimodalSupport: true,
   }),
-  seed("google", "gemini-3.6-flash", "Gemini 3.6 Flash", "google/gemini-2.0-flash", S({ latency: 88, cost: 80, coding: 75, agentic: 70 }), {
+  seed("google", "gemini-3.6-flash", "Gemini 3.6 Flash", "google/gemini-3.6-flash", S({ latency: 88, cost: 80, coding: 75, agentic: 70 }), {
     priority: 65, aliases: ["gemini-flash", "gemini-3.6"], multimodalSupport: true,
   }),
-  seed("google", "gemini-3.7-flash", "Gemini 3.7 Flash", "google/gemini-2.5-flash-preview", S({ latency: 85, cost: 70, coding: 82, agentic: 80, reasoning: 78 }), {
+  seed("google", "gemini-3.7-flash", "Gemini 3.7 Flash", "google/gemini-3.7-flash", S({ latency: 85, cost: 70, coding: 82, agentic: 80, reasoning: 78 }), {
     priority: 75, aliases: ["gemini-3.7", "gemini-flash-advanced"], multimodalSupport: true, computerUse: true,
   }),
   seed("google", "gemini-3.1-pro", "Gemini 3.1 Pro", "google/gemini-3.1-pro-preview", S({ reasoning: 90, coding: 88, agentic: 85, cost: 35 }), {
@@ -147,15 +150,15 @@ export const CINTEXA_SEED_MODELS: Seed[] = [
   }),
 
   // Z.AI / Moonshot / NVIDIA — open/self-host capable
-  seed("zai", "glm-5.2", "GLM-5.2", "z-ai/glm-4", S({ reasoning: 86, coding: 85, cost: 70 }), {
+  seed("zai", "glm-5.2", "GLM-5.2", "z-ai/glm-5.2", S({ reasoning: 86, coding: 85, cost: 70 }), {
     priority: 72, aliases: ["glm-5.2", "glm5"],
     metadata: { open_weights: true, self_hosting: true, modes: ["CLOUD", "SELF_HOSTED"] },
   }),
-  seed("moonshot", "kimi-k3", "Kimi K3", "moonshotai/kimi-k2", S({ reasoning: 87, coding: 86, vision: 85, agentic: 88 }), {
+  seed("moonshot", "kimi-k3", "Kimi K3", "moonshotai/kimi-k3", S({ reasoning: 87, coding: 86, vision: 85, agentic: 88 }), {
     priority: 78, aliases: ["kimi", "kimi-k3"], multimodalSupport: true,
     metadata: { agent_swarm: true, open_weights: true },
   }),
-  seed("nvidia", "nemotron-3-ultra", "Nemotron 3 Ultra", null, S({ reasoning: 90, agentic: 90, cost: 40 }), {
+  seed("nvidia", "nemotron-3-ultra", "Nemotron 3 Ultra", "nvidia/nemotron-3-ultra-550b-a55b", S({ reasoning: 90, agentic: 90, cost: 40 }), {
     status: "UNAVAILABLE", priority: 88, aliases: ["nemotron", "nemotron-3"],
     metadata: { open_weights: true, self_hosting: true, mixture_of_experts: true },
   }),
