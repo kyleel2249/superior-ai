@@ -47,6 +47,7 @@ import {
   createExperiment,
   startExperiment,
   completeExperiment,
+  runExperiment,
   listExperiments,
   upsertGoal,
   listGoals,
@@ -356,6 +357,11 @@ export async function POST(req: NextRequest) {
     }
     if (action === "experiment_complete") {
       return NextResponse.json(completeExperiment(String(body.id), body.results ?? {}));
+    }
+    if (action === "experiment_run") {
+      const result = await runExperiment(String(body.id));
+      if (!result) return NextResponse.json({ error: "experiment not found" }, { status: 404 });
+      return NextResponse.json(result);
     }
     if (action === "experiments_list") {
       return NextResponse.json({ experiments: listExperiments() });
