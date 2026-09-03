@@ -31,7 +31,7 @@ export function scoreLead(input: {
 
 export function createLeadShell(company: string, website?: string, source = "research"): Lead {
   return {
-    id: `lead_${company.toLowerCase().replace(/\W+/g, "_")}_${Date.now()}`,
+    id: `lead_${company.toLowerCase().replace(/\W+/g, "_")}_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
     company,
     website,
     publicContacts: [],
@@ -204,7 +204,7 @@ export function createDealFromLead(
   input: { title?: string; value?: number; currency?: string; stage?: string }
 ): import("@superior-ai/core").Deal {
   const deal = {
-    id: `deal_${Date.now().toString(36)}`,
+    id: `deal_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`,
     leadId: lead.id,
     title: input.title ?? `${lead.company} — opportunity`,
     value: input.value ?? 0,

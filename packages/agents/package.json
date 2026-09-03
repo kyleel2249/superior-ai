@@ -4,18 +4,23 @@
   "private": true,
   "main": "./src/index.ts",
   "dependencies": {
-    "@superior-ai/core": "*",
     "@superior-ai/ai-gateway": "*",
-    "@superior-ai/creative": "*",
-    "@superior-ai/seo": "*",
-    "@superior-ai/sales": "*",
     "@superior-ai/competitor": "*",
+    "@superior-ai/core": "*",
+    "@superior-ai/creative": "*",
+    "@superior-ai/db": "*",
     "@superior-ai/marketing": "*",
     "@superior-ai/memory": "*",
-    "@superior-ai/tools": "*",
-    "@superior-ai/db": "*"
+    "@superior-ai/sales": "*",
+    "@superior-ai/seo": "*",
+    "@superior-ai/tools": "*"
   },
   "devDependencies": {
-    "typescript": "^5.8.0"
+    "typescript": "^5.8.0",
+    "vitest": "^4.1.11"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
   }
 }

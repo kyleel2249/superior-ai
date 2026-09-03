@@ -22,7 +22,7 @@ export function createExperiment(input: {
   sampleSizeTarget?: number;
 }): Experiment {
   const exp: Experiment = {
-    id: `exp_${Date.now().toString(36)}`,
+    id: `exp_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`,
     hypothesis: input.hypothesis,
     variants: input.variants,
     metrics: input.metrics ?? ["quality", "latency", "cost"],

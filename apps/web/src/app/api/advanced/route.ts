@@ -177,7 +177,7 @@ export async function POST(req: NextRequest) {
       );
     }
     if (action === "verify_start") {
-      return NextResponse.json(startVerificationLoop(String(body.taskId ?? `task_${Date.now()}`)));
+      return NextResponse.json(startVerificationLoop(String(body.taskId ?? `task_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`)));
     }
     if (action === "verify_checkpoint") {
       return NextResponse.json(

@@ -175,7 +175,7 @@ export function generateAdVariant(input: {
   const beats = beatsForDuration(input.durationSec, parts);
 
   return {
-    id: `ad_${input.storyType}_${input.durationSec}_${Date.now().toString(36).slice(-4)}`,
+    id: `ad_${input.storyType}_${input.durationSec}_${Date.now().toString(36).slice(-4)}_${Math.random().toString(36).slice(2, 6)}`,
     durationSec: input.durationSec,
     storyType: input.storyType,
     hook,

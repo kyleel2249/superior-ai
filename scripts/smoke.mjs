@@ -68,7 +68,7 @@ if (core.includes('"SUPREME"')) ok("SUPREME level");
 else fail("core", "no SUPREME");
 
 const searchSrc = fs.readFileSync(path.join(root, "packages/tools/src/web-search.ts"), "utf8");
-for (const eng of ["google_cse", "brave", "yandex", "naver", "mojeek", "wolframalpha", "yahoo_via_bing", "ecosia_via_bing", "baidu", "startpage", "multiEngineSearch", "listSearchEngines"]) {
+for (const eng of ["google_cse", "brave", "yandex", "naver", "mojeek", "wolframalpha", "yahoo_via_bing", "ecosia_via_bing", "startpage", "multiEngineSearch", "listSearchEngines"]) {
   if (searchSrc.includes(eng)) ok(`search:${eng}`);
   else fail(`search:${eng}`, "missing");
 }

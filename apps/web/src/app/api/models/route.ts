@@ -15,6 +15,8 @@ import {
   getLifecycle,
   runSandboxChecks,
   promoteFromSandbox,
+  setProviderKey,
+  deleteProviderKey,
 } from "@superior-ai/ai-gateway";
 import type { BenchmarkCategory } from "@superior-ai/ai-gateway";
 import type { ProviderId } from "@superior-ai/core";
@@ -147,8 +149,34 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(promoteFromSandbox(registryId));
     }
 
+    if (action === "set_key") {
+      const provider = String(body.provider ?? "") as ProviderId;
+      const key = String(body.key ?? "");
+      if (!provider || !key) {
+        return NextResponse.json({ error: "provider and key required" }, { status: 400 });
+      }
+      const status = await setProviderKey(provider, key);
+      // Immediately try a real discovery call against the provider so the
+      // response tells the truth about whether the key actually works,
+      // rather than just confirming it was saved.
+      let verification: unknown = null;
+      try {
+        verification = await discoverModels(provider);
+      } catch (err) {
+        verification = { error: err instanceof Error ? err.message : String(err) };
+      }
+      return NextResponse.json({ status, verification });
+    }
+
+    if (action === "delete_key") {
+      const provider = String(body.provider ?? "") as ProviderId;
+      if (!provider) return NextResponse.json({ error: "provider required" }, { status: 400 });
+      await deleteProviderKey(provider);
+      return NextResponse.json({ ok: true, credentials: listCredentialStatus() });
+    }
+
     return NextResponse.json(
-      { error: "action must be discover | health | benchmark | resolve | benchmark_suite | benchmark_history | benchmark_compare | sandbox_check | sandbox_promote" },
+      { error: "action must be discover | health | benchmark | resolve | benchmark_suite | benchmark_history | benchmark_compare | sandbox_check | sandbox_promote | set_key | delete_key" },
       { status: 400 }
     );
   } catch (err) {

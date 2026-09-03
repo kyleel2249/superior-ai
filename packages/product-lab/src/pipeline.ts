@@ -48,7 +48,7 @@ export function developConcept(input: {
   const risk = Math.round((competition + executionDifficulty) / 2);
 
   const concept: ProductConcept = {
-    id: `prod_${Date.now().toString(36)}`,
+    id: `prod_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`,
     idea,
     customerProblem: problem,
     targetMarket: market,

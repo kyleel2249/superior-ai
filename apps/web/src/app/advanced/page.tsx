@@ -170,7 +170,7 @@ export default function AdvancedFeaturesPage() {
             <button
               type="button"
               className="chip"
-              onClick={() => post("verify_start", { taskId: `demo_${Date.now()}` })}
+              onClick={() => post("verify_start", { taskId: `demo_${Date.now()}_${Math.random().toString(36).slice(2, 8)}` })}
             >
               Start loop
             </button>

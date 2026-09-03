@@ -46,7 +46,7 @@ export function planMasterLoop(objective: string): MasterLoopRun {
     status: "planned" as const,
   }));
   return {
-    id: `loop_${Date.now().toString(36)}`,
+    id: `loop_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`,
     objective,
     stages,
     createdAt: new Date().toISOString(),

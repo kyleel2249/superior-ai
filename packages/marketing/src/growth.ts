@@ -8,7 +8,7 @@ export function proposeExperiments(context: string): GrowthExperiment[] {
   const base = context.slice(0, 80) || "conversion";
   return [
     {
-      id: `exp_headline_${Date.now()}`,
+      id: `exp_headline_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
       hypothesis: `A clearer pain-focused headline will increase landing conversion for ${base}`,
       metric: "Landing page CVR",
       variants: [
@@ -19,7 +19,7 @@ export function proposeExperiments(context: string): GrowthExperiment[] {
       status: "proposed",
     },
     {
-      id: `exp_ugc_${Date.now()}`,
+      id: `exp_ugc_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
       hypothesis: "UGC-style creative will outperform studio ads on short-form platforms",
       metric: "CTR",
       variants: [
@@ -29,7 +29,7 @@ export function proposeExperiments(context: string): GrowthExperiment[] {
       status: "proposed",
     },
     {
-      id: `exp_cta_${Date.now()}`,
+      id: `exp_cta_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
       hypothesis: "Lower-friction CTA (Book demo → Start free) increases qualified starts",
       metric: "SQL rate",
       variants: [
@@ -39,7 +39,7 @@ export function proposeExperiments(context: string): GrowthExperiment[] {
       status: "proposed",
     },
     {
-      id: `exp_seo_${Date.now()}`,
+      id: `exp_seo_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
       hypothesis: "Comparison page targets high-intent queries and lifts organic demos",
       metric: "Organic demo requests",
       variants: [{ name: "A", description: "Publish comparison cluster" }],

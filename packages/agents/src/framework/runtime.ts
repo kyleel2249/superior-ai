@@ -47,7 +47,7 @@ export function createAgentInstance(
   const def = getAgentDefinition(definitionId);
   if (!def) return null;
   const inst: AgentInstance = {
-    id: `inst_${def.id}_${Date.now().toString(36)}`,
+    id: `inst_${def.id}_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`,
     definition: def,
     lifecycle: "created",
     goals: opts?.goals ?? [],

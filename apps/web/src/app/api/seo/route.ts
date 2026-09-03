@@ -9,6 +9,7 @@ import {
   competitorContentGaps,
   seoMetadata,
   auditUrlPlaceholder,
+  auditUrl,
 } from "@superior-ai/seo";
 
 export async function GET(req: NextRequest) {
@@ -68,6 +69,15 @@ export async function POST(req: NextRequest) {
       );
     }
     if (action === "audit") {
+      const targetUrl = String(body.url ?? "https://example.com");
+      // Real live-fetch audit; auditUrl itself falls back to the honest
+      // zero-confidence placeholder (auditUrlPlaceholder) if the fetch fails,
+      // so this path never fabricates data either way.
+      return NextResponse.json(await auditUrl(targetUrl));
+    }
+    if (action === "audit_shell") {
+      // Kept for callers that explicitly want the zero-confidence shell
+      // without making a live network request (e.g. offline dev, previews).
       return NextResponse.json(auditUrlPlaceholder(String(body.url ?? "https://example.com")));
     }
 

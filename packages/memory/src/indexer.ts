@@ -27,7 +27,7 @@ export async function indexDocuments(
   for (const doc of docs) {
     for (let i = 0; i < doc.content.length; i += chunkSize) {
       const content = doc.content.slice(i, i + chunkSize);
-      const id = `idx_${Date.now()}_${chunks}`;
+      const id = `idx_${Date.now()}_${Math.random().toString(36).slice(2, 6)}_${chunks}`;
       const emb = await embedText(`${doc.title}\n${content}`);
       const item: IndexedChunk = {
         id,

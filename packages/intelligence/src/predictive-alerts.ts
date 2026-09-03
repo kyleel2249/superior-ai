@@ -48,7 +48,7 @@ export function evaluateSeriesAlert(input: {
 
   const severity = mag >= crit ? "critical" : "warning";
   return {
-    id: `al_${Date.now().toString(36)}`,
+    id: `al_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`,
     kind: input.kind,
     severity,
     title: `${input.name} ${inverse ? "increase" : "decline"} detected`,

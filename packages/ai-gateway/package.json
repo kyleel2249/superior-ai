@@ -5,13 +5,17 @@
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "scripts": {
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
   },
   "dependencies": {
     "@superior-ai/core": "*",
-    "@superior-ai/security": "*"
+    "@superior-ai/security": "*",
+    "@superior-ai/shared": "*",
+    "@superior-ai/storage": "*"
   },
   "devDependencies": {
-    "typescript": "^5.8.0"
+    "typescript": "^5.8.0",
+    "vitest": "^4.1.11"
   }
 }

@@ -108,7 +108,7 @@ export function runSelfTests(): SelfTestReport {
   else if (summary.warn > 0) overall = "degraded";
 
   return {
-    id: `st_${Date.now().toString(36)}`,
+    id: `st_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`,
     startedAt,
     finishedAt: new Date().toISOString(),
     results,

@@ -16,7 +16,6 @@ export type SearchEngineId =
   | "duckduckgo_html"
   | "brave"
   | "startpage"
-  | "baidu"
   | "yandex"
   | "naver"
   | "ecosia_via_bing"

@@ -173,9 +173,13 @@ export function createCrmConnector(creds: CrmCredentials): CrmConnector {
 export function listCrmProviders(): Array<{ id: CrmProvider; status: string }> {
   return [
     { id: "hubspot", status: process.env.HUBSPOT_ACCESS_TOKEN ? "configured" : "CONFIGURATION_REQUIRED" },
-    { id: "salesforce", status: process.env.SALESFORCE_ACCESS_TOKEN ? "configured" : "CONFIGURATION_REQUIRED" },
-    { id: "zoho", status: "CONFIGURATION_REQUIRED" },
-    { id: "pipedrive", status: "CONFIGURATION_REQUIRED" },
+    // salesforce/zoho/pipedrive/custom only ever resolve to StubConnector in
+    // createCrmConnector() below — reporting "configured" based on an env
+    // var here would claim a working integration that doesn't exist yet.
+    // Kept honest until a real connector class is implemented for each.
+    { id: "salesforce", status: "CONFIGURATION_REQUIRED (connector not yet implemented)" },
+    { id: "zoho", status: "CONFIGURATION_REQUIRED (connector not yet implemented)" },
+    { id: "pipedrive", status: "CONFIGURATION_REQUIRED (connector not yet implemented)" },
     { id: "custom", status: "CONFIGURATION_REQUIRED" },
   ];
 }

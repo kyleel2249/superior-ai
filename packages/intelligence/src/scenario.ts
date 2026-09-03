@@ -82,7 +82,7 @@ export function runScenario(input: ScenarioInput): ScenarioResult {
 
   const delta = projected - baseline;
   return {
-    id: `sc_${Date.now().toString(36)}`,
+    id: `sc_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`,
     name: input.name,
     kind: input.kind,
     metric: input.metric,

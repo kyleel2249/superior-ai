@@ -27,6 +27,18 @@ const jobs = new Map<string, QueueJob>();
 const handlers = new Map<string, Handler>();
 const waiters: QueueJob[] = [];
 
+/**
+ * Bounded worker pool. Without this, every enqueue() spawned its own
+ * processNext() call that immediately claimed whatever was in `waiters`
+ * at that instant — so priority ordering only held for jobs that were
+ * already queued when a worker freed up, not for jobs enqueued back-to-back
+ * in the same tick (the common case). Capping concurrency makes jobs
+ * actually queue up and be dispatched in priority order, as the `priority`
+ * field promises.
+ */
+const MAX_CONCURRENCY = Number(process.env.QUEUE_MAX_CONCURRENCY ?? 4);
+let activeCount = 0;
+
 export function registerHandler(type: string, handler: Handler): void {
   handlers.set(type, handler);
 }
@@ -55,13 +67,24 @@ export function enqueue(input: {
   jobs.set(id, job);
   waiters.push(job);
   waiters.sort((a, b) => b.priority - a.priority);
-  void processNext();
+  pump();
   return job;
 }
 
-async function processNext(): Promise<void> {
-  const job = waiters.shift();
-  if (!job) return;
+/** Fills any free worker slots (up to MAX_CONCURRENCY) from the priority-sorted waiters list. */
+function pump(): void {
+  while (activeCount < MAX_CONCURRENCY && waiters.length > 0) {
+    const job = waiters.shift();
+    if (!job) break;
+    activeCount += 1;
+    void runJob(job).finally(() => {
+      activeCount -= 1;
+      pump();
+    });
+  }
+}
+
+async function runJob(job: QueueJob): Promise<void> {
   const handler = handlers.get(job.type);
   job.status = "active";
   job.attempts += 1;
@@ -73,7 +96,6 @@ async function processNext(): Promise<void> {
     job.error = `No handler for job type: ${job.type}`;
     job.updatedAt = new Date().toISOString();
     jobs.set(job.id, job);
-    void processNext();
     return;
   }
 
@@ -93,7 +115,6 @@ async function processNext(): Promise<void> {
   }
   job.updatedAt = new Date().toISOString();
   jobs.set(job.id, job);
-  void processNext();
 }
 
 export function getJob(id: string): QueueJob | undefined {

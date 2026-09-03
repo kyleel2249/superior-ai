@@ -64,7 +64,7 @@ export async function handleChatCompletions(body: OpenAICompatRequest): Promise<
       max_tokens: body.max_tokens,
     });
     return {
-      id: completion.id || `chatcmpl_${Date.now()}`,
+      id: completion.id || `chatcmpl_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
       object: "chat.completion",
       created: Math.floor(Date.now() / 1000),
       model: completion.model || modelId,
@@ -105,7 +105,7 @@ export async function handleChatCompletions(body: OpenAICompatRequest): Promise<
   });
 
   return {
-    id: completion.id || `chatcmpl_${Date.now()}`,
+    id: completion.id || `chatcmpl_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
     object: "chat.completion",
     created: Math.floor(Date.now() / 1000),
     model: completion.model || target.modelId,

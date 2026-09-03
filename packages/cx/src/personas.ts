@@ -26,7 +26,7 @@ export interface CustomerPersona {
 const personas: CustomerPersona[] = [];
 
 export function createPersona(input: Partial<CustomerPersona> & { segment: string; problem: string }): CustomerPersona {
-  const id = `persona_${Date.now().toString(36)}`;
+  const id = `persona_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`;
   const p: CustomerPersona = {
     id,
     name: input.name ?? `Persona ${personas.length + 1}`,

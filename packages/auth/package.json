@@ -8,9 +8,14 @@
     "@superior-ai/shared": "*"
   },
   "devDependencies": {
-    "typescript": "^5.8.0"
+    "typescript": "^5.8.0",
+    "vitest": "^4.1.11"
   },
   "optionalDependencies": {
     "jose": "^5.9.0"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
   }
 }

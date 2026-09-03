@@ -62,7 +62,7 @@ export async function GET(req: NextRequest) {
 
     let email = "oidc-user@configured.idp";
     let name = "OIDC User";
-    let sub = `oidc_${Date.now()}`;
+    let sub = `oidc_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
 
     if (tokens.id_token) {
       const validation = await validateIdToken(tokens.id_token, {

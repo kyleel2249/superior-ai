@@ -40,7 +40,7 @@ function slugify(name: string): string {
 }
 
 export function createOrganization(name: string, owner: { userId: string; email: string }): Organization {
-  const id = `org_${Date.now().toString(36)}`;
+  const id = `org_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`;
   const org: Organization = {
     id,
     name,
@@ -75,7 +75,7 @@ export function createInvite(input: {
   role?: Role;
   ttlHours?: number;
 }): Invite {
-  const id = `inv_${Date.now().toString(36)}`;
+  const id = `inv_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`;
   const token = `invite_${Math.random().toString(36).slice(2)}${Math.random().toString(36).slice(2)}`;
   const hours = input.ttlHours ?? 72;
   const invite: Invite = {

@@ -105,7 +105,7 @@ export function generateDailyBrief(input: DailyBriefInput = {}): DailyBrief {
   ];
 
   return {
-    id: `daily_${Date.now().toString(36)}`,
+    id: `daily_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`,
     generatedAt,
     title: `Daily Intelligence — ${day}`,
     sections,

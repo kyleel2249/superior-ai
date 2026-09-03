@@ -66,7 +66,7 @@ export function openPrivacyRequest(input: {
   note?: string;
 }): PrivacyRequest {
   const req: PrivacyRequest = {
-    id: `prv_${Date.now().toString(36)}`,
+    id: `prv_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`,
     type: input.type,
     subjectRef: input.subjectRef,
     status: "received",

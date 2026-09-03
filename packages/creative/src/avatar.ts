@@ -35,7 +35,7 @@ export interface TalkingAvatarScript {
 }
 
 function aid() {
-  return `av_${Date.now().toString(36)}`;
+  return `av_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`;
 }
 
 export function createFictionalAvatar(input: {

@@ -4,18 +4,21 @@
   "private": true,
   "main": "./src/index.ts",
   "scripts": {
-    "worker": "npx tsx src/worker.ts"
+    "worker": "npx tsx src/worker.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
   },
   "dependencies": {
-    "@superior-ai/core": "*",
-    "@superior-ai/agents": "*"
+    "@superior-ai/agents": "*",
+    "@superior-ai/core": "*"
   },
   "optionalDependencies": {
     "bullmq": "^5.34.0",
     "ioredis": "^5.4.0"
   },
   "devDependencies": {
+    "tsx": "^4.19.0",
     "typescript": "^5.8.0",
-    "tsx": "^4.19.0"
+    "vitest": "^4.1.11"
   }
 }

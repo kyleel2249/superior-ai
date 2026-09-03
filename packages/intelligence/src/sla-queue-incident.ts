@@ -57,7 +57,7 @@ export function enqueueTask(input: {
   payload: string;
 }): QueueItem {
   const item: QueueItem = {
-    id: `q_${Date.now().toString(36)}`,
+    id: `q_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`,
     tenantId: input.tenantId ?? "local",
     priority: input.priority ?? "P3",
     payload: input.payload,
@@ -100,7 +100,7 @@ export function openIncident(input: {
 }): Incident {
   const now = new Date().toISOString();
   const inc: Incident = {
-    id: `inc_${Date.now().toString(36)}`,
+    id: `inc_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`,
     title: input.title,
     severity: input.severity ?? "medium",
     status: "detected",

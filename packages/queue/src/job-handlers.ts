@@ -8,7 +8,14 @@ export async function runJobHandler(
 ): Promise<Record<string, unknown>> {
   switch (name) {
     case "echo":
-      return { echoed: true, at: new Date().toISOString(), data };
+      // Snapshot the payload rather than holding a live reference to it.
+      // The caller (memory-queue's echo handler) writes this return value
+      // onto job.payload.result — so a live `data` reference here makes
+      // job.payload.result.data === job.payload, a direct self-reference
+      // that breaks JSON.stringify on every subsequent read of the job
+      // (verified: this was actually throwing "Converting circular
+      // structure to JSON" on GET /api/queue after any echo job ran).
+      return { echoed: true, at: new Date().toISOString(), data: { ...data } };
 
     case "orchestrate_async": {
       const { runOrchestrator } = await import("@superior-ai/agents");

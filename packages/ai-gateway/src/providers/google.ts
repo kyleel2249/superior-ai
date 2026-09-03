@@ -65,7 +65,7 @@ export class GoogleAdapter extends BaseProviderAdapter {
     };
     const content = data.candidates?.[0]?.content?.parts?.map((p) => p.text ?? "").join("") ?? "";
     return {
-      id: `gemini-${Date.now()}`,
+      id: `gemini-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
       model: req.model,
       content,
       usage: data.usageMetadata

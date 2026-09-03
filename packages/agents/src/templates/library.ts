@@ -73,7 +73,7 @@ export function cloneAgentTemplate(id: string, nameSuffix = " copy"): AgentTempl
   if (!t) return null;
   return {
     ...t,
-    id: `${t.id}_clone_${Date.now().toString(36)}`,
+    id: `${t.id}_clone_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`,
     name: t.name + nameSuffix,
   };
 }

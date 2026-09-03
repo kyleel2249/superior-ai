@@ -50,7 +50,7 @@ const twins = new Map<string, TwinSnapshot>();
 export function upsertTwin(
   input: Partial<TwinSnapshot> & { name: string }
 ): TwinSnapshot {
-  const id = input.id ?? `twin_${Date.now().toString(36)}`;
+  const id = input.id ?? `twin_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`;
   const existing = twins.get(id);
   const snap: TwinSnapshot = {
     id,

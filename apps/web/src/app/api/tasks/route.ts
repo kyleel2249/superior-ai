@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(updated ?? { error: "not found" }, { status: updated ? 200 : 404 });
   }
 
-  const taskId = body.taskId ?? `task_${Date.now()}`;
+  const taskId = body.taskId ?? `task_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
   const record = await saveTask({
     id: taskId,
     userId: body.userId ?? "anonymous",

@@ -32,7 +32,7 @@ export function createRootCauseGraph(input: {
   symptom: string;
   possibleCauses?: string[];
 }): RootCauseGraph {
-  const id = `rcg_${Date.now().toString(36)}`;
+  const id = `rcg_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`;
   const nodes: RootCauseNode[] = [
     { id: "symptom", type: "symptom", label: input.symptom, confidence: 1 },
   ];

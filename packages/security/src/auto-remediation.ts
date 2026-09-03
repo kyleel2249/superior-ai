@@ -14,7 +14,7 @@ export interface RemediationPlan {
 const plans = new Map<string, RemediationPlan>();
 
 export function planRemediation(problem: string): RemediationPlan {
-  const id = `rem_${Date.now().toString(36)}`;
+  const id = `rem_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`;
   const plan: RemediationPlan = {
     id,
     problem,

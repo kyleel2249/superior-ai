@@ -12,7 +12,6 @@
  *  DuckDuckGo  → Instant Answer API + HTML fallback
  *  Brave       → Brave Search API
  *  Startpage   → CONFIGURATION_REQUIRED (no public API)
- *  Baidu       → CONFIGURATION_REQUIRED (partner API only)
  *  Yandex      → Yandex XML / Cloud Search (when key set)
  *  Naver       → Naver Search API (when client id/secret set)
  *  Ecosia      → Bing-backed public web (no dedicated API; via Bing if keyed)
@@ -45,7 +44,6 @@ export type SearchEngineId =
   | "duckduckgo_html"
   | "brave"
   | "startpage"
-  | "baidu"
   | "yandex"
   | "naver"
   | "ecosia_via_bing"
@@ -138,14 +136,6 @@ export function listSearchEngines(): EngineDescriptor[] {
       requiresKeys: ["STARTPAGE_API_KEY"],
       configured: Boolean(env("STARTPAGE_API_KEY")),
       notes: "No public general API. Marked UNAVAILABLE unless partner key provided.",
-    },
-    {
-      id: "baidu",
-      name: "Baidu",
-      category: "regional",
-      requiresKeys: ["BAIDU_SEARCH_API_KEY"],
-      configured: Boolean(env("BAIDU_SEARCH_API_KEY")),
-      notes: "China-dominant engine. Official partner API required — no scrape bypass.",
     },
     {
       id: "yandex",
@@ -699,12 +689,6 @@ export async function searchWithEngine(
         q,
         "startpage",
         "Startpage has no public general search API. Partner/connector required — no scrape bypass."
-      );
-    case "baidu":
-      return unavailable(
-        q,
-        "baidu",
-        "Baidu requires an official partner/search API. Scrape bypass is not implemented."
       );
     default:
       return unavailable(q, "none", `Unknown engine: ${engine}`);

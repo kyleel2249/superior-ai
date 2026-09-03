@@ -143,7 +143,7 @@ export async function repoClone(input: {
       .split("/")
       .filter(Boolean)
       .pop() ||
-    `repo_${Date.now()}`;
+    `repo_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
   const dest = safeResolve(root, name);
   if (!dest) return { success: false, error: "Invalid destination" };
 

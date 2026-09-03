@@ -34,7 +34,7 @@ export function registerPublisher(input: {
   email: string;
   shareBps?: number;
 }): PublisherAccount {
-  const id = `pub_${Date.now().toString(36)}`;
+  const id = `pub_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`;
   const account: PublisherAccount = {
     id,
     name: input.name,
@@ -70,7 +70,7 @@ export function recordPackSale(input: {
   const platformShareUsd = Math.round((input.grossUsd - publisherShareUsd) * 1e6) / 1e6;
 
   const event: RevenueEvent = {
-    id: `rev_${Date.now().toString(36)}`,
+    id: `rev_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`,
     at: new Date().toISOString(),
     packId: input.packId,
     organizationId: input.organizationId,

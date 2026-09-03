@@ -35,6 +35,12 @@ export async function initQueue(): Promise<{ backend: "redis" | "memory" }> {
   memRegisterHandler("embed_index", async (job) => {
     job.payload.result = await runJobHandler("embed_index", job.payload);
   });
+  // Deliberately-failing handler — lets operators verify retry/backoff and
+  // failure surfacing end-to-end (e.g. from the /admin/queue dashboard)
+  // without needing a real integration to break on purpose.
+  memRegisterHandler("demo_fail", async () => {
+    throw new Error("Intentional demo failure (job type: demo_fail)");
+  });
 
   return { backend };
 }

@@ -41,7 +41,7 @@ export function createFactoryTask(input: {
   repoUrl?: string;
   localPath?: string;
 }): FactoryTask {
-  const id = `sf_${Date.now().toString(36)}`;
+  const id = `sf_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`;
   const plan = [
     "Clarify acceptance criteria",
     "Inspect repository structure",

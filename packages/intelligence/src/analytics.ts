@@ -139,7 +139,7 @@ export function buildExecutiveBriefing(input: {
   ].join(" ");
 
   return {
-    id: `brief_${Date.now().toString(36)}`,
+    id: `brief_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`,
     title: input.title ?? "Executive briefing",
     period: input.period ?? new Date().toISOString().slice(0, 10),
     highlights,
@@ -164,7 +164,7 @@ export function createDecision(input: {
   owner?: string;
 }): DecisionRecord {
   const rec: DecisionRecord = {
-    id: `dec_${Date.now().toString(36)}`,
+    id: `dec_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`,
     question: input.question,
     options: input.options,
     recommendation: input.recommendation,

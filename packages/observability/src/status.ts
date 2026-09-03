@@ -87,7 +87,7 @@ export function createIncident(input: {
   impact?: ComponentStatus;
 }): StatusIncident {
   const incident: StatusIncident = {
-    id: `inc_${Date.now().toString(36)}`,
+    id: `inc_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`,
     title: input.title,
     body: input.body,
     status: "investigating",

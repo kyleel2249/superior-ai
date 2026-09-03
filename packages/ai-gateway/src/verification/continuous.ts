@@ -44,7 +44,7 @@ export function startVerificationLoop(
   taskId: string,
   stages: VerifyStage[] = DEFAULT_STAGES
 ): VerificationLoopState {
-  const id = `vl_${Date.now().toString(36)}`;
+  const id = `vl_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`;
   const state: VerificationLoopState = {
     id,
     taskId,

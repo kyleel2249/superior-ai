@@ -110,7 +110,7 @@ export function generateLetterformConcepts(input: {
   ];
 
   const concepts: LetterformConcept[] = styles.map((style, i) => {
-    const id = `mark_${Date.now().toString(36)}_${i}`;
+    const id = `mark_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 6)}_${i}`;
     return {
       id,
       name: `${brandName} · ${style}`,
@@ -132,7 +132,7 @@ export function generateLetterformConcepts(input: {
   });
 
   return {
-    id: `brand_${Date.now().toString(36)}`,
+    id: `brand_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`,
     brandName,
     industry,
     personality,

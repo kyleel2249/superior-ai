@@ -45,7 +45,7 @@ export function setActiveProfile(id: string): WorkspaceProfile | null {
 
 export function createProfile(name: string, kind: WorkspaceProfileKind): WorkspaceProfile {
   const p: WorkspaceProfile = {
-    id: `profile_${Date.now().toString(36)}`,
+    id: `profile_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`,
     name,
     kind,
     createdAt: new Date().toISOString(),

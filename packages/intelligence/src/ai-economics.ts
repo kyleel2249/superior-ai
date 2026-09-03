@@ -21,7 +21,7 @@ const events: EconomicsEvent[] = [];
 export function recordEconomics(e: Omit<EconomicsEvent, "id" | "at">): EconomicsEvent {
   const row: EconomicsEvent = {
     ...e,
-    id: `eco_${Date.now().toString(36)}`,
+    id: `eco_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`,
     at: new Date().toISOString(),
   };
   events.push(row);

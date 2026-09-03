@@ -30,7 +30,7 @@ export function saveCheckpoint(
 ): TaskCheckpoint {
   const cp: TaskCheckpoint = {
     ...input,
-    id: `cp_${Date.now().toString(36)}`,
+    id: `cp_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`,
     at: new Date().toISOString(),
   };
   const arr = checkpoints.get(input.taskId) ?? [];

@@ -77,7 +77,7 @@ export function openTicket(input: {
   }
 
   const ticket: SupportTicket = {
-    id: `tkt_${Date.now().toString(36)}`,
+    id: `tkt_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`,
     customerId: input.customerId,
     subject: input.subject,
     body: input.body,
@@ -159,7 +159,7 @@ export function upsertKbArticle(input: { title: string; body: string; tags?: str
     return existing;
   }
   const article: KbArticle = {
-    id: `kb_${Date.now().toString(36)}`,
+    id: `kb_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`,
     title: input.title,
     body: input.body,
     tags: input.tags ?? [],

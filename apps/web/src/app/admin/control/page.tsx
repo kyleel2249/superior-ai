@@ -287,7 +287,7 @@ export default function AiControlCenterPage() {
               onClick={() =>
                 runAdvanced("governance_review", {
                   proposal: {
-                    id: `p_${Date.now()}`,
+                    id: `p_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
                     title: task,
                     description: task,
                     proposedBy: "control_center",
@@ -314,7 +314,7 @@ export default function AiControlCenterPage() {
               disabled={loading}
               onClick={() =>
                 runAdvanced("auction_run", {
-                  task: { id: `t_${Date.now()}`, title: task, requiredTools: ["code_runner", "git"], requiredPermissions: ["code"], complexity: 3, priority: "P1" },
+                  task: { id: `t_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`, title: task, requiredTools: ["code_runner", "git"], requiredPermissions: ["code"], complexity: 3, priority: "P1" },
                 })
               }
               className="rounded-md bg-cyan-700 px-3 py-1.5 text-xs font-medium hover:bg-cyan-600 disabled:opacity-50"

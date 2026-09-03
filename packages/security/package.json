@@ -4,11 +4,16 @@
   "private": true,
   "main": "./src/index.ts",
   "dependencies": {
-    "@superior-ai/core": "*",
     "@superior-ai/audit": "*",
-    "@superior-ai/auth": "*"
+    "@superior-ai/auth": "*",
+    "@superior-ai/core": "*"
   },
   "devDependencies": {
-    "typescript": "^5.8.0"
+    "typescript": "^5.8.0",
+    "vitest": "^4.1.11"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
   }
 }

@@ -76,6 +76,17 @@ const ropa: ProcessingActivity[] = [
 
 const dsars: DsarCase[] = [];
 
+/**
+ * Date.now()-only IDs collide when two calls land in the same millisecond
+ * (verified by a real intermittent test failure — two openDsar() calls in
+ * the same test tick produced identical ids, so listDsars().find() silently
+ * returned the wrong case). A random suffix makes collisions negligible
+ * without changing the id format callers already depend on.
+ */
+function uniqueId(prefix: string): string {
+  return `${prefix}_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`;
+}
+
 export function listProcessingActivities(): ProcessingActivity[] {
   return [...ropa];
 }
@@ -85,7 +96,7 @@ export function registerProcessingActivity(
 ): ProcessingActivity {
   const row: ProcessingActivity = {
     ...activity,
-    id: activity.id ?? `proc_${Date.now().toString(36)}`,
+    id: activity.id ?? uniqueId("proc"),
   };
   ropa.push(row);
   return row;
@@ -99,7 +110,7 @@ export function openDsar(input: {
   const createdAt = new Date();
   const due = new Date(createdAt.getTime() + 30 * 24 * 60 * 60 * 1000); // 30 days operational SLA
   const c: DsarCase = {
-    id: `dsar_${Date.now().toString(36)}`,
+    id: uniqueId("dsar"),
     subjectRef: input.subjectRef,
     type: input.type,
     status: "identity_pending",
