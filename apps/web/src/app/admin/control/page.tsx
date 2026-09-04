@@ -161,9 +161,14 @@ export default function AiControlCenterPage() {
               CINTEXA AI Control Center
             </h1>
           </div>
-          <Link href="/admin/providers" className="text-xs text-indigo-300 hover:text-indigo-200">
-            Providers
-          </Link>
+          <div className="flex items-center gap-3">
+            <Link href="/admin/twin" className="text-xs text-indigo-300 hover:text-indigo-200">
+              Digital Twin
+            </Link>
+            <Link href="/admin/providers" className="text-xs text-indigo-300 hover:text-indigo-200">
+              Providers
+            </Link>
+          </div>
         </div>
       </header>
 

@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
 type GlowVariant = "indigo" | "fuchsia" | "cyan" | "emerald" | "amber";
 
@@ -57,7 +57,67 @@ export function StatChip({ label, value, tone = "indigo" }: { label: string; val
   );
 }
 
-/** Staggered fade-up wrapper for lists of cards, so they animate in one after another rather than all at once. */
+/**
+ * Perspective — establishes the 3D viewing context for any Reveal3D
+ * children inside it. Without this, CSS perspective/rotateX/translateZ
+ * on children has no visible depth (perspective is a property of the
+ * containing block, not the transformed element itself).
+ */
+export function Perspective({ children, className = "" }: { children: ReactNode; className?: string }) {
+  return <div className={`perspective-3d ${className}`.trim()}>{children}</div>;
+}
+
+/**
+ * Reveal3D — tilts an element in from a rotated/depth-shifted state to
+ * flat as it actually scrolls into view, via a real IntersectionObserver
+ * (not a page-load animation like animate-fade-up — this genuinely
+ * triggers on scroll, once, the first time the element becomes visible).
+ * Respects prefers-reduced-motion via the .scroll-3d CSS rule itself.
+ */
+export function Reveal3D({
+  children,
+  className = "",
+  delayMs = 0,
+}: {
+  children: ReactNode;
+  className?: string;
+  delayMs?: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (typeof IntersectionObserver === "undefined") {
+      setVisible(true); // graceful fallback — no observer support, just show it
+      return;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect(); // reveal once, don't re-trigger on scroll-back
+        }
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className={`scroll-3d ${visible ? "scroll-3d--visible" : ""} ${className}`.trim()}
+      style={{ transitionDelay: visible ? `${delayMs}ms` : "0ms" }}
+    >
+      {children}
+    </div>
+  );
+}
+
+
 export function Stagger({ children, gap = 60 }: { children: ReactNode[]; gap?: number }) {
   return (
     <>
