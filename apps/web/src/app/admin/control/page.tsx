@@ -162,6 +162,9 @@ export default function AiControlCenterPage() {
             </h1>
           </div>
           <div className="flex items-center gap-3">
+            <Link href="/admin/intelligence-ops" className="text-xs text-indigo-300 hover:text-indigo-200">
+              Intelligence Ops
+            </Link>
             <Link href="/admin/twin" className="text-xs text-indigo-300 hover:text-indigo-200">
               Digital Twin
             </Link>

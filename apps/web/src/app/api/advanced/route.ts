@@ -90,6 +90,7 @@ export async function GET(req: NextRequest) {
   if (view === "economics") return NextResponse.json({ rollup: economicsRollup() });
   if (view === "knowledge") return NextResponse.json(graphStats());
   if (view === "alerts") return NextResponse.json({ alerts: listAlerts() });
+  if (view === "alerts") return NextResponse.json({ alerts: listAlerts() });
   if (view === "queue") return NextResponse.json({ queue: listQueue(), sla: listSlaPolicies() });
   if (view === "incidents") return NextResponse.json({ incidents: listIncidents() });
   if (view === "agents") {
@@ -336,6 +337,17 @@ export async function POST(req: NextRequest) {
     }
     if (action === "stale_knowledge") {
       return NextResponse.json({ stale: staleEntities(body.threshold) });
+    }
+    if (action === "alert_evaluate") {
+      const result = evaluateSeriesAlert({
+        kind: body.kind,
+        name: body.name,
+        values: body.values ?? [],
+        dropPctWarning: body.dropPctWarning,
+        dropPctCritical: body.dropPctCritical,
+      });
+      if (result) pushAlert(result);
+      return NextResponse.json({ alert: result });
     }
     if (action === "refresh_freshness") {
       return NextResponse.json({ entity: refreshEntityFreshness(String(body.id)) });
